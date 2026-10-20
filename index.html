@@ -1,0 +1,209 @@
+<title>Crecimiento integral, libro digital</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Sala de lectura: el libro sobre un fondo navy de la editorial, controles discretos en crema. Un solo tema oscuro por diseño. */
+:root{
+  --ground:#0b0d33; --ground-2:#04044A; --ink:#f3eddd; --muted:#a9a7c4;
+  --line:rgba(243,237,221,.18); --red:#CD0100; --paper:#f7f2e5; --end:#1b2147;
+  --serif:"EB Garamond","Garamond","Georgia",serif;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{margin:0;background:radial-gradient(120% 90% at 50% 40%,#1a1f5a 0%,var(--ground-2) 45%,var(--ground) 100%);background-color:var(--ground);color:var(--ink);font-family:var(--serif);overflow:hidden}
+.app{height:100%;display:grid;grid-template-rows:auto 1fr auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;align-items:center;gap:14px;padding-block:14px 6px;min-width:0}
+header img{height:30px;width:auto}
+.ttl{min-width:0}
+.ttl h1{margin:0;font-weight:500;font-size:clamp(15px,2.1vw,20px);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ttl p{margin:0;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.stage{position:relative;min-height:0;display:flex;align-items:center;justify-content:center;padding-block:8px}
+#shell{transform-origin:50% 50%;transition:transform .9s cubic-bezier(.3,.1,.2,1)}
+#book{margin:0 auto;filter:drop-shadow(0 18px 30px rgba(0,0,10,.45))}
+.page{background:var(--paper);overflow:hidden}
+.page img{width:100%;height:100%;display:block;object-fit:cover;user-select:none;-webkit-user-drag:none}
+.page.end{background:var(--end) radial-gradient(circle at 50% 50%,rgba(255,255,255,.05),transparent 70%)}
+.page.end .mono{position:absolute;inset:0;display:grid;place-items:center;opacity:.22}
+.page.end .mono img{width:22%;height:auto;object-fit:contain;filter:brightness(0) invert(1)}
+.page.blank{background:var(--paper)}
+.page:not(.hard)::after{content:"";position:absolute;top:0;bottom:0;width:9%;pointer-events:none}
+.page.--left:not(.hard)::after{right:0;background:linear-gradient(to left,rgba(60,45,20,.22),rgba(60,45,20,0))}
+.page.--right:not(.hard)::after{left:0;background:linear-gradient(to right,rgba(60,45,20,.22),rgba(60,45,20,0))}
+.page.hard img{object-fit:cover}
+footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;padding-block:8px 16px}
+button,select{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:15px}
+button:hover,select:hover{border-color:rgba(243,237,221,.5)}
+button:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+select{appearance:none;padding-right:30px;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 16px) 55%,calc(100% - 11px) 55%;background-size:5px 5px;background-repeat:no-repeat;max-width:100%}
+select option{background:var(--ground-2);color:var(--ink)}
+.nav{width:42px;height:42px;padding:0;font-size:22px;line-height:1;display:grid;place-items:center}
+.folio{min-width:150px;text-align:center;font-variant-numeric:tabular-nums;font-size:15px;color:var(--muted)}
+.folio b{color:var(--ink);font-weight:500}
+.hint{position:absolute;bottom:2px;left:0;right:0;text-align:center;font-style:italic;font-size:13px;color:var(--muted);pointer-events:none;transition:opacity .6s}
+.loading{position:absolute;inset:0;display:grid;place-items:center;font-style:italic;color:var(--muted)}
+@media (max-width:560px){.folio{min-width:0;flex-basis:100%;order:-1}.ttl p{letter-spacing:.12em}}
+@media (prefers-reduced-motion:reduce){.hint,#shell{transition:none}}
+</style>
+
+<div class="app">
+  <header>
+    <img src="img/logo_crema.png" alt="Publicaciones Pneuma">
+    <div class="ttl">
+      <h1>Crecimiento integral de la iglesia pentecostal</h1>
+      <p>Balmer Ayala · Publicaciones Pneuma</p>
+    </div>
+  </header>
+  <div class="stage" id="stage">
+    <div class="loading" id="loading">Abriendo el libro…</div>
+    <div id="shell"><div id="book"></div></div>
+    <div class="hint" id="hint">Arrastre la esquina de la página, haga clic o use las flechas del teclado</div>
+  </div>
+  <footer>
+    <button class="nav" id="prev" aria-label="Página anterior">‹</button>
+    <div class="folio" id="folio" aria-live="polite"><b>Cubierta</b></div>
+    <button class="nav" id="next" aria-label="Página siguiente">›</button>
+    <select id="toc" aria-label="Ir a una sección">
+      <option value="">Ir a…</option>
+      <option value="0">Cubierta</option>
+      <option value="10">Contenido</option>
+      <option value="14">Prefacio</option>
+      <option value="20">Introducción</option>
+      <option value="24">Capítulo 1</option>
+      <option value="44">Capítulo 2</option>
+      <option value="70">Capítulo 3</option>
+      <option value="80">Conclusiones</option>
+      <option value="82">Recomendaciones</option>
+      <option value="88">Apéndices</option>
+      <option value="94">Bibliografía</option>
+      <option value="101">Contracubierta</option>
+    </select>
+    <button id="snd" aria-pressed="true">Sonido: sí</button>
+    <button id="fs">Pantalla completa</button>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script>
+const PAGES = [{"k": "front", "src": "img/front.webp", "label": "Cubierta"}, {"k": "end", "src": null, "label": "Guarda"}, {"k": "pdf", "src": "img/p001.webp", "label": "i"}, {"k": "pdf", "src": "img/p002.webp", "label": "ii"}, {"k": "pdf", "src": "img/p003.webp", "label": "iii"}, {"k": "pdf", "src": "img/p004.webp", "label": "iv"}, {"k": "pdf", "src": "img/p005.webp", "label": "v"}, {"k": "pdf", "src": "img/p006.webp", "label": "vi"}, {"k": "pdf", "src": "img/p007.webp", "label": "vii"}, {"k": "pdf", "src": "img/p008.webp", "label": "viii"}, {"k": "pdf", "src": "img/p009.webp", "label": "ix"}, {"k": "pdf", "src": "img/p010.webp", "label": "x"}, {"k": "pdf", "src": "img/p011.webp", "label": "xi"}, {"k": "pdf", "src": "img/p012.webp", "label": "xii"}, {"k": "pdf", "src": "img/p013.webp", "label": "1"}, {"k": "pdf", "src": "img/p014.webp", "label": "2"}, {"k": "pdf", "src": "img/p015.webp", "label": "3"}, {"k": "pdf", "src": "img/p016.webp", "label": "4"}, {"k": "pdf", "src": "img/p017.webp", "label": "5"}, {"k": "pdf", "src": "img/p018.webp", "label": "6"}, {"k": "pdf", "src": "img/p019.webp", "label": "7"}, {"k": "pdf", "src": "img/p020.webp", "label": "8"}, {"k": "pdf", "src": "img/p021.webp", "label": "9"}, {"k": "pdf", "src": "img/p022.webp", "label": "10"}, {"k": "pdf", "src": "img/p023.webp", "label": "11"}, {"k": "pdf", "src": "img/p024.webp", "label": "12"}, {"k": "pdf", "src": "img/p025.webp", "label": "13"}, {"k": "pdf", "src": "img/p026.webp", "label": "14"}, {"k": "pdf", "src": "img/p027.webp", "label": "15"}, {"k": "pdf", "src": "img/p028.webp", "label": "16"}, {"k": "pdf", "src": "img/p029.webp", "label": "17"}, {"k": "pdf", "src": "img/p030.webp", "label": "18"}, {"k": "pdf", "src": "img/p031.webp", "label": "19"}, {"k": "pdf", "src": "img/p032.webp", "label": "20"}, {"k": "pdf", "src": "img/p033.webp", "label": "21"}, {"k": "pdf", "src": "img/p034.webp", "label": "22"}, {"k": "pdf", "src": "img/p035.webp", "label": "23"}, {"k": "pdf", "src": "img/p036.webp", "label": "24"}, {"k": "pdf", "src": "img/p037.webp", "label": "25"}, {"k": "pdf", "src": "img/p038.webp", "label": "26"}, {"k": "pdf", "src": "img/p039.webp", "label": "27"}, {"k": "pdf", "src": "img/p040.webp", "label": "28"}, {"k": "pdf", "src": "img/p041.webp", "label": "29"}, {"k": "pdf", "src": "img/p042.webp", "label": "30"}, {"k": "pdf", "src": "img/p043.webp", "label": "31"}, {"k": "pdf", "src": "img/p044.webp", "label": "32"}, {"k": "pdf", "src": "img/p045.webp", "label": "33"}, {"k": "pdf", "src": "img/p046.webp", "label": "34"}, {"k": "pdf", "src": "img/p047.webp", "label": "35"}, {"k": "pdf", "src": "img/p048.webp", "label": "36"}, {"k": "pdf", "src": "img/p049.webp", "label": "37"}, {"k": "pdf", "src": "img/p050.webp", "label": "38"}, {"k": "pdf", "src": "img/p051.webp", "label": "39"}, {"k": "pdf", "src": "img/p052.webp", "label": "40"}, {"k": "pdf", "src": "img/p053.webp", "label": "41"}, {"k": "pdf", "src": "img/p054.webp", "label": "42"}, {"k": "pdf", "src": "img/p055.webp", "label": "43"}, {"k": "pdf", "src": "img/p056.webp", "label": "44"}, {"k": "pdf", "src": "img/p057.webp", "label": "45"}, {"k": "pdf", "src": "img/p058.webp", "label": "46"}, {"k": "pdf", "src": "img/p059.webp", "label": "47"}, {"k": "pdf", "src": "img/p060.webp", "label": "48"}, {"k": "pdf", "src": "img/p061.webp", "label": "49"}, {"k": "pdf", "src": "img/p062.webp", "label": "50"}, {"k": "pdf", "src": "img/p063.webp", "label": "51"}, {"k": "pdf", "src": "img/p064.webp", "label": "52"}, {"k": "pdf", "src": "img/p065.webp", "label": "53"}, {"k": "pdf", "src": "img/p066.webp", "label": "54"}, {"k": "pdf", "src": "img/p067.webp", "label": "55"}, {"k": "pdf", "src": "img/p068.webp", "label": "56"}, {"k": "pdf", "src": "img/p069.webp", "label": "57"}, {"k": "pdf", "src": "img/p070.webp", "label": "58"}, {"k": "pdf", "src": "img/p071.webp", "label": "59"}, {"k": "pdf", "src": "img/p072.webp", "label": "60"}, {"k": "pdf", "src": "img/p073.webp", "label": "61"}, {"k": "pdf", "src": "img/p074.webp", "label": "62"}, {"k": "pdf", "src": "img/p075.webp", "label": "63"}, {"k": "pdf", "src": "img/p076.webp", "label": "64"}, {"k": "pdf", "src": "img/p077.webp", "label": "65"}, {"k": "pdf", "src": "img/p078.webp", "label": "66"}, {"k": "pdf", "src": "img/p079.webp", "label": "67"}, {"k": "pdf", "src": "img/p080.webp", "label": "68"}, {"k": "pdf", "src": "img/p081.webp", "label": "69"}, {"k": "pdf", "src": "img/p082.webp", "label": "70"}, {"k": "pdf", "src": "img/p083.webp", "label": "71"}, {"k": "pdf", "src": "img/p084.webp", "label": "72"}, {"k": "pdf", "src": "img/p085.webp", "label": "73"}, {"k": "pdf", "src": "img/p086.webp", "label": "74"}, {"k": "pdf", "src": "img/p087.webp", "label": "75"}, {"k": "pdf", "src": "img/p088.webp", "label": "76"}, {"k": "pdf", "src": "img/p089.webp", "label": "77"}, {"k": "pdf", "src": "img/p090.webp", "label": "78"}, {"k": "pdf", "src": "img/p091.webp", "label": "79"}, {"k": "pdf", "src": "img/p092.webp", "label": "80"}, {"k": "pdf", "src": "img/p093.webp", "label": "81"}, {"k": "pdf", "src": "img/p094.webp", "label": "82"}, {"k": "pdf", "src": "img/p095.webp", "label": "83"}, {"k": "pdf", "src": "img/p096.webp", "label": "84"}, {"k": "pdf", "src": "img/p097.webp", "label": "85"}, {"k": "pdf", "src": "img/p098.webp", "label": "86"}, {"k": "end", "src": null, "label": "Guarda"}, {"k": "back", "src": "img/back.webp", "label": "Contracubierta"}];
+const LOGO = "img/logo.png";
+const book = document.getElementById('book');
+PAGES.forEach((p, i) => {
+  const d = document.createElement('div');
+  const hard = p.k === 'front' || p.k === 'back' || p.k === 'end';
+  d.className = 'page ' + p.k + (hard ? ' hard' : '');
+  if (hard) d.dataset.density = 'hard';
+  if (p.k === 'end') {
+    d.innerHTML = '<div class="mono"><img alt="" src="' + LOGO + '"></div>';
+  } else if (p.src) {
+    const im = document.createElement('img');
+    im.alt = p.k === 'front' ? 'Cubierta' : (p.k === 'back' ? 'Contracubierta' : 'Página ' + p.label);
+    im.dataset.src = p.src;
+    im.decoding = 'async';
+    d.appendChild(im);
+  }
+  book.appendChild(d);
+});
+const els = Array.from(book.children);
+function warm(i){
+  for (let j = Math.max(0, i - 4); j <= Math.min(els.length - 1, i + 8); j++){
+    const im = els[j].querySelector('img[data-src]');
+    if (im && !im.src){ im.src = im.dataset.src; }
+  }
+}
+warm(0);
+
+// Tamaño de página calculado una vez (proporción 6 × 9); al cambiar la ventana se escala el conjunto.
+const stage = document.getElementById('stage');
+const shell = document.getElementById('shell');
+function avail(){
+  const h = stage.clientHeight - 34, w = stage.clientWidth;
+  const portrait = w < 720;
+  const ph = Math.floor(Math.min(h, (portrait ? w : w / 2) * 1.5));
+  return { portrait, ph, pw: Math.floor(ph / 1.5) };
+}
+const A0 = avail();
+book.style.width = (A0.portrait ? A0.pw : A0.pw * 2) + 'px';
+book.style.height = A0.ph + 'px';
+const pf = new St.PageFlip(book, {
+  width: A0.pw, height: A0.ph, size: 'fixed',
+  showCover: true, maxShadowOpacity: 0.55, flippingTime: 900,
+  mobileScrollSupport: false, usePortrait: A0.portrait, autoSize: false, drawShadow: true
+});
+pf.loadFromHTML(els);
+document.getElementById('loading').remove();
+let scale = 1;
+function place(i){
+  // Libro cerrado: se centra la cubierta o la contracubierta.
+  let dx = 0;
+  if (!A0.portrait){ if (i === 0) dx = -A0.pw / 2; else if (i >= PAGES.length - 1) dx = A0.pw / 2; }
+  shell.style.transform = 'translateX(' + dx * scale + 'px) scale(' + scale + ')';
+}
+function rescale(){
+  const st = avail();
+  scale = Math.min(1, st.ph / A0.ph, stage.clientWidth / (A0.portrait ? A0.pw : A0.pw * 2));
+  place(pf.getCurrentPageIndex());
+}
+rescale();
+addEventListener('resize', rescale);
+
+const folio = document.getElementById('folio');
+function label(i){
+  const p = PAGES[i];
+  if (p.k === 'front' || p.k === 'back' || p.k === 'end') return '<b>' + p.label + '</b>';
+  return 'Página <b>' + p.label + '</b>';
+}
+function show(i){
+  const o = pf.getOrientation && pf.getOrientation() === 'landscape';
+  let t = label(i);
+  if (o && i > 0 && i < PAGES.length - 1){
+    const a = i % 2 ? i : i - 1;
+    const L = PAGES[a], R = PAGES[a + 1];
+    if (L && R && L.k !== 'end' && R.k !== 'end' && L.k !== 'front') t = 'Páginas <b>' + L.label + '–' + R.label + '</b>';
+  }
+  folio.innerHTML = t;
+}
+pf.on('flip', e => { warm(e.data); show(e.data); place(e.data); hideHint(); });
+pf.on('changeState', e => { if (e.data === 'flipping' || e.data === 'user_fold') rustle(); });
+
+document.getElementById('prev').onclick = () => pf.flipPrev();
+document.getElementById('next').onclick = () => pf.flipNext();
+document.getElementById('toc').onchange = e => {
+  const v = e.target.value; if (v === '') return;
+  const n = +v; warm(n); pf.turnToPage(n); show(n); place(n); e.target.value = '';
+};
+addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') pf.flipNext();
+  if (e.key === 'ArrowLeft') pf.flipPrev();
+});
+document.getElementById('fs').onclick = () => {
+  const r = document.documentElement;
+  try { (document.fullscreenElement ? document.exitFullscreen() : r.requestFullscreen()).catch(() => {}); } catch (_) {}
+};
+let hinted = false;
+function hideHint(){ if (!hinted){ hinted = true; document.getElementById('hint').style.opacity = 0; } }
+
+// Sonido de papel sintetizado: ruido filtrado con envolvente corta.
+let ac = null, soundOn = true, lastR = 0;
+const snd = document.getElementById('snd');
+snd.onclick = () => { soundOn = !soundOn; snd.textContent = 'Sonido: ' + (soundOn ? 'sí' : 'no'); snd.setAttribute('aria-pressed', soundOn); };
+function rustle(){
+  if (!soundOn) return;
+  const now = performance.now(); if (now - lastR < 350) return; lastR = now;
+  try {
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    const dur = 0.55, n = Math.floor(ac.sampleRate * dur);
+    const buf = ac.createBuffer(1, n, ac.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++){
+      const t = i / n;
+      const env = Math.pow(Math.sin(Math.PI * Math.min(1, t * 1.15)), 1.6) * (0.6 + 0.4 * Math.random());
+      d[i] = (Math.random() * 2 - 1) * env;
+    }
+    const src = ac.createBufferSource(); src.buffer = buf;
+    const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2600; bp.Q.value = 0.6;
+    bp.frequency.setValueAtTime(1800, ac.currentTime); bp.frequency.linearRampToValueAtTime(4200, ac.currentTime + dur);
+    const g = ac.createGain(); g.gain.value = 0.09;
+    src.connect(bp).connect(g).connect(ac.destination); src.start();
+  } catch (_) {}
+}
+</script>
