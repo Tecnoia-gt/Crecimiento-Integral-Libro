@@ -63,7 +63,7 @@ select option{background:var(--ground-2);color:var(--ink)}
 .secs button[aria-current="true"]{background:rgba(243,237,221,.08);box-shadow:inset 3px 0 0 var(--red)}
 .loading{position:absolute;inset:0;display:grid;place-items:center;font-style:italic;color:var(--muted)}
 /* Vestíbulo: el libro cerrado en 3D; se agarra con el dedo o el ratón, se gira, se lanza y se queda donde lo suelten */
-.v3d{position:absolute;inset:0;z-index:5;display:grid;place-items:center;align-content:center;gap:4px;perspective:1700px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:opacity .6s}
+.v3d{position:absolute;inset:0;z-index:5;overflow:hidden;display:grid;place-items:center;align-content:center;gap:4px;perspective:1700px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:opacity .6s}
 .v3d:active{cursor:grabbing}
 .v3d.gone{opacity:0;pointer-events:none}
 .stage.closed #shell{visibility:hidden}
@@ -204,6 +204,8 @@ function rescale(){
   // El libro cerrado en 3D tiene exactamente el tamaño de la página de lectura
   document.getElementById('b3').style.setProperty('--w', (A0.pw * scale) + 'px');
   document.getElementById('v3d').style.setProperty('--fh', (A0.ph * scale / 2) + 'px');
+  // Perspectiva proporcional al tamaño: en pantallas grandes el libro girado no invade la cabecera ni el botón
+  document.getElementById('v3d').style.perspective = Math.max(1700, A0.ph * scale * 3.2) + 'px';
 }
 rescale();
 addEventListener('resize', () => {
@@ -249,7 +251,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && secw.classList.cont
 const secDe = i => { let k = 0; SECS.forEach((s, j) => { if (s[0] <= i) k = j; }); return k; };
 function show(i){
   const o = pf.getOrientation && pf.getOrientation() === 'landscape';
-  const p = PAGES[i], k = secDe(i);
+  const p = PAGES[i];
   let pg = p.k === 'pdf' ? p.label : '';
   if (o && i > 0 && i < PAGES.length - 1){
     const a = i % 2 ? i : i - 1;
@@ -257,6 +259,8 @@ function show(i){
     if (L && R && L.k === 'pdf' && R.k === 'pdf') pg = L.label + '–' + R.label;
     else if (L && L.k === 'pdf') pg = L.label; else if (R && R.k === 'pdf') pg = R.label;
   }
+  // En dos páginas manda la de la derecha: ahí empiezan las secciones
+  const k = secDe(o && i > 0 && i < PAGES.length - 1 ? (i % 2 ? i + 1 : i) : i);
   // Las hojas antes del contenido (portadilla, créditos, dedicatoria) se nombran por su página
   const nombre = (k === 0 && p.k === 'pdf') ? 'Página' : (p.k === 'end' ? 'Guarda' : SECS[k][1]);
   folio.innerHTML = '<b>' + nombre + '</b>' + (pg ? ' · ' + pg : '');

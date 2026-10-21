@@ -1054,7 +1054,8 @@ let pf = null;
   muestra();
   function muestra(){
   const box = host.parentElement;
-  const W = box.clientWidth - 8, H = box.clientHeight - 8, portrait = W < 640;
+  // Una sola página cuando el espacio es más alto que ancho (celular o tableta en vertical), como en el libro completo
+  const W = box.clientWidth - 8, H = box.clientHeight - 8, portrait = W < H * 1.1;
   const pw = Math.floor(Math.min(portrait ? W : W / 2, H / 1.5)), ph = Math.floor(pw * 1.5);
   host.style.width = (portrait ? pw : pw * 2) + 'px'; host.style.height = ph + 'px';
   host.style.marginLeft = -(portrait ? pw : pw * 2) / 2 + 'px'; host.style.marginTop = -ph / 2 + 'px';
@@ -1067,7 +1068,7 @@ let pf = null;
   // Al girar el teléfono entre vertical y horizontal se rearma la muestra en la misma página.
   const refit = () => {
     const w = box.clientWidth - 8, h = box.clientHeight - 8;
-    if ((w < 640) !== portrait && document.documentElement.classList.contains('lee')){
+    if ((w < h * 1.1) !== portrait && document.documentElement.classList.contains('lee')){
       clearTimeout(window.__ro); window.__ro = setTimeout(() => { location.hash = 'leer'; sessionStorage.setItem('muestraPag', pf.getCurrentPageIndex()); location.reload(); }, 250); return;
     }
     fit = Math.min(w / (portrait ? pw : pw * 2), h / ph);
@@ -1126,7 +1127,9 @@ let pf = null;
 (() => {
   const root = document.documentElement, L = document.getElementById('lectura');
   const open = (x, y) => {
-    L.style.setProperty('--cx', (x ?? innerWidth / 2) + 'px'); L.style.setProperty('--cy', (y ?? innerHeight / 2) + 'px');
+    // El círculo nace dentro de la pantalla aunque el botón haya quedado fuera de la vista
+    const cl = (v, m) => Math.min(Math.max(v, 0), m);
+    L.style.setProperty('--cx', cl(x ?? innerWidth / 2, innerWidth) + 'px'); L.style.setProperty('--cy', cl(y ?? innerHeight / 2, innerHeight) + 'px');
     root.classList.remove('intro-on'); root.classList.add('intro-gone');
     root.classList.add('lee'); L.setAttribute('aria-hidden', 'false');
     setTimeout(() => document.getElementById('fnext').focus({preventScroll:true}), 900);
