@@ -1,7 +1,6 @@
-<meta charset="utf-8">
+<meta charset="utf-8"><link rel="icon" type="image/png" href="img/logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Crecimiento integral, libro digital</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
@@ -16,13 +15,17 @@ html,body{height:100%}
 body{margin:0;background:radial-gradient(120% 90% at 50% 40%,#1a1f5a 0%,var(--ground-2) 45%,var(--ground) 100%);background-color:var(--ground);color:var(--ink);font-family:var(--serif);overflow:hidden}
 .app{height:100%;display:grid;grid-template-rows:auto 1fr auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 header{display:flex;align-items:center;gap:14px;padding-block:14px 6px;min-width:0}
-header img{height:30px;width:auto}
+header img{height:30px;width:auto;display:block}
+.home{display:block;border-radius:6px}
+.home:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .ttl{min-width:0}
 .ttl h1{margin:0;font-weight:500;font-size:clamp(15px,2.1vw,20px);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ttl p{margin:0;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 .stage{position:relative;min-height:0;display:flex;align-items:center;justify-content:center;padding-block:8px}
 #shell{transform-origin:50% 50%;transition:transform .9s cubic-bezier(.3,.1,.2,1)}
 #book{margin:0 auto;filter:drop-shadow(0 18px 30px rgba(0,0,10,.45))}
+#book,#book *{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html,body{overscroll-behavior:none}
 .page{background:var(--paper);overflow:hidden}
 .page img{width:100%;height:100%;display:block;object-fit:cover;user-select:none;-webkit-user-drag:none}
 .page.end{background:var(--end) radial-gradient(circle at 50% 50%,rgba(255,255,255,.05),transparent 70%)}
@@ -33,8 +36,6 @@ header img{height:30px;width:auto}
 .page.--left:not(.hard)::after{right:0;background:linear-gradient(to left,rgba(60,45,20,.22),rgba(60,45,20,0))}
 .page.--right:not(.hard)::after{left:0;background:linear-gradient(to right,rgba(60,45,20,.22),rgba(60,45,20,0))}
 .page.hard img{object-fit:cover}
-/* Hoja tomada por el medio: giro sobre el lomo con perspectiva suave, sin salirse del escenario */
-#book .stf__block{perspective:4200px !important}
 footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;padding-block:8px 16px}
 button,select{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:15px}
 button:hover,select:hover{border-color:rgba(243,237,221,.5)}
@@ -67,18 +68,29 @@ select option{background:var(--ground-2);color:var(--ink)}
 .b3 .bt{transform:translate(-50%,-50%) rotateX(-90deg) translateZ(calc(var(--h) / 2 - 1.5px))}
 .b3 .bt::after{background:rgba(8,10,40,.35)}
 .v3d .floor{position:absolute;left:50%;top:calc(50% + var(--fh,200px) - 10px);translate:-50% 0;width:min(70%,320px);height:28px;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);filter:blur(5px);transform:scaleX(var(--fs,1))}
-.v3d .open{position:absolute;bottom:0;left:50%;translate:-50% 0;font-size:13px;padding:3px 12px;cursor:pointer;background:rgba(4,4,74,.6)}
 .firma{flex-basis:100%;text-align:center;font-size:12px;color:var(--muted);margin-top:-4px}
 .firma a{color:var(--muted)}
 .tec{display:inline-flex;align-items:center;gap:.4em;vertical-align:middle;text-decoration:none;color:inherit}.tec svg{height:1.3em;width:auto;flex:none}.tec span{text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
 @media (max-width:560px){.folio{min-width:0;flex-basis:100%;order:-1}.ttl p{letter-spacing:.12em}}
-@media (max-height:520px){header,.firma{display:none}footer{padding-block:4px 8px}}
+/* Celular en horizontal: el libro ocupa toda la altura y los controles pasan a una columna estrecha a la derecha */
+@media (max-height:520px) and (orientation:landscape){
+  .app{grid-template-columns:1fr 168px;grid-template-rows:auto 1fr;grid-template-areas:"stage head" "stage foot";column-gap:10px}
+  .stage{grid-area:stage;padding-block:6px}
+  header{grid-area:head;justify-content:center;padding-block:10px 0}
+  header .ttl,.firma,.hint{display:none}
+  footer{grid-area:foot;align-content:center;gap:6px;padding-block:6px}
+  footer>*{font-size:13px}
+  footer button,footer select{padding:5px 10px}
+  .nav{width:36px;height:36px}
+  .folio{min-width:0;flex-basis:100%;order:-1;font-size:13px}
+  #toc,#snd,#ver3d,#fs{width:100%}
+}
 @media (prefers-reduced-motion:reduce){.hint,#shell{transition:none}}
 </style>
 
 <div class="app">
   <header>
-    <img src="img/logo_crema.png" alt="Publicaciones Pneuma">
+    <a href="./" class="home" id="home" aria-label="Volver al inicio: libro cerrado"><img src="img/logo_crema.png" alt="Publicaciones Pneuma"></a>
     <div class="ttl">
       <h1>Crecimiento integral de la iglesia pentecostal</h1>
       <p>Balmer Ayala · Publicaciones Pneuma</p>
@@ -93,7 +105,7 @@ select option{background:var(--ground-2);color:var(--ink)}
     </div>
     <div class="loading" id="loading">Abriendo el libro…</div>
     <div id="shell"><div id="book"></div></div>
-    <div class="hint" id="hint">Arrastre la esquina de la página, haga clic o use las flechas del teclado</div>
+    <div class="hint" id="hint">Tome la hoja por el borde, arriba, en medio o abajo, y arrástrela; también puede tocarla o usar las flechas</div>
   </div>
   <footer>
     <button class="nav" id="prev" aria-label="Página anterior">‹</button>
@@ -121,7 +133,8 @@ select option{background:var(--ground-2);color:var(--ink)}
   </footer>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script src="js/page-flip-2.0.7.browser.js"></script>
+<script src="js/hojas.js"></script>
 <script>
 const PAGES = [{"k": "front", "src": "img/front.webp", "label": "Cubierta"}, {"k": "end", "src": null, "label": "Guarda"}, {"k": "pdf", "src": "img/p001.webp", "label": "i"}, {"k": "pdf", "src": "img/p002.webp", "label": "ii"}, {"k": "pdf", "src": "img/p003.webp", "label": "iii"}, {"k": "pdf", "src": "img/p004.webp", "label": "iv"}, {"k": "pdf", "src": "img/p005.webp", "label": "v"}, {"k": "pdf", "src": "img/p006.webp", "label": "vi"}, {"k": "pdf", "src": "img/p007.webp", "label": "vii"}, {"k": "pdf", "src": "img/p008.webp", "label": "viii"}, {"k": "pdf", "src": "img/p009.webp", "label": "ix"}, {"k": "pdf", "src": "img/p010.webp", "label": "x"}, {"k": "pdf", "src": "img/p011.webp", "label": "xi"}, {"k": "pdf", "src": "img/p012.webp", "label": "xii"}, {"k": "pdf", "src": "img/p013.webp", "label": "1"}, {"k": "pdf", "src": "img/p014.webp", "label": "2"}, {"k": "pdf", "src": "img/p015.webp", "label": "3"}, {"k": "pdf", "src": "img/p016.webp", "label": "4"}, {"k": "pdf", "src": "img/p017.webp", "label": "5"}, {"k": "pdf", "src": "img/p018.webp", "label": "6"}, {"k": "pdf", "src": "img/p019.webp", "label": "7"}, {"k": "pdf", "src": "img/p020.webp", "label": "8"}, {"k": "pdf", "src": "img/p021.webp", "label": "9"}, {"k": "pdf", "src": "img/p022.webp", "label": "10"}, {"k": "pdf", "src": "img/p023.webp", "label": "11"}, {"k": "pdf", "src": "img/p024.webp", "label": "12"}, {"k": "pdf", "src": "img/p025.webp", "label": "13"}, {"k": "pdf", "src": "img/p026.webp", "label": "14"}, {"k": "pdf", "src": "img/p027.webp", "label": "15"}, {"k": "pdf", "src": "img/p028.webp", "label": "16"}, {"k": "pdf", "src": "img/p029.webp", "label": "17"}, {"k": "pdf", "src": "img/p030.webp", "label": "18"}, {"k": "pdf", "src": "img/p031.webp", "label": "19"}, {"k": "pdf", "src": "img/p032.webp", "label": "20"}, {"k": "pdf", "src": "img/p033.webp", "label": "21"}, {"k": "pdf", "src": "img/p034.webp", "label": "22"}, {"k": "pdf", "src": "img/p035.webp", "label": "23"}, {"k": "pdf", "src": "img/p036.webp", "label": "24"}, {"k": "pdf", "src": "img/p037.webp", "label": "25"}, {"k": "pdf", "src": "img/p038.webp", "label": "26"}, {"k": "pdf", "src": "img/p039.webp", "label": "27"}, {"k": "pdf", "src": "img/p040.webp", "label": "28"}, {"k": "pdf", "src": "img/p041.webp", "label": "29"}, {"k": "pdf", "src": "img/p042.webp", "label": "30"}, {"k": "pdf", "src": "img/p043.webp", "label": "31"}, {"k": "pdf", "src": "img/p044.webp", "label": "32"}, {"k": "pdf", "src": "img/p045.webp", "label": "33"}, {"k": "pdf", "src": "img/p046.webp", "label": "34"}, {"k": "pdf", "src": "img/p047.webp", "label": "35"}, {"k": "pdf", "src": "img/p048.webp", "label": "36"}, {"k": "pdf", "src": "img/p049.webp", "label": "37"}, {"k": "pdf", "src": "img/p050.webp", "label": "38"}, {"k": "pdf", "src": "img/p051.webp", "label": "39"}, {"k": "pdf", "src": "img/p052.webp", "label": "40"}, {"k": "pdf", "src": "img/p053.webp", "label": "41"}, {"k": "pdf", "src": "img/p054.webp", "label": "42"}, {"k": "pdf", "src": "img/p055.webp", "label": "43"}, {"k": "pdf", "src": "img/p056.webp", "label": "44"}, {"k": "pdf", "src": "img/p057.webp", "label": "45"}, {"k": "pdf", "src": "img/p058.webp", "label": "46"}, {"k": "pdf", "src": "img/p059.webp", "label": "47"}, {"k": "pdf", "src": "img/p060.webp", "label": "48"}, {"k": "pdf", "src": "img/p061.webp", "label": "49"}, {"k": "pdf", "src": "img/p062.webp", "label": "50"}, {"k": "pdf", "src": "img/p063.webp", "label": "51"}, {"k": "pdf", "src": "img/p064.webp", "label": "52"}, {"k": "pdf", "src": "img/p065.webp", "label": "53"}, {"k": "pdf", "src": "img/p066.webp", "label": "54"}, {"k": "pdf", "src": "img/p067.webp", "label": "55"}, {"k": "pdf", "src": "img/p068.webp", "label": "56"}, {"k": "pdf", "src": "img/p069.webp", "label": "57"}, {"k": "pdf", "src": "img/p070.webp", "label": "58"}, {"k": "pdf", "src": "img/p071.webp", "label": "59"}, {"k": "pdf", "src": "img/p072.webp", "label": "60"}, {"k": "pdf", "src": "img/p073.webp", "label": "61"}, {"k": "pdf", "src": "img/p074.webp", "label": "62"}, {"k": "pdf", "src": "img/p075.webp", "label": "63"}, {"k": "pdf", "src": "img/p076.webp", "label": "64"}, {"k": "pdf", "src": "img/p077.webp", "label": "65"}, {"k": "pdf", "src": "img/p078.webp", "label": "66"}, {"k": "pdf", "src": "img/p079.webp", "label": "67"}, {"k": "pdf", "src": "img/p080.webp", "label": "68"}, {"k": "pdf", "src": "img/p081.webp", "label": "69"}, {"k": "pdf", "src": "img/p082.webp", "label": "70"}, {"k": "pdf", "src": "img/p083.webp", "label": "71"}, {"k": "pdf", "src": "img/p084.webp", "label": "72"}, {"k": "pdf", "src": "img/p085.webp", "label": "73"}, {"k": "pdf", "src": "img/p086.webp", "label": "74"}, {"k": "pdf", "src": "img/p087.webp", "label": "75"}, {"k": "pdf", "src": "img/p088.webp", "label": "76"}, {"k": "pdf", "src": "img/p089.webp", "label": "77"}, {"k": "pdf", "src": "img/p090.webp", "label": "78"}, {"k": "pdf", "src": "img/p091.webp", "label": "79"}, {"k": "pdf", "src": "img/p092.webp", "label": "80"}, {"k": "pdf", "src": "img/p093.webp", "label": "81"}, {"k": "pdf", "src": "img/p094.webp", "label": "82"}, {"k": "pdf", "src": "img/p095.webp", "label": "83"}, {"k": "pdf", "src": "img/p096.webp", "label": "84"}, {"k": "pdf", "src": "img/p097.webp", "label": "85"}, {"k": "pdf", "src": "img/p098.webp", "label": "86"}, {"k": "end", "src": null, "label": "Guarda"}, {"k": "back", "src": "img/back.webp", "label": "Contracubierta"}];
 const LOGO = "img/logo.png";
@@ -154,9 +167,12 @@ warm(0);
 // Tamaño de página calculado una vez (proporción 6 × 9); al cambiar la ventana se escala el conjunto.
 const stage = document.getElementById('stage');
 const shell = document.getElementById('shell');
+// Una sola página cuando el escenario es más alto que ancho (celular o tableta en vertical); dos páginas en horizontal
+const vertical = () => stage.clientWidth < stage.clientHeight * 1.1;
+const reserva = () => matchMedia('(max-height:520px) and (orientation:landscape)').matches ? 4 : 34;
 function avail(){
-  const h = stage.clientHeight - 34, w = stage.clientWidth;
-  const portrait = w < 720;
+  const h = stage.clientHeight - reserva(), w = stage.clientWidth;
+  const portrait = vertical();
   const ph = Math.floor(Math.min(h, (portrait ? w : w / 2) * 1.5));
   return { portrait, ph, pw: Math.floor(ph / 1.5) };
 }
@@ -170,59 +186,7 @@ const pf = new St.PageFlip(book, {
 });
 pf.loadFromHTML(els);
 document.getElementById('loading').remove();
-// ===== Paso de hojas según dónde se agarre la hoja =====
-// Tercio superior: se dobla la esquina de arriba. Tercio inferior: la de abajo.
-// Tercio del medio: la hoja entera gira sobre el lomo, como cuando se toma por el centro del borde.
-// La esquina no salta al dedo: conserva la distancia entre el punto agarrado y la esquina.
-(() => {
-  const fc = pf.flipController, R = () => pf.getRender().getRect();
-  let zone = null, grab = null, off = null, hardPages = [];
-  const zoneAt = y => { const r = R(), t = (y - r.top) / r.height; return t < 1/3 ? 'top' : t > 2/3 ? 'bottom' : 'mid'; };
-  const bookPos = (cx, cy) => { const b = pf.getUI().distElement.getBoundingClientRect(); return { x: (cx - b.left) / scale, y: (cy - b.top) / scale }; };
-  const down = (cx, cy) => { grab = bookPos(cx, cy); zone = zoneAt(grab.y); off = null; };
-  book.addEventListener('mousedown', e => down(e.clientX, e.clientY), true);
-  book.addEventListener('touchstart', e => { const t = e.changedTouches[0]; if (t) down(t.clientX, t.clientY); }, {capture:true, passive:true});
-  const startOrig = fc.start.bind(fc);
-  fc.start = pos => {
-    const ok = startOrig(pos);
-    if (ok && zone === 'mid'){
-      const pc = pf.getPageCollection(), fp = fc.flippingPage;
-      const pair = fc.calc.getDirection() === 1 ? pc.nextBy(fp) : pc.prevBy(fp);
-      hardPages = [fp, pair].filter(Boolean);
-      hardPages.forEach(p => p.setDrawingDensity('hard'));
-    }
-    return ok;
-  };
-  const foldOrig = fc.fold.bind(fc);
-  fc.fold = pos => {
-    if (grab && fc.calc === null){
-      const r = R(), back = grab.x < r.left + r.width / 2 && pf.getOrientation() === 'landscape' || (pf.getOrientation() === 'portrait' && grab.x - r.left - r.pageWidth <= r.width / 5);
-      const cx = back ? r.left : r.left + r.width;
-      const cy = zone === 'bottom' ? r.top + r.height - 1 : r.top + 1;
-      // La primera llamada decide la esquina con la posición recibida: se le pasa la esquina que corresponde a la zona
-      off = { x: cx - grab.x, y: zone === 'mid' ? null : cy - grab.y, cy };
-      foldOrig({ x: grab.x + off.x - (grab.x - pos.x), y: zone === 'mid' ? cy : grab.y + off.y });
-      return;
-    }
-    if (off) return foldOrig({ x: pos.x + off.x, y: off.y === null ? off.cy : Math.max(R().top + 1, Math.min(R().top + R().height - 1, pos.y + off.y)) });
-    foldOrig(pos);
-  };
-  // Deslizar rápido: el giro también sale de la zona tocada
-  const anim = (dir, corner) => {
-    if (zone === 'mid'){
-      const r = R(), y = r.top + 1;
-      fc.flip({ x: dir > 0 ? r.left + r.width - 10 : r.left + 10, y });
-    } else (dir > 0 ? fc.flipNext : fc.flipPrev).call(fc, zone === 'bottom' ? 'bottom' : zone === 'top' ? 'top' : corner);
-  };
-  pf.flipNext = (c = 'top') => anim(1, c);
-  pf.flipPrev = (c = 'top') => anim(-1, c);
-  pf.on('changeState', e => {
-    if (e.data === 'read'){
-      hardPages.forEach(p => p.setDrawingDensity(p.getDensity())); hardPages = [];
-      zone = null; grab = null; off = null;
-    }
-  });
-})();
+hojasPorZona(pf, book, () => scale);
 
 let scale = 1;
 function place(i){
@@ -233,7 +197,8 @@ function place(i){
 }
 function rescale(){
   const st = avail();
-  scale = Math.min(1, st.ph / A0.ph, stage.clientWidth / (A0.portrait ? A0.pw : A0.pw * 2));
+  // El libro conserva sus proporciones y se ajusta al espacio disponible (por ejemplo, al entrar en pantalla completa)
+  scale = Math.min(st.ph / A0.ph, stage.clientWidth / (A0.portrait ? A0.pw : A0.pw * 2));
   place(pf.getCurrentPageIndex());
   // El libro cerrado en 3D tiene exactamente el tamaño de la página de lectura
   document.getElementById('b3').style.setProperty('--w', (A0.pw * scale) + 'px');
@@ -242,7 +207,7 @@ function rescale(){
 rescale();
 addEventListener('resize', () => {
   // Al girar el teléfono entre vertical (una página) y horizontal (dos páginas), se rearma el libro en la misma página
-  if ((stage.clientWidth < 720) !== A0.portrait){
+  if (vertical() !== A0.portrait){
     const i = pf.getCurrentPageIndex(), closed = stage.classList.contains('closed');
     clearTimeout(window.__ro); window.__ro = setTimeout(() => { location.hash = closed ? '' : 'p' + i; location.reload(); }, 250);
     return;
@@ -284,9 +249,17 @@ addEventListener('keydown', e => {
 });
 // El iPhone no permite pantalla completa en páginas web: ahí se oculta el botón
 if (!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) document.getElementById('fs').hidden = true;
+const fsBtn = document.getElementById('fs');
+const fsLbl = () => { fsBtn.textContent = (document.fullscreenElement || document.webkitFullscreenElement) ? 'Salir de pantalla completa' : 'Pantalla completa'; };
+document.addEventListener('fullscreenchange', fsLbl); document.addEventListener('webkitfullscreenchange', fsLbl);
 document.getElementById('fs').onclick = () => {
   const r = document.documentElement;
-  try { (document.fullscreenElement ? document.exitFullscreen() : r.requestFullscreen()).catch(() => {}); } catch (_) {}
+  const enFs = document.fullscreenElement || document.webkitFullscreenElement;
+  try {
+    const p = enFs ? (document.exitFullscreen || document.webkitExitFullscreen).call(document)
+                   : (r.requestFullscreen || r.webkitRequestFullscreen).call(r, { navigationUI: 'hide' });
+    if (p && p.catch) p.catch(() => {});
+  } catch (_) {}
 };
 let hinted = false;
 function hideHint(){ if (!hinted){ hinted = true; document.getElementById('hint').style.opacity = 0; } }
@@ -356,6 +329,8 @@ function hideHint(){ if (!hinted){ hinted = true; document.getElementById('hint'
   tg.onclick = () => stage.classList.contains('closed') ? openBook() : closeBook();
   new MutationObserver(() => { tg.textContent = stage.classList.contains('closed') ? 'Abrir el libro' : 'Cerrar el libro'; }).observe(stage, {attributes:true, attributeFilter:['class']});
   window.__openBook = openBook;
+  // El logo de la cabecera vuelve al inicio: el libro cerrado en la portada
+  document.getElementById('home').addEventListener('click', e => { e.preventDefault(); closeBook(); });
 })();
 
 // Sonido de papel sintetizado: ruido filtrado con envolvente corta.

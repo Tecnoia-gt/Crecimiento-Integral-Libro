@@ -1,5 +1,5 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;padding:0}</style></head><body><title>Crecimiento integral · Balmer Ayala</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html><html lang="es"><head><meta charset="utf-8"><link rel="icon" type="image/png" href="a/logo.png"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;padding:0}</style>
+<title>Crecimiento integral · Balmer Ayala</title>
 <meta name="description" content="La historia de Balmer Ayala en fotos y el libro Crecimiento integral de la iglesia pentecostal en 3D, con muestra para leer y cuenta regresiva al lanzamiento del 12 de diciembre de 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -336,12 +336,17 @@ html.lee #lectura{clip-path:circle(150% at var(--cx,50%) var(--cy,50%));visibili
 html.lee,html.lee body{overflow:hidden}
 html.lee .cbar{transform:translateY(110%)}
 .lhead{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1240px;width:100%;margin:0 auto}
-.ltit{text-align:center;min-width:0}
+.ltit{text-align:center;min-width:0;display:flex;align-items:center;gap:14px}
+.lhome{flex:none;background:none;border:0;padding:4px;cursor:pointer;border-radius:6px}
+.lhome img{height:30px;width:auto;display:block}
+.lhome:focus-visible{outline:2px solid currentColor;outline-offset:2px}
 .ltit .lbl{color:var(--on-stage-soft);display:block}
 .ltit b{font-weight:500;font-size:clamp(20px,2.4vw,30px)}
 .lbtn{font-family:var(--ui);font-weight:600;font-size:14px;padding:11px 18px;border-radius:999px;border:1.5px solid rgba(243,237,221,.5);background:transparent;color:var(--on-stage);cursor:pointer;flex:none}
 .lbtn.solid{background:var(--on-stage);color:var(--navy);border-color:var(--on-stage)}
 .lbtn:hover{transform:translateY(-1px)}
+#flip,#flip *{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html.lee,html.lee body{overscroll-behavior:none}
 #lectura .reader{position:relative;margin:0;display:grid;place-items:center;min-height:0}
 .lfoot{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;max-width:1240px;width:100%;margin:0 auto}
 .lfoot .full{margin:0}
@@ -349,7 +354,7 @@ html.lee .cbar{transform:translateY(110%)}
 html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
 @keyframes alzar{from{opacity:0;transform:translateY(30px) scale(.97)}}
 @media (max-width:700px){
-  .ltit{display:none}
+  .ltit>div{display:none}
   .lbtn{font-size:13px;padding:10px 14px}
   .lfoot{justify-content:center}
   .lfoot .full{display:none}
@@ -409,6 +414,8 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
   *{animation:none!important;transition:none!important}
 }
 </style>
+</head>
+<body>
 
 <section id="intro" aria-label="Portada: cuenta regresiva al lanzamiento">
   <div class="iwrap">
@@ -434,7 +441,7 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
 <header class="top">
   <div class="wrap">
     <button class="volver" id="volver" type="button" aria-label="Volver a la portada"><span aria-hidden="true">←</span> Volver</button>
-    <a class="brand" href="#libro" aria-label="Publicaciones Pneuma, ir al libro">
+    <a class="brand" href="./" id="brandHome" aria-label="Volver al inicio">
       <img class="logo-l" src="a/logo.png" alt=""><img class="logo-d" src="a/logo_crema.png" alt="">
       <span>Publicaciones<br>Pneuma</span>
     </a>
@@ -827,7 +834,7 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
 <section id="lectura" aria-label="Muestra del libro" aria-hidden="true">
   <div class="lhead">
     <button class="lbtn" id="lVolver" type="button"><span aria-hidden="true">←</span> Volver al libro</button>
-    <div class="ltit"><span class="lbl">Muestra gratuita</span><b>Lea las primeras páginas</b></div>
+    <div class="ltit"><button class="lhome" id="lHome" type="button" aria-label="Volver al inicio de la muestra: libro cerrado"><img src="a/logo_crema.png" alt=""></button><div><span class="lbl">Muestra gratuita</span><b>Lea las primeras páginas</b></div></div>
     <button class="lbtn solid" id="lSeguir" type="button">Seguir a la historia <span aria-hidden="true">→</span></button>
   </div>
   <div class="reader" id="leer">
@@ -852,7 +859,8 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
 </div>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script src="../js/page-flip-2.0.7.browser.js"></script>
+<script src="../js/hojas.js"></script>
 <script>
 // ===== Ajustes del lanzamiento (editar aquí) =====
 const LANZA = Date.UTC(2026, 11, 12, 6, 0, 0);   // 12 dic 2026, 00:00 hora de Guatemala (UTC-6)
@@ -889,6 +897,7 @@ const lightBook = (b, ry, floor) => {
   const leave = () => { if (on || Date.now() < lock) return; lock = Date.now() + 1100; scrollTo(0, 0); set(true); };
   document.getElementById('entrar').addEventListener('click', enter);
   document.getElementById('volver').addEventListener('click', leave);
+  document.getElementById('brandHome').addEventListener('click', e => { e.preventDefault(); leave(); });
   addEventListener('wheel', e => { if (on && (e.deltaY > 8 || e.deltaX > 8)) enter(); }, {passive:true});
   addEventListener('keydown', e => {
     if (on && ['ArrowDown','ArrowRight','PageDown',' ','Enter'].includes(e.key)){ e.preventDefault(); enter(); }
@@ -1019,12 +1028,28 @@ let pf = null;
   const W = box.clientWidth - 8, H = box.clientHeight - 8, portrait = W < 640;
   const pw = Math.floor(Math.min(portrait ? W : W / 2, H / 1.5, 520)), ph = Math.floor(pw * 1.5);
   host.style.width = (portrait ? pw : pw * 2) + 'px'; host.style.height = ph + 'px';
-  pf = new St.PageFlip(host, {width: pw, height: ph, size:'fixed', showCover:true, usePortrait: portrait, autoSize:false, maxShadowOpacity:.5, flippingTime:850, mobileScrollSupport:true});
+  pf = new St.PageFlip(host, {width: pw, height: ph, size:'fixed', showCover:true, usePortrait: portrait, autoSize:false, maxShadowOpacity:.5, flippingTime:850, mobileScrollSupport:false});
   pf.loadFromHTML(els);
+  // La hoja se dobla según dónde se agarre (arriba, medio o abajo), igual que en el libro completo
+  let fit = 1;
+  hojasPorZona(pf, host, () => fit);
+  // El tamaño de la muestra se fija al abrir la página; si la ventana se achica, se reduce el conjunto sin deformarlo.
+  // Al girar el teléfono entre vertical y horizontal se rearma la muestra en la misma página.
+  const refit = () => {
+    const w = box.clientWidth - 8, h = box.clientHeight - 8;
+    if ((w < 640) !== portrait && document.documentElement.classList.contains('lee')){
+      clearTimeout(window.__ro); window.__ro = setTimeout(() => { location.hash = 'leer'; sessionStorage.setItem('muestraPag', pf.getCurrentPageIndex()); location.reload(); }, 250); return;
+    }
+    fit = Math.min(1, w / (portrait ? pw : pw * 2), h / ph);
+    host.style.scale = fit < 1 ? String(fit) : '';
+  };
+  addEventListener('resize', refit); refit();
+  try { const k = sessionStorage.getItem('muestraPag'); if (k !== null){ sessionStorage.removeItem('muestraPag'); setTimeout(() => { const n = +k; warm(n); pf.turnToPage(n); show(n); }, 0); } } catch (_) {}
   const pos = document.getElementById('fpos');
   const show = i => { warm(i); const p = pages[i]; pos.textContent = /^[0-9ivx]+$/.test(p.label) ? 'Página ' + p.label : p.label; };
   pf.on('flip', e => show(e.data));
   document.getElementById('fprev').onclick = () => pf.flipPrev();
+  document.getElementById('lHome').onclick = () => { warm(0); pf.turnToPage(0); show(0); };
   document.getElementById('fnext').onclick = () => pf.flipNext();
   document.querySelectorAll('[data-go]').forEach(bt => bt.onclick = () => { const i = +bt.dataset.go; warm(i); pf.turnToPage(i); show(i); });
   addEventListener('keydown', e => { if (!document.documentElement.classList.contains('lee')) return; if (e.key === 'ArrowRight'){ e.preventDefault(); pf.flipNext(); } if (e.key === 'ArrowLeft'){ e.preventDefault(); pf.flipPrev(); } });
