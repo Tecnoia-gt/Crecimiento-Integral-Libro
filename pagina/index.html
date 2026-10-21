@@ -306,7 +306,7 @@ html.intro-on .cbar{transform:translateY(110%)}
 .inext span{position:absolute;left:24%;right:22%;top:20%;bottom:20%;display:grid;place-items:center;writing-mode:vertical-rl;font-family:'Reenie Beanie',cursive;font-size:clamp(26px,2.3vw,34px);line-height:1;color:#1f3f9a;white-space:nowrap}
 .inext:hover{transform:translate(-8px,-50%)}
 @media (min-width:601px),(orientation:landscape){#intro .iwrap{padding-right:clamp(70px,6.5vw,96px)}}
-@media (orientation:landscape) and (max-height:500px){.inext{width:54px;height:min(230px,66vh)}.inext span{font-size:24px}#intro .iwrap{padding-right:64px}}
+@media (orientation:landscape) and (max-height:500px){.inext{width:54px;height:min(230px,66vh)}.inext span{font-size:24px}#intro .iwrap{padding-right:64px}.istage{padding-block:6px}}
 @keyframes nudge{50%{translate:6px 0}}
 .ititle{font-family:var(--ui);font-size:13px;color:var(--ink-soft);margin:6px 0 0}
 .ititle em{font-family:var(--display);font-size:16px}
@@ -317,7 +317,7 @@ html.intro-on .cbar{transform:translateY(110%)}
 .volver{display:none;gap:6px;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--ui);font-weight:600;font-size:13px;line-height:1;cursor:pointer;flex:none}
 .volver:hover{background:var(--ink);color:var(--paper)}
 html.intro-gone .volver{display:inline-flex}
-@media (max-width:760px),(max-aspect-ratio:4/5){
+@media (max-width:760px) and (orientation:portrait),(max-aspect-ratio:4/5){
   .iwrap{grid-template-columns:1fr;gap:18px;text-align:center;align-content:center}
   .book.big{--w:min(250px,56vw,30dvh)}
   .istage{padding-block:6px 0}
@@ -1183,7 +1183,7 @@ let pf = null;
         $('cLbl').textContent = 'Lanzamiento · sábado 12 de diciembre de 2026';
         $('cTit').textContent = 'Faltan pocos días para tenerlo en las manos';
         $('cSay').textContent = 'Mientras tanto, lea la muestra y comparta esta página con los pastores y líderes de su territorio.';
-        $('cMain').textContent = 'Leer la muestra'; $('cMain').href = '#leer';
+        $('cMain').textContent = 'Leer muestra'; $('cMain').href = '#leer';
         $('bSt').textContent = 'Faltan'; $('bD').textContent = 'para el lanzamiento · sábado 12 dic 2026'; $('bA').textContent = 'Apartar'; $('bA').href = '#preventas';
         $('hLbl').textContent = 'Faltan para el lanzamiento'; $('hSub').textContent = 'Sábado 12 de diciembre de 2026';
       } else if (state === 'durante'){
