@@ -187,21 +187,28 @@ h1,h2,h3{font-weight:500;margin:0;text-wrap:balance}
 .leer h2{font-size:clamp(32px,4vw,52px);margin-top:12px}
 .leer .head p{color:var(--on-stage-soft);max-width:46ch;margin:10px 0 0}
 .leer .lbl{color:var(--on-stage-soft)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips button{font-family:var(--ui);font-size:13px;padding:8px 14px;border-radius:999px;border:1px solid rgba(243,237,221,.3);background:transparent;color:var(--on-stage);cursor:pointer}
-.chips button:hover{background:rgba(243,237,221,.1)}
 .reader{margin-top:34px;display:grid;justify-items:center;gap:16px}
+/* Hojas de la muestra con el mismo acabado del libro completo: papel, sombra del lomo y sombra del libro */
+#flip{filter:drop-shadow(0 18px 30px rgba(0,0,10,.45));transition:translate .9s cubic-bezier(.3,.1,.2,1)}
+/* El libro no ocupa lugar en la cuadrícula: se centra sobre el espacio de lectura y se escala para caber */
+#lectura #flip{position:absolute;left:50%;top:50%}
+/* Sin desplazamiento interno: el ancla #leer (al girar el teléfono) movía la cabecera fuera de la vista */
+html #lectura{overflow:clip}
 .fp{background:#f7f2e5;overflow:hidden}
-.fp img{width:100%;height:100%;object-fit:cover}
-.fp.endp{background:#1b2147}
-.fp.endp::after{content:"";position:absolute;inset:0;background:url(a/logo_crema.png) center/22% no-repeat;opacity:.2}
+.fp img{width:100%;height:100%;display:block;object-fit:cover;-webkit-user-drag:none}
+.fp:not(.hard)::after{content:"";position:absolute;top:0;bottom:0;width:9%;pointer-events:none}
+.fp.--left:not(.hard)::after{right:0;background:linear-gradient(to left,rgba(60,45,20,.22),rgba(60,45,20,0))}
+.fp.--right:not(.hard)::after{left:0;background:linear-gradient(to right,rgba(60,45,20,.22),rgba(60,45,20,0))}
 .fp.fin{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12%;color:#14185a}
 .fp.fin p{margin:0}
 .fp.fin .big{font-size:clamp(18px,2.4vw,28px);font-style:italic;line-height:1.2;margin-block:14px}
 .fp.fin .sm{font-family:var(--ui);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#4a4e78}
-.rctl{display:flex;gap:10px;align-items:center;font-family:var(--ui);font-size:13px;color:var(--on-stage-soft)}
-.rctl button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(243,237,221,.3);background:transparent;color:var(--on-stage);font-size:20px;cursor:pointer}
-.rctl span{min-width:130px;text-align:center;font-variant-numeric:tabular-nums}
+.rctl{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;align-items:center;font-family:var(--display);font-size:15px;color:var(--on-stage-soft)}
+.rctl button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(243,237,221,.18);background:transparent;color:var(--on-stage);font:inherit;font-size:22px;line-height:1;cursor:pointer}
+.rctl button:hover{border-color:rgba(243,237,221,.5)}
+.rctl #fvolver{width:auto;height:auto;border-radius:999px;padding:7px 16px;font-size:15px}
+.rctl span{min-width:150px;text-align:center;font-variant-numeric:tabular-nums}
+.rctl span b{color:var(--on-stage);font-weight:500}
 .full{font-family:var(--ui);font-size:14px;color:var(--on-stage-soft);margin-top:6px}
 
 /* cuenta regresiva */
@@ -360,7 +367,8 @@ html.lee .cbar{transform:translateY(110%)}
 #flip,#flip *{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 html.lee,html.lee body{overscroll-behavior:none}
 #lectura .reader{position:relative;margin:0;display:grid;place-items:center;min-height:0}
-.lfoot{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;max-width:1240px;width:100%;margin:0 auto}
+.lfoot{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px;max-width:1240px;width:100%;margin:0 auto;padding-bottom:22px}
+#lectura .lfoot .lpw{position:absolute;right:0;bottom:0;margin:0}
 .lfoot .full{margin:0}
 #lectura .fp{transform:translateY(0)}
 html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
@@ -858,12 +866,8 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
     <div id="flip"></div>
   </div>
   <div class="lfoot">
-    <div class="chips" aria-label="Ir a">
-      <button type="button" data-go="2">Contenido</button>
-      <button type="button" data-go="6">Prefacio</button>
-    </div>
     <p class="lpw">powered by <a class="tec" href="https://tecnoia.gt" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1027 984"><path fill="currentColor" fill-rule="evenodd" d="M157 962C115 955 80 926 67 886C61 868 61 872 61 718L61 578L99 559C120 548 137 539 137 539C138 539 138 607 138 690C138 822 138 842 140 848C144 868 160 884 179 888C189 891 878 891 888 888C906 884 921 870 928 851C929 846 930 836 930 491L930 136L927 131C921 114 906 101 889 97C881 95 190 94 180 96C161 100 144 116 140 135C138 141 138 157 138 254L138 366L100 385C79 396 62 405 62 405C61 405 61 342 61 265C61 112 61 116 67 98C81 57 117 27 159 21C173 19 899 20 911 22C960 29 998 68 1006 117C1008 132 1008 852 1006 867C998 916 959 955 910 963C896 965 169 965 157 962ZM591 861C552 856 524 840 504 811C493 794 494 796 438 598C409 496 385 412 384 411C384 409 361 418 227 475C141 511 68 542 64 543C32 554 13 527 23 486C28 466 41 448 60 436C67 431 680 139 691 135C721 125 751 136 777 167C797 193 801 212 787 225C782 230 780 231 661 285C595 316 537 342 532 344C528 346 522 349 520 350L517 354L595 592C679 847 676 838 673 845C670 849 664 854 659 855C644 860 605 863 591 861ZM784 856C745 850 716 824 706 787C703 775 703 753 706 741C717 699 753 672 796 672C839 672 875 699 886 741C889 753 889 775 886 787C877 820 852 846 819 854C811 856 791 858 784 856Z"/></svg><span>Tecnoia.gt</span></a></p>
-    <div class="rctl"><button id="fprev" type="button" aria-label="Página anterior">‹</button><span id="fpos">Cubierta</span><button id="fnext" type="button" aria-label="Página siguiente">›</button></div>
+    <div class="rctl"><button id="fprev" type="button" aria-label="Página anterior">‹</button><span id="fpos">Cubierta</span><button id="fnext" type="button" aria-label="Página siguiente">›</button><button id="fvolver" type="button">Volver</button></div>
   </div>
 </section>
 
@@ -1020,21 +1024,21 @@ const lightBook = (b, ry, floor) => {
   set();
 })();
 
-// ===== Muestra hojeable: cubierta, guarda, páginas i–xii y 1–12, cierre =====
+// ===== Muestra hojeable: cubierta, créditos, contenido, introducción y comienzo del capítulo 1, cierre =====
+// Solo estas páginas del libro existen en la carpeta de la página; sin hojas en blanco
 let pf = null;
 (() => {
   const host = document.getElementById('flip');
-  const roman = 'i ii iii iv v vi vii viii ix x xi xii'.split(' ');
-  const pages = [{k:'img', src:'a/front.webp', hard:true, label:'Cubierta'}, {k:'endp', hard:true, label:'Guarda'}];
-  // Solo el contenido (pp. ix–xii) y el prefacio (pp. 1–6) del PDF v10
-  for (let n = 9; n <= 18; n++) pages.push({k:'img', src:'a/m' + String(n).padStart(2,'0') + '.webp', label: n <= 12 ? roman[n-1] : String(n - 12)});
+  const pages = [{k:'img', src:'a/front.webp', hard:true, label:'Cubierta'}];
+  ['iv','ix','x','xi','7','8','9','11','12','13','14'].forEach((l, n) => pages.push({k:'img', src:'a/s' + String(n + 1).padStart(2,'0') + '.webp', label: l}));
   pages.push({k:'fin', label:'Fin de la muestra'}, {k:'img', src:'a/back.webp', hard:true, label:'Contracubierta'});
+  const SEC = i => i === 0 ? 'Cubierta' : i === 1 ? 'Créditos' : i <= 4 ? 'Contenido' : i <= 7 ? 'Introducción' : i <= 11 ? 'Capítulo 1' : pages[i].label;
   const els = pages.map(p => {
     const d = document.createElement('div');
-    d.className = 'fp' + (p.k === 'endp' ? ' endp' : p.k === 'fin' ? ' fin' : '');
+    d.className = 'fp' + (p.hard ? ' hard' : '') + (p.k === 'fin' ? ' fin' : '');
     if (p.hard) d.dataset.density = 'hard';
     if (p.k === 'img'){ const im = document.createElement('img'); im.dataset.src = p.src; im.alt = p.label; d.appendChild(im); }
-    if (p.k === 'fin') d.innerHTML = '<p class="sm">Fin de la muestra</p><p class="big">La introducción continúa en el libro.</p><p class="sm">Lanzamiento: 12 de diciembre de 2026</p>';
+    if (p.k === 'fin') d.innerHTML = '<p class="sm">Fin de la muestra</p><p class="big">El capítulo 1 continúa en el libro.</p><p class="sm">Lanzamiento: 12 de diciembre de 2026</p>';
     host.appendChild(d); return d;
   });
   const warm = i => { for (let j = Math.max(0, i - 3); j <= Math.min(els.length - 1, i + 6); j++){ const im = els[j].querySelector('img'); if (im && !im.src) im.src = im.dataset.src; } };
@@ -1052,9 +1056,10 @@ let pf = null;
   function muestra(){
   const box = host.parentElement;
   const W = box.clientWidth - 8, H = box.clientHeight - 8, portrait = W < 640;
-  const pw = Math.floor(Math.min(portrait ? W : W / 2, H / 1.5, 520)), ph = Math.floor(pw * 1.5);
+  const pw = Math.floor(Math.min(portrait ? W : W / 2, H / 1.5)), ph = Math.floor(pw * 1.5);
   host.style.width = (portrait ? pw : pw * 2) + 'px'; host.style.height = ph + 'px';
-  pf = new St.PageFlip(host, {width: pw, height: ph, size:'fixed', showCover:true, usePortrait: portrait, autoSize:false, maxShadowOpacity:.5, flippingTime:850, mobileScrollSupport:false, showPageCorners: !matchMedia('(hover:none)').matches});
+  host.style.marginLeft = -(portrait ? pw : pw * 2) / 2 + 'px'; host.style.marginTop = -ph / 2 + 'px';
+  pf = new St.PageFlip(host, {width: pw, height: ph, size:'fixed', showCover:true, usePortrait: portrait, autoSize:false, maxShadowOpacity:.55, flippingTime:900, drawShadow:true, mobileScrollSupport:false, showPageCorners: !matchMedia('(hover:none)').matches});
   pf.loadFromHTML(els);
   // La hoja se dobla según dónde se agarre (arriba, medio o abajo), igual que en el libro completo
   let fit = 1;
@@ -1066,19 +1071,53 @@ let pf = null;
     if ((w < 640) !== portrait && document.documentElement.classList.contains('lee')){
       clearTimeout(window.__ro); window.__ro = setTimeout(() => { location.hash = 'leer'; sessionStorage.setItem('muestraPag', pf.getCurrentPageIndex()); location.reload(); }, 250); return;
     }
-    fit = Math.min(1, w / (portrait ? pw : pw * 2), h / ph);
-    host.style.scale = fit < 1 ? String(fit) : '';
+    fit = Math.min(w / (portrait ? pw : pw * 2), h / ph);
+    host.style.scale = String(fit);
+    place(pf.getCurrentPageIndex());
   };
+  // Libro cerrado: se centra la cubierta o la contracubierta, como en el libro completo
+  function place(i){
+    let dx = 0;
+    if (!portrait){ if (i === 0) dx = -pw / 2; else if (i >= pages.length - 1) dx = pw / 2; }
+    host.style.translate = (dx * fit) + 'px 0';
+  }
   addEventListener('resize', refit); refit();
   try { const k = sessionStorage.getItem('muestraPag'); if (k !== null){ sessionStorage.removeItem('muestraPag'); const n = +k; if (Number.isInteger(n) && n >= 0 && n < pf.getPageCount()) setTimeout(() => { warm(n); pf.turnToPage(n); show(n); }, 0); } } catch (_) {}
   const pos = document.getElementById('fpos');
-  const show = i => { warm(i); const p = pages[i]; pos.textContent = /^[0-9ivx]+$/.test(p.label) ? 'Página ' + p.label : p.label; };
+  const show = i => {
+    warm(i); place(i);
+    let pg = /^[0-9ivx]+$/.test(pages[i].label) ? pages[i].label : '';
+    if (!portrait && i > 0 && i < pages.length - 1){
+      const a = i % 2 ? i : i - 1, L = pages[a], Rr = pages[a + 1];
+      const ok = q => q && /^[0-9ivx]+$/.test(q.label);
+      pg = ok(L) && ok(Rr) ? L.label + '–' + Rr.label : ok(L) ? L.label : ok(Rr) ? Rr.label : '';
+    }
+    pos.innerHTML = '<b>' + SEC(i) + '</b>' + (pg ? ' · ' + pg : '');
+  };
   pf.on('flip', e => show(e.data));
+  pf.on('changeState', e => { if (e.data === 'flipping' || e.data === 'user_fold') rustle(); });
+  // Sonido de papel, el mismo del libro completo
+  let ac = null, lastR = 0;
+  function rustle(){
+    const now = performance.now(); if (now - lastR < 350) return; lastR = now;
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      const dur = 0.55, n = Math.floor(ac.sampleRate * dur);
+      const buf = ac.createBuffer(1, n, ac.sampleRate), d = buf.getChannelData(0);
+      for (let k = 0; k < n; k++){ const t = k / n; d[k] = (Math.random() * 2 - 1) * Math.pow(Math.sin(Math.PI * Math.min(1, t * 1.15)), 1.6) * (0.6 + 0.4 * Math.random()); }
+      const src = ac.createBufferSource(); src.buffer = buf;
+      const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 0.6;
+      bp.frequency.setValueAtTime(1800, ac.currentTime); bp.frequency.linearRampToValueAtTime(4200, ac.currentTime + dur);
+      const g = ac.createGain(); g.gain.value = 0.09;
+      src.connect(bp).connect(g).connect(ac.destination); src.start();
+    } catch (_) {}
+  }
   document.getElementById('fprev').onclick = () => pf.flipPrev();
   // El logo cierra la lectura y regresa a la página; la muestra queda lista en la cubierta para la próxima vez
-  document.getElementById('lHome').onclick = () => { if (window.cerrarLectura) window.cerrarLectura(); setTimeout(() => { warm(0); pf.turnToPage(0); show(0); }, 900); };
+  const volver = () => { if (window.cerrarLectura) window.cerrarLectura(); setTimeout(() => { warm(0); pf.turnToPage(0); show(0); }, 900); };
+  document.getElementById('lHome').onclick = volver;
+  document.getElementById('fvolver').onclick = volver;
   document.getElementById('fnext').onclick = () => pf.flipNext();
-  document.querySelectorAll('[data-go]').forEach(bt => bt.onclick = () => { const i = +bt.dataset.go; warm(i); pf.turnToPage(i); show(i); });
   addEventListener('keydown', e => { if (!document.documentElement.classList.contains('lee')) return; if (e.key === 'ArrowRight'){ e.preventDefault(); pf.flipNext(); } if (e.key === 'ArrowLeft'){ e.preventDefault(); pf.flipPrev(); } });
   }
 })();
