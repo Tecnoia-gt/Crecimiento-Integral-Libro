@@ -316,19 +316,29 @@ html.intro-gone .volver{display:inline-flex}
   .iday span{font-size:min(36px,8vw)}
   .irest b{font-size:min(56px,11vw,6dvh)}
   .isub{margin-top:8px;font-size:min(22px,5vw)}
-  #intro{display:flex;flex-direction:column;justify-content:center;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 34px)}
-  .iwrap{margin:0 auto}
-  .inext{position:relative;top:auto;right:auto;bottom:auto;transform:none;align-self:center;flex:none;margin-top:18px;width:56px;height:56px;animation:none;background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .inext{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 34px);right:50%;transform:translateX(50%);width:52px;height:52px;animation:none}
 }
-@media (hover:none){.inext{background:var(--ink);color:var(--paper);border-color:var(--ink)}}
+/* Solo celular en vertical: la flecha va junto al número de días y el paso a la página es un fundido, sin deslizar */
+.inext2{display:none}
+@media (max-width:600px) and (orientation:portrait){
+  #entrar{display:none}
+  .inext2{display:grid;place-items:center;align-self:center;flex:none;margin-left:6px;width:52px;height:52px;padding:0;border:0;border-radius:50%;background:var(--ink);color:var(--paper);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+  .inext2 svg{width:46%;height:46%;display:block}
+  .iwrap{padding-bottom:0}
+  #intro{transition:opacity .45s ease,visibility 0s linear .45s}
+  html.intro-on #intro{transition:opacity .45s ease}
+  html.intro-gone #intro{transform:none;opacity:0;visibility:hidden}
+  #app{transition:opacity .45s ease}
+  html.intro-on #app{transform:none;opacity:0}
+}
 @media (max-height:720px) and (max-aspect-ratio:4/5){
-  .iwrap{gap:10px}
+  .iwrap{gap:10px;padding-bottom:34px}
   .book.big{--w:min(200px,48vw,24dvh)}
   .ifloor{margin-top:6px}
   .iday b{font-size:min(120px,30vw,13dvh)}
   .irest{margin-top:6px;padding-top:8px}
   .irest b{font-size:min(40px,9vw,5dvh)}
-  .inext{width:50px;height:50px;margin-top:12px}
+  .inext{width:46px;height:46px;bottom:calc(env(safe-area-inset-bottom,0px) + 28px)}
 }
 
 /* espacio de lectura: se abre en círculo desde el botón y ocupa toda la pantalla */
@@ -429,7 +439,7 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
     </div>
     <div class="iclock" role="timer" aria-label="Cuenta regresiva al lanzamiento">
       <span class="ilbl"><i></i><span id="hLbl">Faltan para el lanzamiento</span></span>
-      <div class="iday"><b data-c="d">00</b><span data-u="d">días</span></div>
+      <div class="iday"><b data-c="d">00</b><span data-u="d">días</span><button class="inext2" id="entrar2" type="button" aria-label="Entrar a la página del libro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></div>
       <div class="irest"><span><b data-c="h">00</b>h</span><span><b data-c="m">00</b>min</span><span><b data-c="s">00</b>s</span></div>
       <p class="isub" id="hSub">Sábado 12 de diciembre de 2026</p>
     </div>
@@ -897,6 +907,7 @@ const lightBook = (b, ry, floor) => {
   const enter = () => { if (!on || Date.now() < lock) return; lock = Date.now() + 1100; scrollTo(0, 0); set(false); setTimeout(() => dispatchEvent(new Event('resize')), 1050); };
   const leave = () => { if (on || Date.now() < lock) return; lock = Date.now() + 1100; scrollTo(0, 0); set(true); };
   document.getElementById('entrar').addEventListener('click', enter);
+  document.getElementById('entrar2').addEventListener('click', enter);
   document.getElementById('volver').addEventListener('click', leave);
   document.getElementById('brandHome').addEventListener('click', e => { e.preventDefault(); leave(); });
   addEventListener('wheel', e => { if (on && (e.deltaY > 8 || e.deltaX > 8)) enter(); }, {passive:true});
