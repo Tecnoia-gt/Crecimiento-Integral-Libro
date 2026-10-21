@@ -311,6 +311,15 @@ html.intro-gone .volver{display:inline-flex}
   .isub{margin-top:8px;font-size:min(22px,5vw)}
   .inext{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);right:50%;transform:translateX(50%);width:52px;height:52px;animation:none}
 }
+@media (max-height:720px) and (max-aspect-ratio:4/5){
+  .iwrap{gap:10px;padding-bottom:74px}
+  .book.big{--w:min(200px,48vw,24dvh)}
+  .ifloor{margin-top:6px}
+  .iday b{font-size:min(120px,30vw,13dvh)}
+  .irest{margin-top:6px;padding-top:8px}
+  .irest b{font-size:min(40px,9vw,5dvh)}
+  .inext{width:46px;height:46px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px)}
+}
 @media (prefers-reduced-motion:reduce){#intro,#app{transition:none}}
 
 /* espacio de lectura: se abre en círculo desde el botón y ocupa toda la pantalla */
