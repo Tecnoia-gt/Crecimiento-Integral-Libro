@@ -33,6 +33,8 @@ header img{height:30px;width:auto}
 .page.--left:not(.hard)::after{right:0;background:linear-gradient(to left,rgba(60,45,20,.22),rgba(60,45,20,0))}
 .page.--right:not(.hard)::after{left:0;background:linear-gradient(to right,rgba(60,45,20,.22),rgba(60,45,20,0))}
 .page.hard img{object-fit:cover}
+/* Hoja tomada por el medio: giro sobre el lomo con perspectiva suave, sin salirse del escenario */
+#book .stf__block{perspective:4200px !important}
 footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;padding-block:8px 16px}
 button,select{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:15px}
 button:hover,select:hover{border-color:rgba(243,237,221,.5)}
@@ -49,7 +51,7 @@ select option{background:var(--ground-2);color:var(--ink)}
 .v3d:active{cursor:grabbing}
 .v3d.gone{opacity:0;pointer-events:none}
 .stage.closed #shell,.stage.closed .hint{visibility:hidden}
-.b3{--w:min(330px,58vw,calc((100dvh - 230px) / 1.62));--h:calc(var(--w) * 1.5);--t:calc(var(--w) * .046);--shF:0;--shB:.3;--shS:.3;--shE:.3;--gx:30%;position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;transform:rotateX(var(--rx,6deg)) rotateY(var(--ry,-28deg))}
+.b3{--w:300px;--h:calc(var(--w) * 1.5);--t:calc(var(--w) * .046);--shF:0;--shB:.3;--shS:.3;--shE:.3;--gx:30%;position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;transform:rotateX(var(--rx,6deg)) rotateY(var(--ry,-28deg))}
 .b3 .f{position:absolute;left:50%;top:50%;backface-visibility:hidden}
 .b3 .f::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit}
 .b3 .cf{width:var(--w);height:var(--h);background:url(img/front.webp) center/cover;border-radius:1px 4px 4px 1px;transform:translate(-50%,-50%) translateZ(calc(var(--t) / 2))}
@@ -64,13 +66,13 @@ select option{background:var(--ground-2);color:var(--ink)}
 .b3 .tp{transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(var(--h) / 2 - 1.5px))}
 .b3 .bt{transform:translate(-50%,-50%) rotateX(-90deg) translateZ(calc(var(--h) / 2 - 1.5px))}
 .b3 .bt::after{background:rgba(8,10,40,.35)}
-.v3d .floor{width:min(80%,320px);height:28px;margin-top:4px;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);filter:blur(5px);transform:scaleX(var(--fs,1))}
-.v3d .open{margin-top:6px;cursor:pointer}
+.v3d .floor{position:absolute;left:50%;top:calc(50% + var(--fh,200px) - 10px);translate:-50% 0;width:min(70%,320px);height:28px;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);filter:blur(5px);transform:scaleX(var(--fs,1))}
+.v3d .open{position:absolute;bottom:0;left:50%;translate:-50% 0;font-size:13px;padding:3px 12px;cursor:pointer;background:rgba(4,4,74,.6)}
 .firma{flex-basis:100%;text-align:center;font-size:12px;color:var(--muted);margin-top:-4px}
 .firma a{color:var(--muted)}
 .tec{display:inline-flex;align-items:center;gap:.4em;vertical-align:middle;text-decoration:none;color:inherit}.tec svg{height:1.3em;width:auto;flex:none}.tec span{text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
 @media (max-width:560px){.folio{min-width:0;flex-basis:100%;order:-1}.ttl p{letter-spacing:.12em}}
-@media (max-height:520px){header,.firma{display:none}footer{padding-block:4px 8px}.b3{--w:min(330px,58vw,calc((100dvh - 120px) / 1.6))}.v3d .open{margin-top:0}}
+@media (max-height:520px){header,.firma{display:none}footer{padding-block:4px 8px}}
 @media (prefers-reduced-motion:reduce){.hint,#shell{transition:none}}
 </style>
 
@@ -88,7 +90,6 @@ select option{background:var(--ground-2);color:var(--ink)}
         <div class="f bk"></div><div class="f sp"></div><div class="f ed"></div><div class="f tp"></div><div class="f bt"></div><div class="f cf"></div>
       </div>
       <div class="floor" id="b3floor"></div>
-      <button class="open" id="abrir" type="button">Abrir el libro</button>
     </div>
     <div class="loading" id="loading">Abriendo el libro…</div>
     <div id="shell"><div id="book"></div></div>
@@ -114,7 +115,7 @@ select option{background:var(--ground-2);color:var(--ink)}
       <option value="101">Contracubierta</option>
     </select>
     <button id="snd" aria-pressed="true">Sonido: sí</button>
-    <button id="ver3d">Libro cerrado</button>
+    <button id="ver3d">Abrir el libro</button>
     <button id="fs">Pantalla completa</button>
     <div class="firma">Diseño y desarrollo: <a class="tec" href="https://tecnoia.gt" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1027 984"><path fill="currentColor" fill-rule="evenodd" d="M157 962C115 955 80 926 67 886C61 868 61 872 61 718L61 578L99 559C120 548 137 539 137 539C138 539 138 607 138 690C138 822 138 842 140 848C144 868 160 884 179 888C189 891 878 891 888 888C906 884 921 870 928 851C929 846 930 836 930 491L930 136L927 131C921 114 906 101 889 97C881 95 190 94 180 96C161 100 144 116 140 135C138 141 138 157 138 254L138 366L100 385C79 396 62 405 62 405C61 405 61 342 61 265C61 112 61 116 67 98C81 57 117 27 159 21C173 19 899 20 911 22C960 29 998 68 1006 117C1008 132 1008 852 1006 867C998 916 959 955 910 963C896 965 169 965 157 962ZM591 861C552 856 524 840 504 811C493 794 494 796 438 598C409 496 385 412 384 411C384 409 361 418 227 475C141 511 68 542 64 543C32 554 13 527 23 486C28 466 41 448 60 436C67 431 680 139 691 135C721 125 751 136 777 167C797 193 801 212 787 225C782 230 780 231 661 285C595 316 537 342 532 344C528 346 522 349 520 350L517 354L595 592C679 847 676 838 673 845C670 849 664 854 659 855C644 860 605 863 591 861ZM784 856C745 850 716 824 706 787C703 775 703 753 706 741C717 699 753 672 796 672C839 672 875 699 886 741C889 753 889 775 886 787C877 820 852 846 819 854C811 856 791 858 784 856Z"/></svg><span>Tecnoia.gt</span></a></div>
   </footer>
@@ -169,6 +170,60 @@ const pf = new St.PageFlip(book, {
 });
 pf.loadFromHTML(els);
 document.getElementById('loading').remove();
+// ===== Paso de hojas según dónde se agarre la hoja =====
+// Tercio superior: se dobla la esquina de arriba. Tercio inferior: la de abajo.
+// Tercio del medio: la hoja entera gira sobre el lomo, como cuando se toma por el centro del borde.
+// La esquina no salta al dedo: conserva la distancia entre el punto agarrado y la esquina.
+(() => {
+  const fc = pf.flipController, R = () => pf.getRender().getRect();
+  let zone = null, grab = null, off = null, hardPages = [];
+  const zoneAt = y => { const r = R(), t = (y - r.top) / r.height; return t < 1/3 ? 'top' : t > 2/3 ? 'bottom' : 'mid'; };
+  const bookPos = (cx, cy) => { const b = pf.getUI().distElement.getBoundingClientRect(); return { x: (cx - b.left) / scale, y: (cy - b.top) / scale }; };
+  const down = (cx, cy) => { grab = bookPos(cx, cy); zone = zoneAt(grab.y); off = null; };
+  book.addEventListener('mousedown', e => down(e.clientX, e.clientY), true);
+  book.addEventListener('touchstart', e => { const t = e.changedTouches[0]; if (t) down(t.clientX, t.clientY); }, {capture:true, passive:true});
+  const startOrig = fc.start.bind(fc);
+  fc.start = pos => {
+    const ok = startOrig(pos);
+    if (ok && zone === 'mid'){
+      const pc = pf.getPageCollection(), fp = fc.flippingPage;
+      const pair = fc.calc.getDirection() === 1 ? pc.nextBy(fp) : pc.prevBy(fp);
+      hardPages = [fp, pair].filter(Boolean);
+      hardPages.forEach(p => p.setDrawingDensity('hard'));
+    }
+    return ok;
+  };
+  const foldOrig = fc.fold.bind(fc);
+  fc.fold = pos => {
+    if (grab && fc.calc === null){
+      const r = R(), back = grab.x < r.left + r.width / 2 && pf.getOrientation() === 'landscape' || (pf.getOrientation() === 'portrait' && grab.x - r.left - r.pageWidth <= r.width / 5);
+      const cx = back ? r.left : r.left + r.width;
+      const cy = zone === 'bottom' ? r.top + r.height - 1 : r.top + 1;
+      // La primera llamada decide la esquina con la posición recibida: se le pasa la esquina que corresponde a la zona
+      off = { x: cx - grab.x, y: zone === 'mid' ? null : cy - grab.y, cy };
+      foldOrig({ x: grab.x + off.x - (grab.x - pos.x), y: zone === 'mid' ? cy : grab.y + off.y });
+      return;
+    }
+    if (off) return foldOrig({ x: pos.x + off.x, y: off.y === null ? off.cy : Math.max(R().top + 1, Math.min(R().top + R().height - 1, pos.y + off.y)) });
+    foldOrig(pos);
+  };
+  // Deslizar rápido: el giro también sale de la zona tocada
+  const anim = (dir, corner) => {
+    if (zone === 'mid'){
+      const r = R(), y = r.top + 1;
+      fc.flip({ x: dir > 0 ? r.left + r.width - 10 : r.left + 10, y });
+    } else (dir > 0 ? fc.flipNext : fc.flipPrev).call(fc, zone === 'bottom' ? 'bottom' : zone === 'top' ? 'top' : corner);
+  };
+  pf.flipNext = (c = 'top') => anim(1, c);
+  pf.flipPrev = (c = 'top') => anim(-1, c);
+  pf.on('changeState', e => {
+    if (e.data === 'read'){
+      hardPages.forEach(p => p.setDrawingDensity(p.getDensity())); hardPages = [];
+      zone = null; grab = null; off = null;
+    }
+  });
+})();
+
 let scale = 1;
 function place(i){
   // Libro cerrado: se centra la cubierta o la contracubierta.
@@ -180,6 +235,9 @@ function rescale(){
   const st = avail();
   scale = Math.min(1, st.ph / A0.ph, stage.clientWidth / (A0.portrait ? A0.pw : A0.pw * 2));
   place(pf.getCurrentPageIndex());
+  // El libro cerrado en 3D tiene exactamente el tamaño de la página de lectura
+  document.getElementById('b3').style.setProperty('--w', (A0.pw * scale) + 'px');
+  document.getElementById('v3d').style.setProperty('--fh', (A0.ph * scale / 2) + 'px');
 }
 rescale();
 addEventListener('resize', () => {
@@ -274,19 +332,29 @@ function hideHint(){ if (!hinted){ hinted = true; document.getElementById('hint'
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop); set();
+  let opening = false;
   function openBook(){
+    if (opening) return; opening = true;
     vy = vx = 0;
-    stage.classList.remove('closed'); v.classList.add('gone');
+    // Primero el libro se pone de frente, plano, en el mismo lugar y tamaño de la lectura; luego se abre la tapa
+    const target = Math.round(ry / 360) * 360;
+    b.style.transition = 'transform .5s cubic-bezier(.3,.7,.2,1)';
+    ry = target; rx = 0; set();
     pf.turnToPage(0); show(0); place(0); warm(0);
-    setTimeout(() => pf.flipNext(), 350);
+    setTimeout(() => {
+      b.style.transition = '';
+      stage.classList.remove('closed'); v.classList.add('gone');
+      setTimeout(() => { pf.flipNext(); opening = false; }, 120);
+    }, 520);
   }
   function closeBook(){
     pf.turnToPage(0); show(0); place(0);
     ry = -28; rx = 6; set();
     v.classList.remove('gone'); stage.classList.add('closed');
   }
-  document.getElementById('abrir').onclick = openBook;
-  document.getElementById('ver3d').onclick = closeBook;
+  const tg = document.getElementById('ver3d');
+  tg.onclick = () => stage.classList.contains('closed') ? openBook() : closeBook();
+  new MutationObserver(() => { tg.textContent = stage.classList.contains('closed') ? 'Abrir el libro' : 'Cerrar el libro'; }).observe(stage, {attributes:true, attributeFilter:['class']});
   window.__openBook = openBook;
 })();
 
