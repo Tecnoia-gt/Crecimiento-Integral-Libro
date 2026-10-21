@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Crecimiento integral, libro digital</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,6 +69,7 @@ select option{background:var(--ground-2);color:var(--ink)}
 .firma{flex-basis:100%;text-align:center;font-size:12px;color:var(--muted);margin-top:-4px}
 .firma a{color:var(--muted)}
 @media (max-width:560px){.folio{min-width:0;flex-basis:100%;order:-1}.ttl p{letter-spacing:.12em}}
+@media (max-height:520px){header,.firma{display:none}footer{padding-block:4px 8px}.b3{--w:min(330px,58vw,calc((100dvh - 120px) / 1.6))}.v3d .open{margin-top:0}}
 @media (prefers-reduced-motion:reduce){.hint,#shell{transition:none}}
 </style>
 
@@ -179,7 +181,18 @@ function rescale(){
   place(pf.getCurrentPageIndex());
 }
 rescale();
-addEventListener('resize', rescale);
+addEventListener('resize', () => {
+  // Al girar el teléfono entre vertical (una página) y horizontal (dos páginas), se rearma el libro en la misma página
+  if ((stage.clientWidth < 720) !== A0.portrait){
+    const i = pf.getCurrentPageIndex(), closed = stage.classList.contains('closed');
+    clearTimeout(window.__ro); window.__ro = setTimeout(() => { location.hash = closed ? '' : 'p' + i; location.reload(); }, 250);
+    return;
+  }
+  rescale();
+});
+// Si se rearmó tras girar el teléfono, vuelve a la página donde estaba
+const P0 = /^#p(\d+)$/.exec(location.hash);
+if (P0){ setTimeout(() => { stage.classList.remove('closed'); document.getElementById('v3d').classList.add('gone'); const n = +P0[1]; warm(n); pf.turnToPage(n); show(n); place(n); }, 0); }
 
 const folio = document.getElementById('folio');
 function label(i){
@@ -210,6 +223,8 @@ addEventListener('keydown', e => {
   if (e.key === 'ArrowRight'){ if (stage.classList.contains('closed')) return window.__openBook(); pf.flipNext(); }
   if (e.key === 'ArrowLeft') pf.flipPrev();
 });
+// El iPhone no permite pantalla completa en páginas web: ahí se oculta el botón
+if (!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) document.getElementById('fs').hidden = true;
 document.getElementById('fs').onclick = () => {
   const r = document.documentElement;
   try { (document.fullscreenElement ? document.exitFullscreen() : r.requestFullscreen()).catch(() => {}); } catch (_) {}
