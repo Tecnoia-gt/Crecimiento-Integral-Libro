@@ -301,9 +301,12 @@ html.intro-on .cbar{transform:translateY(110%)}
 .irest span{font-family:var(--ui);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
 .irest b{font-family:var(--display);font-weight:500;font-size:min(84px,5.8vw,10vh);line-height:1;letter-spacing:-.02em;color:var(--ink);margin-right:6px;font-variant-numeric:lining-nums tabular-nums;text-transform:none}
 .isub{font-size:min(26px,1.9vw,3.4vh);margin:min(18px,2vh) 0 0;color:var(--ink)}
-.inext{position:absolute;right:0;top:50%;transform:translateY(-50%);padding:16px max(30px,calc(env(safe-area-inset-right,0px) + 22px)) 14px 30px;border:0;border-radius:18px 0 0 18px;background:#fdfcf7;color:#1f3f9a;font-family:'Reenie Beanie',cursive;font-size:clamp(28px,2.6vw,38px);line-height:1;letter-spacing:.01em;white-space:nowrap;cursor:pointer;box-shadow:-14px 18px 34px -18px rgba(4,4,40,.55),inset 0 -1px 0 rgba(0,0,0,.06);transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
-.inext::before{content:"";position:absolute;left:14px;right:18px;bottom:11px;height:1px;background:rgba(31,63,154,.18)}
-.inext:hover{transform:translate(-8px,-50%);box-shadow:-20px 22px 40px -18px rgba(4,4,40,.6)}
+.inext{position:absolute;right:0;top:50%;transform:translateY(-50%);width:clamp(66px,6vw,86px);height:clamp(240px,34vh,310px);padding:0;border:0;background:none;cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.2,1);filter:drop-shadow(-8px 10px 14px rgba(4,4,40,.32))}
+.inext svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.inext span{position:absolute;left:24%;right:22%;top:20%;bottom:20%;display:grid;place-items:center;writing-mode:vertical-rl;font-family:'Reenie Beanie',cursive;font-size:clamp(26px,2.3vw,34px);line-height:1;color:#1f3f9a;white-space:nowrap}
+.inext:hover{transform:translate(-8px,-50%)}
+@media (min-width:601px),(orientation:landscape){#intro .iwrap{padding-right:clamp(70px,6.5vw,96px)}}
+@media (orientation:landscape) and (max-height:500px){.inext{width:54px;height:min(230px,66vh)}.inext span{font-size:24px}#intro .iwrap{padding-right:64px}}
 @keyframes nudge{50%{translate:6px 0}}
 .ititle{font-family:var(--ui);font-size:13px;color:var(--ink-soft);margin:6px 0 0}
 .ititle em{font-family:var(--display);font-size:16px}
@@ -327,11 +330,9 @@ html.intro-gone .volver{display:inline-flex}
   .isub{margin-top:8px;font-size:min(22px,5vw)}
 }
 /* Solo celular en vertical: la flecha va junto al número de días y el paso a la página es un fundido, sin deslizar */
-.inext2{display:none}
 @media (max-width:600px) and (orientation:portrait){
-  #entrar{display:none}
-  .inext2{display:block;position:relative;margin:22px auto 0;padding:14px 34px 12px;border:0;border-radius:16px 16px 0 0;background:#fdfcf7;color:#1f3f9a;font-family:'Reenie Beanie',cursive;font-size:32px;line-height:1;cursor:pointer;box-shadow:0 -8px 22px -12px rgba(4,4,40,.45)}
-  .inext2::after{content:"";position:absolute;left:-46px;right:-46px;bottom:-1px;height:2px;border-radius:2px;background:#fdfcf7;opacity:.85}
+  .inext{top:calc(env(safe-area-inset-top,0px) + 30dvh);width:56px;height:206px}
+  .inext span{font-size:22px}
   .iwrap{padding-bottom:0}
   #intro{transition:opacity .45s ease,visibility 0s linear .45s}
   html.intro-on #intro{transition:opacity .45s ease}
@@ -466,10 +467,9 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
       <div class="iday"><b data-c="d">00</b><span data-u="d">días</span></div>
       <div class="irest"><span><b data-c="h">00</b>h</span><span><b data-c="m">00</b>min</span><span><b data-c="s">00</b>s</span></div>
       <p class="isub" id="hSub">Sábado 12 de diciembre de 2026</p>
-      <button class="inext2" id="entrar2" type="button">abrir el archivo</button>
     </div>
   </div>
-  <button class="inext" id="entrar" type="button">abrir el archivo</button>
+  <button class="inext" id="entrar" type="button" aria-label="Abrir el archivo"><svg viewBox="0 0 84 300" preserveAspectRatio="none" aria-hidden="true"><path d="M84 0C72 0 66 5 60 14L44 32C38 39 32 42 22 42Q10 42 10 56V244Q10 258 22 258C32 258 38 261 44 268L60 286C66 295 72 300 84 300Z" fill="#efe0bb"/><path d="M84 0C72 0 66 5 60 14L44 32C38 39 32 42 22 42Q10 42 10 56V244Q10 258 22 258C32 258 38 261 44 268L60 286C66 295 72 300 84 300" fill="none" stroke="rgba(120,90,30,.25)" stroke-width="1"/><rect x="18" y="58" width="50" height="184" rx="3" fill="#fdfcf8" stroke="rgba(0,0,0,.1)"/><rect x="22" y="64" width="4" height="172" fill="#1f3f9a"/><rect x="22" y="64" width="2" height="8" fill="#fdfcf8"/><rect x="22" y="228" width="2" height="8" fill="#fdfcf8"/><rect x="60" y="64" width="2" height="6" fill="#1f3f9a" opacity=".6"/><rect x="60" y="230" width="2" height="6" fill="#1f3f9a" opacity=".6"/></svg><span>abrir el archivo</span></button>
   <p class="ipw">powered by <a class="tec" href="https://tecnoia.gt" target="_blank" rel="noopener"><img class="logo-l" src="a/tecnoia_color.png" alt=""><svg class="logo-d" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1027 984"><path fill="currentColor" fill-rule="evenodd" d="M157 962C115 955 80 926 67 886C61 868 61 872 61 718L61 578L99 559C120 548 137 539 137 539C138 539 138 607 138 690C138 822 138 842 140 848C144 868 160 884 179 888C189 891 878 891 888 888C906 884 921 870 928 851C929 846 930 836 930 491L930 136L927 131C921 114 906 101 889 97C881 95 190 94 180 96C161 100 144 116 140 135C138 141 138 157 138 254L138 366L100 385C79 396 62 405 62 405C61 405 61 342 61 265C61 112 61 116 67 98C81 57 117 27 159 21C173 19 899 20 911 22C960 29 998 68 1006 117C1008 132 1008 852 1006 867C998 916 959 955 910 963C896 965 169 965 157 962ZM591 861C552 856 524 840 504 811C493 794 494 796 438 598C409 496 385 412 384 411C384 409 361 418 227 475C141 511 68 542 64 543C32 554 13 527 23 486C28 466 41 448 60 436C67 431 680 139 691 135C721 125 751 136 777 167C797 193 801 212 787 225C782 230 780 231 661 285C595 316 537 342 532 344C528 346 522 349 520 350L517 354L595 592C679 847 676 838 673 845C670 849 664 854 659 855C644 860 605 863 591 861ZM784 856C745 850 716 824 706 787C703 775 703 753 706 741C717 699 753 672 796 672C839 672 875 699 886 741C889 753 889 775 886 787C877 820 852 846 819 854C811 856 791 858 784 856Z"/></svg><span>Tecnoia.gt</span></a></p>
 </section>
 
@@ -916,7 +916,6 @@ const lightBook = (b, ry, floor) => {
   const enter = () => { if (!on || Date.now() < lock) return; lock = Date.now() + 1100; scrollTo(0, 0); set(false); setTimeout(() => dispatchEvent(new Event('resize')), 1050); };
   const leave = () => { if (on || Date.now() < lock) return; lock = Date.now() + 1100; scrollTo(0, 0); set(true); };
   document.getElementById('entrar').addEventListener('click', enter);
-  document.getElementById('entrar2').addEventListener('click', enter);
   document.getElementById('volver').addEventListener('click', leave);
   document.getElementById('brandHome').addEventListener('click', e => { e.preventDefault(); leave(); });
   addEventListener('wheel', e => { if (on && (e.deltaY > 8 || e.deltaX > 8)) enter(); }, {passive:true});
