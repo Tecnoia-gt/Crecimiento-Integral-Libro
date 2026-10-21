@@ -330,7 +330,7 @@ html.intro-gone .volver{display:inline-flex}
 @media (prefers-reduced-motion:reduce){#intro,#app{transition:none}}
 
 /* espacio de lectura: se abre en círculo desde el botón y ocupa toda la pantalla */
-#lectura{position:fixed;inset:0;z-index:70;background:var(--stage);color:var(--on-stage);display:grid;grid-template-rows:auto 1fr auto;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 14px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 14px) max(16px,env(safe-area-inset-left,0px));clip-path:circle(0 at var(--cx,50%) var(--cy,50%));visibility:hidden;transition:clip-path .85s cubic-bezier(.7,0,.2,1),visibility 0s linear .85s}
+#lectura{position:fixed;inset:0;overflow:hidden;z-index:70;background:var(--stage);color:var(--on-stage);display:grid;grid-template-rows:auto 1fr auto;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 14px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 14px) max(16px,env(safe-area-inset-left,0px));clip-path:circle(0 at var(--cx,50%) var(--cy,50%));visibility:hidden;transition:clip-path .85s cubic-bezier(.7,0,.2,1),visibility 0s linear .85s}
 #lectura::before{content:"";position:absolute;left:50%;top:40%;width:min(1100px,140vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(243,237,221,.10),transparent 70%);pointer-events:none}
 html.lee #lectura{clip-path:circle(150% at var(--cx,50%) var(--cy,50%));visibility:visible;transition:clip-path .85s cubic-bezier(.7,0,.2,1)}
 html.lee,html.lee body{overflow:hidden}
@@ -1023,7 +1023,17 @@ let pf = null;
   });
   const warm = i => { for (let j = Math.max(0, i - 3); j <= Math.min(els.length - 1, i + 6); j++){ const im = els[j].querySelector('img'); if (im && !im.src) im.src = im.dataset.src; } };
   warm(0);
-  if (!window.St){ host.innerHTML = '<p style="font-family:var(--ui)">No se pudo cargar la muestra. Revise la conexión y recargue la página.</p>'; return; }
+  // Si la biblioteca del paso de hojas no llegó (red lenta o caché), se pide de nuevo una vez antes de avisar
+  if (!window.St || !window.hojasPorZona){
+    const again = (src, ok) => { const sc = document.createElement('script'); sc.src = src + '?r=' + Date.now(); sc.onload = ok; sc.onerror = fail; document.head.appendChild(sc); };
+    const fail = () => { host.innerHTML = '<p style="font-family:var(--ui)">No se pudo cargar la muestra. Revise la conexión y recargue la página.</p>'; };
+    const go = () => { if (window.St && window.hojasPorZona) muestra(); else fail(); };
+    const needHojas = () => window.hojasPorZona ? go() : again('../js/hojas.js', go);
+    window.St ? needHojas() : again('../js/page-flip-2.0.7.browser.js', needHojas);
+    return;
+  }
+  muestra();
+  function muestra(){
   const box = host.parentElement;
   const W = box.clientWidth - 8, H = box.clientHeight - 8, portrait = W < 640;
   const pw = Math.floor(Math.min(portrait ? W : W / 2, H / 1.5, 520)), ph = Math.floor(pw * 1.5);
@@ -1053,6 +1063,7 @@ let pf = null;
   document.getElementById('fnext').onclick = () => pf.flipNext();
   document.querySelectorAll('[data-go]').forEach(bt => bt.onclick = () => { const i = +bt.dataset.go; warm(i); pf.turnToPage(i); show(i); });
   addEventListener('keydown', e => { if (!document.documentElement.classList.contains('lee')) return; if (e.key === 'ArrowRight'){ e.preventDefault(); pf.flipNext(); } if (e.key === 'ArrowLeft'){ e.preventDefault(); pf.flipPrev(); } });
+  }
 })();
 
 

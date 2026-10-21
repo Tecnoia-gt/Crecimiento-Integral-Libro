@@ -46,7 +46,9 @@
 
     var plegar = fc.fold.bind(fc);
     fc.fold = function (p) {
-      if (toque && fc.calc === null) {
+      if (toque && !desf) {
+        // Con ratón, al pasar sobre una esquina ya se insinúa el doblez: se descarta para empezar desde donde se agarró
+        if (fc.calc !== null && fc.getState() === 'fold_corner') { render.finishAnimation(); fc.reset(); }
         var r = R(), atras = haciaAtras(toque);
         var bx = atras ? r.left : r.left + r.width;
         var by = zona === 'bottom' ? r.top + r.height - 0.5 : r.top + 0.5;
