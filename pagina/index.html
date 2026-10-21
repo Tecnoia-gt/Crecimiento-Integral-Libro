@@ -1,0 +1,1144 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;padding:0}</style></head><body><title>Crecimiento integral · Balmer Ayala</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="La historia de Balmer Ayala en fotos y el libro Crecimiento integral de la iglesia pentecostal en 3D, con muestra para leer y cuenta regresiva al lanzamiento del 12 de diciembre de 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Concepto: un álbum sobre papel crema. La vida del autor se cuenta en escenas fechadas;
+   cada escena es un collage de copias fotográficas sujetas con cinta sobre los bocetos a tinta azul del libro,
+   que se desplazan a distinta velocidad al bajar. Al final, la sala de lectura: el libro en 3D, la muestra y la cuenta regresiva. */
+:root{
+  --paper:#f3eee1; --paper-2:#e9e2cf; --print:#fbf8f0; --ink:#14185a; --ink-soft:#4b4f78;
+  --tinta:#2e4a62; --red:#cd0100; --navy:#04044a; --stage:#0b0f45; --on-stage:#f3eddd; --on-stage-soft:#b9b6d6;
+  --rule:rgba(20,24,90,.16); --tape:rgba(233,226,207,.78); --hatch:rgba(46,74,98,.10);
+  --display:"EB Garamond","Garamond","Georgia",serif;
+  --ui:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0b0d33; --paper-2:#12154a; --print:#1a1e57; --ink:#f1ebdc; --ink-soft:#b5b2d2;
+  --tinta:#9fb7d0; --red:#ff5a4f; --stage:#05062a; --rule:rgba(241,235,220,.16); --tape:rgba(241,235,220,.22); --hatch:rgba(159,183,208,.12);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0b0d33; --paper-2:#12154a; --print:#1a1e57; --ink:#f1ebdc; --ink-soft:#b5b2d2;
+  --tinta:#9fb7d0; --red:#ff5a4f; --stage:#05062a; --rule:rgba(241,235,220,.16); --tape:rgba(241,235,220,.22); --hatch:rgba(159,183,208,.12);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--display);font-size:20px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--paper)}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.lbl{font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.src{font-family:var(--ui);font-size:13px;letter-spacing:.03em;color:var(--ink-soft)}
+h1,h2,h3{font-weight:500;margin:0;text-wrap:balance}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* barra superior con el recorrido */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;gap:18px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand img{height:28px;width:auto}
+.brand span{font-family:var(--ui);font-size:10.5px;font-weight:600;letter-spacing:.2em;line-height:1.25;text-transform:uppercase}
+.logo-d{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo-l{display:none}:root:not([data-theme="light"]) .logo-d{display:block}}
+:root[data-theme="dark"] .logo-l{display:none}:root[data-theme="dark"] .logo-d{display:block}
+.rail{margin-left:auto;display:flex;gap:2px;font-family:var(--ui);font-size:12.5px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.rail::-webkit-scrollbar{display:none}
+.rail a{text-decoration:none;color:var(--ink-soft);padding:6px 9px;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rail a.on{background:var(--ink);color:var(--paper)}
+.prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--red);width:calc(var(--sp,0)*100%)}
+
+/* portada de la página */
+.hero.scene{position:relative;padding-block:clamp(28px,4vw,56px) clamp(40px,6vw,80px);overflow:hidden}
+.hero.scene .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,70px);align-items:start}
+.hero .collage{margin-top:clamp(0px,3vw,40px)}
+.hero h1{font-size:clamp(46px,6.2vw,88px);line-height:.98;letter-spacing:-.02em}
+.hero h1 em{font-weight:400;color:var(--tinta)}
+.hero .lede{font-size:clamp(19px,1.6vw,22px);color:var(--ink-soft);max-width:40ch;margin:16px 0 0}
+.hero .lede b{font-weight:500;color:var(--ink)}
+.cue{display:inline-flex;gap:10px;align-items:center;margin-top:30px;font-family:var(--ui);font-size:13px;color:var(--ink-soft);text-decoration:none}
+.cue i{width:1px;height:34px;background:var(--ink-soft);display:inline-block;animation:cue 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(.2)}50%{transform:scaleY(1)}100%{transform:scaleY(.2);transform-origin:bottom}}
+
+/* escenas */
+.scene{position:relative;overflow-x:clip;padding-block:clamp(70px,10vw,150px);--p:.5}
+.scene .wrap{display:grid;grid-template-columns:5fr 7fr;gap:clamp(24px,5vw,72px);align-items:center;position:relative}
+.scene.flip .wrap{grid-template-columns:7fr 5fr}
+.scene.flip .txt{order:2}
+.txt{min-width:0;position:relative;z-index:2}
+.year{font-style:italic;font-weight:400;font-size:clamp(84px,13vw,190px);line-height:.8;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.2px var(--tinta);display:block;transform:translateX(calc((var(--p) - .5) * -60px));margin-bottom:18px;white-space:nowrap}
+.year.sm{font-size:clamp(60px,8.6vw,124px)}
+.txt h2{font-size:clamp(34px,4.4vw,58px);line-height:1.04;letter-spacing:-.01em}
+.txt blockquote{margin:22px 0 0;font-size:clamp(21px,2vw,26px);line-height:1.38}
+.txt blockquote::before{content:"«"}.txt blockquote::after{content:"»"}
+.txt p{color:var(--ink-soft);max-width:44ch;margin:16px 0 0}
+.txt .src{margin-top:12px;display:block}
+
+.collage{position:relative;aspect-ratio:7/6;min-width:0;max-width:100%}
+.sk{position:absolute;inset:auto -6% -4% -6%;height:72%;background:var(--tinta);opacity:.38;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;transform:translateY(calc((var(--p) - .5) * 50px));pointer-events:none}
+.ph{position:absolute;left:var(--x);top:var(--y);width:var(--w);margin:0;background:var(--print);padding:3.2% 3.2% 0;box-shadow:0 1px 0 rgba(0,0,0,.04),0 22px 40px -22px rgba(4,4,74,.55);
+  transform:translateY(calc((var(--p) - .5) * var(--sp,60) * -1px)) rotate(var(--r,0deg));transition:box-shadow .3s;z-index:var(--z,1)}
+.ph::before{content:"";position:absolute;top:-12px;left:50%;width:38%;height:24px;background:var(--tape);transform:translateX(-50%) rotate(calc(var(--r,0deg) * -1.6));box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.ph .im{aspect-ratio:var(--ar,4/5);background:var(--paper-2);overflow:hidden;position:relative}
+.ph .im img{width:100%;height:100%;object-fit:cover}
+.ph.dib .im{background:#f6f1e4}
+.ph.dib .tz{position:absolute;inset:0;background:#2e4a62;-webkit-mask:var(--m) var(--mp,center)/cover no-repeat;mask:var(--m) var(--mp,center)/cover no-repeat}
+.ph.dib .tzi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.ph figcaption:empty{padding:0;height:22px}
+.ph figcaption{font-family:var(--ui);font-size:11.5px;line-height:1.35;color:var(--ink-soft);padding:9px 2px 11px}
+.ph.todo .im{background:repeating-linear-gradient(135deg,var(--hatch) 0 2px,transparent 2px 11px),var(--paper-2);display:grid;place-content:center;text-align:center;padding:10%;border:1px dashed color-mix(in srgb,var(--tinta) 45%,transparent)}
+.ph.todo .im b{font-family:var(--ui);font-size:11px;letter-spacing:.2em;color:var(--red);font-weight:600}
+.ph.todo .im span{font-size:clamp(13px,1.25vw,17px);line-height:1.25;color:var(--ink);margin-top:6px;display:block}
+
+/* pausa: la crisis */
+.pause{background:var(--stage);color:var(--on-stage);text-align:center}
+.pause .wrap{display:block;max-width:900px}
+.pause .year{-webkit-text-stroke-color:var(--on-stage-soft);margin-inline:auto}
+.pause p{color:var(--on-stage-soft);max-width:52ch;margin:18px auto 0}
+.pause blockquote{font-size:clamp(34px,5vw,64px);line-height:1.08;font-style:italic;margin:26px auto 0;max-width:20ch}
+.pause blockquote::before{content:"«"}.pause blockquote::after{content:"»"}
+.pause .src{color:var(--on-stage-soft)}
+
+/* las cuatro pasiones */
+.passions h2{font-size:clamp(34px,4.4vw,58px);max-width:18ch;margin-top:14px}
+.pgrid{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,30px)}
+.pgrid article{min-width:0}
+.pgrid .ph{position:relative;left:auto;top:auto;width:auto}
+.pgrid h3{font-size:25px;line-height:1.15;margin-top:22px}
+.pgrid h3 i{font-style:italic;color:var(--tinta);font-weight:400;margin-right:6px}
+.pgrid blockquote{margin:10px 0 0;font-size:18px;line-height:1.4;color:var(--ink-soft)}
+.pgrid blockquote::before{content:"«"}.pgrid blockquote::after{content:"»"}
+
+/* puente al libro */
+.bridge{text-align:center;padding-block:clamp(80px,12vw,170px) clamp(40px,6vw,80px)}
+.bridge blockquote{margin:22px auto 0;font-size:clamp(28px,3.6vw,46px);line-height:1.2;max-width:28ch}
+.bridge blockquote em{color:var(--tinta)}
+
+/* sala de lectura: libro 3D */
+.sala{overflow-x:clip;background:var(--stage);color:var(--on-stage);position:relative;overflow:hidden;padding-block:clamp(60px,8vw,110px)}
+.sala::before{content:"";position:absolute;left:50%;top:-20%;width:min(1100px,140vw);aspect-ratio:1;transform:translateX(-30%);background:radial-gradient(closest-side,rgba(243,237,221,.13),transparent 70%);pointer-events:none}
+.sala .lbl{color:var(--on-stage-soft)}
+.sala .wrap{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,5vw,70px);align-items:center}
+.sala h2{font-size:clamp(40px,5.6vw,78px);line-height:1;letter-spacing:-.015em;margin-top:16px}
+.sala h2 em{font-weight:400}
+.sala .sub{font-size:22px;color:var(--on-stage-soft);margin:14px 0 0;font-style:italic}
+.resena{margin-top:26px;padding-top:22px;border-top:1px solid rgba(243,237,221,.16);max-width:52ch}
+.resena p{margin:0 0 12px;font-size:clamp(17px,1.35vw,19px);line-height:1.55;color:var(--on-stage-soft)}
+.resena .gancho{font-style:italic;font-size:clamp(24px,2.2vw,30px);line-height:1.2;color:var(--on-stage);margin-bottom:16px}
+.meta li{display:grid;grid-template-columns:8.5em 1fr;gap:12px;padding:10px 0;border-bottom:1px solid rgba(243,237,221,.12)}
+.meta b{color:var(--on-stage);font-weight:500}
+.leermas{background:none;border:0;padding:4px 0;font-family:var(--ui);font-size:14px;font-weight:600;color:var(--on-stage);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+@media (min-width:901px){
+  .sala{min-height:calc(100svh - 58px);display:flex;align-items:center;padding-block:clamp(24px,6vh,90px) clamp(70px,9vh,110px)}
+  .sala .wrap{width:100%}
+  .sala h2{font-size:clamp(34px,min(5.2vw,8.2vh),78px);margin-top:min(16px,1.5vh)}
+  .sala .sub{font-size:clamp(17px,2.4vh,22px);margin-top:min(14px,1.4vh)}
+  .resena{margin-top:min(26px,2.6vh);padding-top:min(22px,2.2vh)}
+  .resena p{font-size:clamp(16px,min(1.35vw,2.3vh),19px)}
+  .resena .gancho{font-size:clamp(21px,min(2.2vw,3.4vh),30px);margin-bottom:min(16px,1.5vh)}
+  .sala .btns{margin-top:min(30px,3vh)}
+  .sala .stage3d{min-height:min(600px,74vh)}
+  .sala .book{--w:min(300px,56vw,36vh)}
+}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--ui);font-weight:600;font-size:15px;padding:13px 22px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer;text-decoration:none;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.solid{background:var(--on-stage);color:var(--navy);border-color:var(--on-stage)}
+.btn[aria-disabled="true"]{opacity:.55;cursor:default;transform:none}
+
+.stage3d{perspective:1600px;display:grid;place-items:center;min-height:min(78vw,600px);touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.stage3d:active{cursor:grabbing}
+.book{--w:min(300px,56vw);--h:calc(var(--w) * 1.5);--t:calc(var(--w) * .046);--shF:0;--shB:.3;--shS:.3;--shE:.3;--gx:30%;position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;transform:rotateX(var(--rx,8deg)) rotateY(var(--ry,-28deg))}
+.book .f{position:absolute;left:50%;top:50%;backface-visibility:hidden}
+.book .f::after,.book .cf::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit}
+/* contracubierta: luz según el giro, brillo y canal de la bisagra */
+.book .back{width:var(--w);height:var(--h);background:url(a/back.webp) center/cover;border-radius:4px 1px 1px 4px;transform:translate(-50%,-50%) rotateY(180deg) translateZ(calc(var(--t) / 2))}
+.book .back::after{background:linear-gradient(90deg,transparent calc(100% - 7%),rgba(0,0,0,.10) calc(100% - 5.5%),rgba(255,255,255,.18) calc(100% - 4.8%),transparent calc(100% - 3.5%)),linear-gradient(100deg,transparent calc(var(--gx) - 22%),rgba(255,255,255,.22) var(--gx),transparent calc(var(--gx) + 22%)),rgba(8,10,40,var(--shB))}
+/* lomo: cartulina doblada, sombreado cilíndrico */
+.book .spine{width:var(--t);height:var(--h);background:url(a/spine.webp) center/100% 100%;transform:translate(-50%,-50%) rotateY(-90deg) translateZ(calc(var(--w) / 2))}
+.book .spine::after{background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.14) 30%,rgba(255,255,255,.04) 55%,rgba(0,0,0,.4)),rgba(8,10,40,var(--shS))}
+/* canto de las hojas: papel crema con líneas finas, más oscuro junto a las tapas */
+.book .edge{width:calc(var(--t) - 1px);height:calc(var(--h) - 3px);background:linear-gradient(90deg,#cfc6ae,rgba(0,0,0,0) 12%,rgba(0,0,0,0) 88%,#cfc6ae),repeating-linear-gradient(90deg,#e9e2cd 0 .6px,#f9f5ea .6px 1.8px);transform:translate(-50%,-50%) rotateY(90deg) translateZ(calc(var(--w) / 2 - 1.5px))}
+.book .edge::after{background:linear-gradient(180deg,rgba(0,0,0,.12),transparent 6%,transparent 94%,rgba(0,0,0,.14)),rgba(8,10,40,var(--shE))}
+.book .tp,.book .bt{width:calc(var(--w) - 3px);height:calc(var(--t) - 1px);background:linear-gradient(0deg,#cfc6ae,rgba(0,0,0,0) 12%,rgba(0,0,0,0) 88%,#cfc6ae),repeating-linear-gradient(0deg,#e9e2cd 0 .6px,#f9f5ea .6px 1.8px)}
+.book .tp{transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(var(--h) / 2 - 1.5px))}
+.book .bt{transform:translate(-50%,-50%) rotateX(-90deg) translateZ(calc(var(--h) / 2 - 1.5px))}
+.book .tp::after{background:rgba(255,255,255,.06)}
+.book .bt::after{background:rgba(8,10,40,.35)}
+.book .p1{width:calc(var(--w) - 4px);height:calc(var(--h) - 4px);background:#f7f2e5 url(a/m03.webp) center/cover;transform:translate(-50%,-50%) translateZ(calc(var(--t) / 2 - 1px))}
+.book .p1::after{background:linear-gradient(90deg,rgba(0,0,0,.28),transparent 9%)}
+.book .cover{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:left center;transform:translateZ(calc(var(--t) / 2)) rotateY(var(--open,0deg));transition:transform 1.4s cubic-bezier(.3,.7,.2,1)}
+.book .cover>div{position:absolute;inset:0;backface-visibility:hidden}
+/* cubierta: laminado con reflejo que se desliza al girar, canal de la bisagra y sombra según la luz */
+.book .cf{background:url(a/front.webp) center/cover;border-radius:1px 4px 4px 1px}
+.book .cf::after{background:linear-gradient(90deg,rgba(0,0,0,.30),rgba(0,0,0,0) 2.2%,transparent 3.6%,rgba(0,0,0,.12) 4.4%,rgba(255,255,255,.22) 5.1%,transparent 6.6%),linear-gradient(100deg,transparent calc(var(--gx) - 22%),rgba(255,255,255,.30) var(--gx),transparent calc(var(--gx) + 22%)),linear-gradient(180deg,rgba(255,255,255,.07),transparent 30%,rgba(0,0,0,.06)),rgba(8,10,40,var(--shF))}
+.book .ci{background:#1b2147;transform:rotateY(180deg);display:none}
+.book.is-open .ci{display:block}
+.book .ci::after{content:"";position:absolute;inset:0;background:url(a/logo_crema.png) center/26% no-repeat;opacity:.22}
+.floor{width:min(80%,340px);height:30px;margin-top:-10px;background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent);filter:blur(5px);transform:scaleX(var(--fs,1));transition:transform .1s linear}
+.hint{font-family:var(--ui);font-size:12.5px;color:var(--on-stage-soft);text-align:center;margin-top:8px}
+
+/* muestra hojeable */
+.leer{background:var(--stage);color:var(--on-stage);padding-block:0 clamp(60px,8vw,110px)}
+.leer .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px;border-top:1px solid rgba(243,237,221,.14);padding-top:clamp(40px,6vw,70px)}
+.leer h2{font-size:clamp(32px,4vw,52px);margin-top:12px}
+.leer .head p{color:var(--on-stage-soft);max-width:46ch;margin:10px 0 0}
+.leer .lbl{color:var(--on-stage-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--ui);font-size:13px;padding:8px 14px;border-radius:999px;border:1px solid rgba(243,237,221,.3);background:transparent;color:var(--on-stage);cursor:pointer}
+.chips button:hover{background:rgba(243,237,221,.1)}
+.reader{margin-top:34px;display:grid;justify-items:center;gap:16px}
+.fp{background:#f7f2e5;overflow:hidden}
+.fp img{width:100%;height:100%;object-fit:cover}
+.fp.endp{background:#1b2147}
+.fp.endp::after{content:"";position:absolute;inset:0;background:url(a/logo_crema.png) center/22% no-repeat;opacity:.2}
+.fp.fin{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12%;color:#14185a}
+.fp.fin p{margin:0}
+.fp.fin .big{font-size:clamp(18px,2.4vw,28px);font-style:italic;line-height:1.2;margin-block:14px}
+.fp.fin .sm{font-family:var(--ui);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#4a4e78}
+.rctl{display:flex;gap:10px;align-items:center;font-family:var(--ui);font-size:13px;color:var(--on-stage-soft)}
+.rctl button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(243,237,221,.3);background:transparent;color:var(--on-stage);font-size:20px;cursor:pointer}
+.rctl span{min-width:130px;text-align:center;font-variant-numeric:tabular-nums}
+.full{font-family:var(--ui);font-size:14px;color:var(--on-stage-soft);margin-top:6px}
+
+/* cuenta regresiva */
+.cuenta{padding-block:clamp(70px,10vw,140px)}
+.cuenta .wrap{display:grid;gap:34px}
+.cuenta h2{font-size:clamp(36px,5vw,66px);line-height:1.02;max-width:20ch;margin-top:14px}
+.cuenta .say{color:var(--ink-soft);max-width:52ch;margin:14px 0 0}
+.clock{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--rule)}
+.clock div{padding:22px 0 18px;border-left:1px solid var(--rule);text-align:center;min-width:0}
+.clock div:first-child{border-left:0}
+.clock b{display:block;font-weight:400;font-size:clamp(54px,10vw,140px);line-height:1;font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.02em}
+.clock span{font-family:var(--ui);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.phases{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+.phases li{padding:22px 18px 0 0;border-top:3px solid var(--rule);min-width:0}
+.phases li.on{border-top-color:var(--red)}
+.phases li.done{border-top-color:var(--ink-soft)}
+.phases .k{font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.phases li.on .k{color:var(--red)}
+.phases h3{font-size:24px;margin-top:6px}
+.phases p{font-family:var(--ui);font-size:14px;color:var(--ink-soft);margin:6px 0 0;line-height:1.45}
+.cuenta .btns{margin-top:0}
+.cuenta .btn.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.cuenta .btn{color:var(--ink)}
+
+/* barra fija inferior con la cuenta */
+.cbar{position:fixed;left:0;right:0;bottom:0;z-index:35;background:var(--navy);color:#f3eddd;padding:9px max(16px,env(safe-area-inset-right,0px)) calc(9px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:16px;font-family:var(--ui);font-size:13.5px;transform:translateY(0);transition:transform .35s}
+.cbar.hide{transform:translateY(110%)}
+.hclock{margin-top:22px;background:var(--navy);color:#f3eddd;border-radius:16px;padding:18px clamp(16px,2.4vw,26px) 16px;box-shadow:0 26px 50px -28px rgba(4,4,74,.7);max-width:560px}
+.hclock .hl{display:flex;align-items:center;gap:10px;font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c9c6e0}
+.hclock .hl i{width:9px;height:9px;border-radius:50%;background:#ff4b4b;animation:pulse 2s infinite;flex:none}
+.hdig{display:grid;grid-template-columns:repeat(4,1fr);margin-top:10px}
+.hdig div{text-align:center;border-left:1px solid rgba(243,237,221,.18);min-width:0}
+.hdig div:first-child{border-left:0}
+.hdig b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(44px,6.4vw,82px);line-height:1;font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.02em}
+.hdig span{font-family:var(--ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b9b6d6}
+.hclock .hs{font-family:var(--ui);font-size:13px;color:#b9b6d6;margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between}
+.hclock .hs a{color:#f3eddd;font-weight:600}
+.cbar .st{display:inline-flex;align-items:center;gap:8px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:11.5px;color:#c9c6e0;flex:none}
+.cbar .st i{width:8px;height:8px;border-radius:50%;background:#ff4b4b;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.cbar .t{font-variant-numeric:tabular-nums;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#b9b6d6;min-width:0;display:flex;align-items:baseline;gap:4px 12px;flex-wrap:wrap}
+.cbar .t b{font-family:var(--display);font-size:21px;line-height:1;font-weight:500;color:#fff;margin-right:4px;letter-spacing:0;text-transform:none}
+.cbar .d{color:#b9b6d6;min-width:0}
+.cbar a{margin-left:auto;flex:none;background:#f3eddd;color:#04044a;text-decoration:none;font-weight:600;padding:9px 16px;border-radius:999px}
+.preview{position:fixed;top:calc(64px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));z-index:36;font-family:var(--ui);font-size:12px;background:var(--red);color:#fff;padding:6px 12px;border-radius:999px}
+
+footer{background:var(--navy);color:#a7a4c8;font-family:var(--ui);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between;padding-block:28px 90px}
+footer img{height:30px;width:auto}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--ink);color:var(--paper);font-family:var(--ui);font-size:14px;padding:10px 18px;border-radius:999px;transition:.3s;pointer-events:none;z-index:50}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+
+/* portada: foto y contador; la página sigue a la derecha como una diapositiva */
+#intro{position:fixed;inset:0;z-index:60;background:var(--paper);overflow:hidden;display:grid;padding:calc(env(safe-area-inset-top,0px) + 20px) max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 20px) max(20px,env(safe-area-inset-left,0px));transition:transform 1s cubic-bezier(.75,0,.2,1),visibility 0s linear 1s}
+html.intro-gone #intro{transform:translateX(-100%);visibility:hidden}
+html.intro-on #intro{transition:transform 1s cubic-bezier(.75,0,.2,1)}
+#app{transition:transform 1s cubic-bezier(.75,0,.2,1)}
+html.intro-on #app{transform:translateX(100vw)}
+html.intro-on,html.intro-on body{overflow:hidden;height:100%}
+html.intro-on .cbar{transform:translateY(110%)}
+.isk{position:absolute;left:-5%;right:-5%;bottom:-3%;height:48%;background:var(--tinta);opacity:.16;-webkit-mask:url(a/b_valle.webp) center bottom/cover no-repeat;mask:url(a/b_valle.webp) center bottom/cover no-repeat;pointer-events:none}
+.ilogo{position:absolute;top:calc(env(safe-area-inset-top,0px) + 20px);left:max(24px,env(safe-area-inset-left,0px));height:34px;width:auto}
+.iwrap{position:relative;max-width:1240px;width:100%;margin:auto;display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,6vw,90px);align-items:center;min-height:0}
+.iph{margin:0;justify-self:end;width:min(100%,calc(min(76vh,700px) * .8));background:var(--print);padding:3.2% 3.2% 9%;box-shadow:0 30px 60px -30px rgba(4,4,74,.6);transform:rotate(-2.5deg);position:relative;animation:drop 1.2s cubic-bezier(.2,.7,.2,1) both}
+.iph::before{content:"";position:absolute;top:-14px;left:50%;width:36%;height:28px;background:var(--tape);transform:translateX(-50%) rotate(3deg)}
+.iph img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.istage{justify-self:center;display:grid;place-items:center;perspective:1700px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;padding-block:20px;animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translateY(40px);opacity:0}}
+.istage:active{cursor:grabbing}
+.ihint{font-family:var(--ui);font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+.book.big{--w:min(400px,32vw,46vh)}
+.ifloor{width:min(380px,30vw,44vh);height:34px;margin-top:min(34px,4vh);background:radial-gradient(closest-side,rgba(4,4,74,.35),transparent);filter:blur(6px)}
+@keyframes drop{from{transform:translateY(30px) rotate(1deg);opacity:.2}}
+.iclock{min-width:0}
+.ilbl{display:inline-flex;align-items:center;gap:10px;font-family:var(--ui);font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.ilbl i{width:10px;height:10px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
+.iday{display:flex;align-items:baseline;gap:14px;margin-top:6px}
+.iday b{font-weight:500;font-size:min(300px,20vw,34vh);line-height:.86;letter-spacing:-.04em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
+.iday span{font-style:italic;font-size:min(52px,3.6vw,6vh);color:var(--tinta)}
+.irest{display:flex;gap:clamp(18px,3vw,40px);margin-top:10px;padding-top:14px;border-top:1px solid var(--rule)}
+.irest span{font-family:var(--ui);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.irest b{font-family:var(--display);font-weight:500;font-size:min(84px,5.8vw,10vh);line-height:1;letter-spacing:-.02em;color:var(--ink);margin-right:6px;font-variant-numeric:lining-nums tabular-nums;text-transform:none}
+.isub{font-size:min(26px,1.9vw,3.4vh);margin:min(18px,2vh) 0 0;color:var(--ink)}
+.inext{position:absolute;right:max(24px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);width:58px;height:58px;border-radius:50%;border:1.5px solid var(--rule);background:transparent;color:var(--ink);font-size:24px;line-height:1;cursor:pointer;transition:background .25s,color .25s,border-color .25s;animation:nudge 2.4s ease-in-out infinite}
+.inext:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+@keyframes nudge{50%{translate:6px 0}}
+.ititle{font-family:var(--ui);font-size:13px;color:var(--ink-soft);margin:6px 0 0}
+.ititle em{font-family:var(--display);font-size:16px}
+.igo{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:28px;font-family:var(--ui);font-size:13px;color:var(--ink-soft)}
+.igo button{font-family:var(--ui);font-weight:600;font-size:16px;padding:14px 26px;border-radius:999px;border:0;background:var(--ink);color:var(--paper);cursor:pointer}
+.igo button span{display:inline-block;transition:transform .3s}
+.igo button:hover span{transform:translateX(5px)}
+.volver{display:none;gap:6px;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--ui);font-weight:600;font-size:13px;line-height:1;cursor:pointer;flex:none}
+.volver:hover{background:var(--ink);color:var(--paper)}
+html.intro-gone .volver{display:inline-flex}
+@media (max-width:760px),(max-aspect-ratio:4/5){
+  .iwrap{grid-template-columns:1fr;gap:18px;text-align:center;align-content:center}
+  .book.big{--w:min(250px,56vw,30dvh)}
+  .istage{padding-block:6px 0}
+  .ifloor{width:min(60vw,240px);margin-top:12px}
+  .iday{justify-content:center}
+  .irest{justify-content:center}
+  .iday b{font-size:min(170px,34vw,17dvh)}
+  .iday span{font-size:min(36px,8vw)}
+  .irest b{font-size:min(56px,11vw,6dvh)}
+  .isub{margin-top:8px;font-size:min(22px,5vw)}
+  .inext{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);right:50%;transform:translateX(50%);width:52px;height:52px;animation:none}
+}
+@media (prefers-reduced-motion:reduce){#intro,#app{transition:none}}
+
+/* espacio de lectura: se abre en círculo desde el botón y ocupa toda la pantalla */
+#lectura{position:fixed;inset:0;z-index:70;background:var(--stage);color:var(--on-stage);display:grid;grid-template-rows:auto 1fr auto;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 14px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 14px) max(16px,env(safe-area-inset-left,0px));clip-path:circle(0 at var(--cx,50%) var(--cy,50%));visibility:hidden;transition:clip-path .85s cubic-bezier(.7,0,.2,1),visibility 0s linear .85s}
+#lectura::before{content:"";position:absolute;left:50%;top:40%;width:min(1100px,140vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(243,237,221,.10),transparent 70%);pointer-events:none}
+html.lee #lectura{clip-path:circle(150% at var(--cx,50%) var(--cy,50%));visibility:visible;transition:clip-path .85s cubic-bezier(.7,0,.2,1)}
+html.lee,html.lee body{overflow:hidden}
+html.lee .cbar{transform:translateY(110%)}
+.lhead{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1240px;width:100%;margin:0 auto}
+.ltit{text-align:center;min-width:0}
+.ltit .lbl{color:var(--on-stage-soft);display:block}
+.ltit b{font-weight:500;font-size:clamp(20px,2.4vw,30px)}
+.lbtn{font-family:var(--ui);font-weight:600;font-size:14px;padding:11px 18px;border-radius:999px;border:1.5px solid rgba(243,237,221,.5);background:transparent;color:var(--on-stage);cursor:pointer;flex:none}
+.lbtn.solid{background:var(--on-stage);color:var(--navy);border-color:var(--on-stage)}
+.lbtn:hover{transform:translateY(-1px)}
+#lectura .reader{position:relative;margin:0;display:grid;place-items:center;min-height:0}
+.lfoot{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;max-width:1240px;width:100%;margin:0 auto}
+.lfoot .full{margin:0}
+#lectura .fp{transform:translateY(0)}
+html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
+@keyframes alzar{from{opacity:0;transform:translateY(30px) scale(.97)}}
+@media (max-width:700px){
+  .ltit{display:none}
+  .lbtn{font-size:13px;padding:10px 14px}
+  .lfoot{justify-content:center}
+  .lfoot .full{display:none}
+}
+@media (prefers-reduced-motion:reduce){#lectura{transition:none}}
+
+/* preventas */
+.preventa{background:var(--paper-2);padding-block:clamp(70px,9vw,130px)}
+.preventa .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.preventa h2{font-size:clamp(36px,4.6vw,62px);line-height:1.03;margin-top:14px;max-width:16ch}
+.ptxt p{color:var(--ink-soft);max-width:44ch;margin:18px 0 0}
+.pnotas{list-style:none;padding:0;margin:24px 0 0;font-family:var(--ui);font-size:14px;color:var(--ink-soft)}
+.pnotas li{padding:10px 0 10px 22px;border-top:1px solid var(--rule);position:relative}
+.pnotas li::before{content:"";position:absolute;left:0;top:17px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.pform{background:var(--print);border-radius:16px;padding:clamp(20px,3vw,32px);box-shadow:0 30px 60px -36px rgba(4,4,74,.45);display:grid;gap:14px;min-width:0}
+.campo{display:grid;gap:6px;min-width:0}
+.campo label{font-family:var(--ui);font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--ink-soft)}
+.campo input,.campo select,.campo textarea{font:inherit;font-family:var(--ui);font-size:16px;color:var(--ink);background:var(--paper);border:1.5px solid var(--rule);border-radius:10px;padding:11px 12px;width:100%;min-width:0}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--ink)}
+.campo.mal input{border-color:var(--red)}
+.fila{display:grid;grid-template-columns:1fr 1.4fr;gap:12px}
+.perr{margin:0;font-family:var(--ui);font-size:13px;color:var(--red);min-height:0}
+.perr:empty{display:none}
+.pform .btn.solid{background:var(--ink);color:var(--paper);border-color:var(--ink);justify-self:start}
+.pfine{margin:0;font-family:var(--ui);font-size:12.5px;color:var(--ink-soft)}
+.pnotas a{color:var(--navy);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:860px){.preventa .wrap{grid-template-columns:1fr}}
+@media (max-width:900px){
+  .hero.scene .wrap,.scene .wrap,.scene.flip .wrap,.sala .wrap{grid-template-columns:1fr}
+  .scene.flip .txt{order:0}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .rail{display:none}
+  .stage3d{min-height:auto;padding-block:30px 0}
+  .sala{padding-block:clamp(18px,4svh,40px) 80px}
+  .sala .wrap>div:last-child{order:-1}
+  .sala .stage3d{padding-block:min(34px,5svh) 0}
+  .sala .book{--w:min(230px,46vw,30svh)}
+  .sala h2{font-size:clamp(32px,9vw,52px)}
+  .cbar .d{display:none}
+}
+@media (max-width:560px){
+  body{font-size:18px}
+  .phases{grid-template-columns:1fr;gap:18px}
+  .clock b{font-size:clamp(40px,13vw,64px)}
+  .clock span{font-size:10px;letter-spacing:.1em}
+  .meta li{grid-template-columns:1fr;gap:2px}
+  .ph figcaption{font-size:10px;padding:6px 0 8px}
+  .ph.todo .im span{font-size:12px}
+  .cbar{gap:10px}
+  .cbar .t{gap:2px 8px}
+  .cbar .t b{font-size:19px;margin-right:2px}
+  .hdig span{font-size:9.5px;letter-spacing:.08em}
+  .cbar .st span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+<section id="intro" aria-label="Portada: cuenta regresiva al lanzamiento">
+  <div class="iwrap">
+    <div class="istage" id="istage">
+      <div class="book big" id="ibook" role="img" aria-label="El libro Crecimiento integral de la iglesia pentecostal, girando">
+        <div class="f back"></div><div class="f spine"></div><div class="f edge"></div><div class="f tp"></div><div class="f bt"></div><div class="f p1"></div>
+        <div class="cover"><div class="cf"></div><div class="ci"></div></div>
+      </div>
+      <div class="floor ifloor"></div>
+    </div>
+    <div class="iclock" role="timer" aria-label="Cuenta regresiva al lanzamiento">
+      <span class="ilbl"><i></i><span id="hLbl">Faltan para el lanzamiento</span></span>
+      <div class="iday"><b data-c="d">00</b><span data-u="d">días</span></div>
+      <div class="irest"><span><b data-c="h">00</b>h</span><span><b data-c="m">00</b>min</span><span><b data-c="s">00</b>s</span></div>
+      <p class="isub" id="hSub">Sábado 12 de diciembre de 2026</p>
+    </div>
+  </div>
+  <button class="inext" id="entrar" type="button" aria-label="Entrar a la página del libro">→</button>
+</section>
+
+<div id="app">
+<header class="top">
+  <div class="wrap">
+    <button class="volver" id="volver" type="button" aria-label="Volver a la portada"><span aria-hidden="true">←</span> Volver</button>
+    <a class="brand" href="#libro" aria-label="Publicaciones Pneuma, ir al libro">
+      <img class="logo-l" src="a/logo.png" alt=""><img class="logo-d" src="a/logo_crema.png" alt="">
+      <span>Publicaciones<br>Pneuma</span>
+    </a>
+    <nav class="rail" aria-label="Recorrido">
+      <a href="#libro">El libro</a><a href="#leer">Muestra</a><a href="#historia">Historia</a><a href="#achiotes">Los Achiotes</a><a href="#e1994">1994</a><a href="#e1996">1996</a><a href="#e1999">1999</a><a href="#e2004">2004</a><a href="#e2007">2007</a><a href="#e2015">2015</a><a href="#e2016">2016</a><a href="#e2020">2020</a><a href="#pasiones">Pasiones</a><a href="#cuenta">Lanzamiento</a><a href="#preventas">Preventas</a>
+    </nav>
+  </div>
+  <div class="prog" id="prog"></div>
+</header>
+
+<main id="inicio">
+  <!-- EL LIBRO EN 3D -->
+  <section class="sala" id="libro">
+    <div class="wrap">
+      <div>
+        <span class="lbl">El libro</span>
+        <h2><em>Crecimiento integral</em> de la iglesia pentecostal</h2>
+        <p class="sub">Estrategias pastorales para iglesias locales</p>
+        <div class="resena">
+          <p class="gancho">Crecer integralmente no es llenar bancas.</p>
+          <p>Es verdad que las iglesias pentecostales de Guatemala se han distinguido por su crecimiento. Sin embargo, en muchas congregaciones locales la historia es otra: liderazgos cansados, templos que se llenan una vez al año, iglesias que, al parecer, han dejado de crecer.</p>
+          <div class="mas" id="resMas" hidden>
+          <p>Este libro parte de esa distancia entre lo que se dice y lo que se ve, y la convierte en pregunta: ¿qué estrategias hacen que una iglesia pentecostal local crezca de manera integral? El autor separa aquí dos crecimientos que el discurso eclesial suele confundir, el del número y el de la estatura espiritual. No son lo mismo.</p>
+          <p>A partir de Hechos 2.41-47 y de una experiencia con una congregación de Gualán, Zacapa, propone cuatro claves. Su mayor acierto, a nuestro juicio, es que no le exige al pastor un programa doctoral ni un presupuesto que no tiene. Le ofrece, al menos, una guía para empezar.</p>
+          </div>
+          <button class="leermas" id="resBtn" type="button" aria-expanded="false" aria-controls="resMas">Seguir leyendo la reseña</button>
+        </div>
+        <div class="btns">
+          <button class="btn solid" id="abrir" type="button">Abrir el libro</button>
+          <a class="btn" href="#leer">Leer la muestra</a>
+          <a class="btn" href="#preventas">Apartar mi ejemplar</a>
+        </div>
+      </div>
+      <div>
+        <div class="stage3d" id="stage" aria-label="Libro en 3D. Arrastre para girarlo.">
+          <div class="book" id="book" role="img" aria-label="Cubierta, lomo y contracubierta del libro">
+            <div class="f back"></div><div class="f spine"></div><div class="f edge"></div><div class="f tp"></div><div class="f bt"></div><div class="f p1"></div>
+            <div class="cover" id="cover"><div class="cf"></div><div class="ci"></div></div>
+          </div>
+          <div class="floor"></div>
+        </div>
+        <p class="hint" id="hint" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTADA -->
+  <section class="hero scene" id="historia" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="lbl">Balmer Ayala · Crecimiento integral de la iglesia pentecostal</span>
+        <h1 style="margin-top:14px">Todo libro se escribe desde <em>algún lugar.</em></h1>
+        <span class="src" style="display:block;margin-top:14px">Prefacio, p. 1</span>
+        <p class="lede"><b>Este nació en congregaciones pequeñas y en templos de lámina</b> del oriente de Guatemala. Esta es la historia detrás del libro.</p>
+        <a class="cue" href="#achiotes"><i></i>Baje para recorrer la historia</a>
+      </div>
+      <div class="collage">
+        <div class="sk" style="--m:url(a/b_valle.webp);height:62%"></div>
+        <figure class="ph dib" style="--x:30%;--y:2%;--w:56%;--r:2.5deg;--sp:40;--z:2">
+          <div class="im"><i class="tz" style="--m:url(a/autor_tinta.webp);--mp:center 20%" role="img" aria-label="Retrato de Balmer de Jesús Ayala Victoria"></i></div>
+          <figcaption>Balmer de Jesús Ayala Victoria</figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:0%;--y:30%;--w:34%;--r:-5deg;--sp:90;--ar:1/1;--z:3">
+          <div class="im"><img class="tzi" src="a/p01.jpg" alt="Balmer predicando" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOS ACHIOTES -->
+  <section class="scene" id="achiotes" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="year sm">Infancia</span>
+        <h2>Los Achiotes, Gualán</h2>
+        <blockquote>Crecí en un hogar de extrema pobreza, entre diez hermanos, en una pequeña aldea llamada Los Achiotes, del municipio de Gualán, departamento de Zacapa. Fue un hogar cristiano.</blockquote>
+        <p>«Así conocí a Dios: en la escuela dominical y en las noches de culto de una pequeña congregación de la Iglesia de Dios.»</p>
+        <span class="src">Prefacio, p. 1</span>
+      </div>
+      <div class="collage">
+                <figure class="ph dib" style="--x:4%;--y:0%;--w:52%;--r:-3deg;--sp:50;--ar:4/3">
+          <div class="im"><i class="tz" style="--m:url(a/b_concl.webp)" role="img" aria-label="Dibujo a tinta de una aldea con un árbol grande y casas"></i></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:52%;--y:12%;--w:42%;--r:4deg;--sp:100;--z:2">
+          <div class="im"><img class="tzi" src="a/p03.jpg" style="object-position:center 30%" alt="Los padres de Balmer" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:20%;--y:50%;--w:34%;--r:-6deg;--sp:140;--ar:1/1;--z:3">
+          <div class="im"><img class="tzi" src="a/p04.jpg" style="object-position:center 20%" alt="Balmer niño" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1994 -->
+  <section class="scene flip" id="e1994" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="year">1994</span>
+        <h2>Volver</h2>
+        <blockquote>En julio de 1994, cuando cursaba el último año de mi carrera media, hice la promesa de volver a los caminos de Cristo.</blockquote>
+        <p>Llegó al pueblo una campaña evangelística. «Me revestí de valor y pasé al frente.»</p>
+        <span class="src">Prefacio, p. 2</span>
+      </div>
+      <div class="collage" style="aspect-ratio:7/5">
+        <figure class="ph dib" style="--x:18%;--y:4%;--w:48%;--r:-2deg;--sp:60">
+          <div class="im"><img class="tzi" src="a/p05.jpg" style="object-position:center 25%" alt="Balmer joven, mediados de los noventa" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:58%;--y:30%;--w:36%;--r:5deg;--sp:120;--ar:4/3;--z:2">
+          <div class="im"><img class="tzi" src="a/p05b.jpg" alt="Culto de vigilia de los años noventa" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1996 -->
+  <section class="scene" id="e1996" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="year">1996</span>
+        <h2>El llamado y Mayuelas</h2>
+        <blockquote>Ocurrió el 6 de abril de 1996, en una vigilia: Dios me sorprendió bautizándome con su Espíritu.</blockquote>
+        <p>«En octubre de 1996 fui nombrado para pastorear en Mayuelas, una comunidad del mismo municipio de Gualán.» Allí sirvió unos diecisiete años.</p>
+        <span class="src">Prefacio, p. 2</span>
+      </div>
+      <div class="collage">
+                <figure class="ph dib" style="--x:2%;--y:6%;--w:56%;--r:2deg;--sp:50;--ar:4/3">
+          <div class="im"><i class="tz" style="--m:url(a/b_cap2.webp)" role="img" aria-label="Dibujo a tinta del interior de un templo con bancas"></i></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:54%;--y:34%;--w:40%;--r:-4deg;--sp:120;--z:2">
+          <div class="im"><img class="tzi" src="a/p07.jpg" style="object-position:center 25%" alt="Balmer como pastor joven, predicando" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1999 -->
+  <section class="scene flip" id="e1999" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="year">1999</span>
+        <h2>Una familia para el ministerio</h2>
+        <blockquote>En 1999 tuve la bendición de casarme.</blockquote>
+        <p>Por entonces obtuvo sus credenciales ministeriales en la Iglesia de Dios e ingresó a la universidad.</p>
+        <span class="src">Prefacio, p. 2</span>
+      </div>
+      <div class="collage" style="aspect-ratio:7/5">
+        <figure class="ph dib" style="--x:8%;--y:6%;--w:44%;--r:-4deg;--sp:60">
+          <div class="im"><img class="tzi" src="a/p08.jpg" style="object-position:center 20%" alt="La boda de Balmer" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:50%;--y:16%;--w:44%;--r:3deg;--sp:110;--ar:4/5;--z:2">
+          <div class="im"><img class="tzi" src="a/p09.jpg" style="object-position:center 20%" alt="Balmer y su esposa hoy" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2004-2006: pausa -->
+  <section class="scene pause" id="e2004" data-scene>
+    <div class="wrap">
+      <span class="year sm">2004–2006</span>
+      <p>Pastoreaba, trabajaba como ejecutivo de un banco y estudiaba, todo a la vez. Su esposa sufrió una crisis grave de salud; poco antes había partido su madre. Estuvo a punto de renunciar al llamado.</p>
+      <blockquote>Fue duro y quebrantador; pero Dios no me soltó.</blockquote>
+      <span class="src" style="display:block;margin-top:16px">Prefacio, p. 2</span>
+    </div>
+  </section>
+
+  <!-- 2007-2013 -->
+  <section class="scene" id="e2007" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="year sm">2007–2013</span>
+        <h2>Años de siembra</h2>
+        <blockquote>Con mi esposa logramos fortalecer la escuela dominical y establecer la iglesia infantil.</blockquote>
+        <p>En 2009 se graduó de la universidad. A finales de 2013 entregó la iglesia de Mayuelas, «que para entonces contaba con unos ochenta y cinco miembros, un templo nuevo y un liderazgo comprometido».</p>
+        <span class="src">Prefacio, p. 3</span>
+      </div>
+      <div class="collage">
+                <figure class="ph dib" style="--x:0%;--y:2%;--w:44%;--r:-3deg;--sp:50;--ar:1/1">
+          <div class="im"><img class="tzi" src="a/p10.jpg" alt="Escuela dominical" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:42%;--y:0%;--w:52%;--r:3deg;--sp:95;--ar:4/3;--z:2">
+          <div class="im"><i class="tz" style="--m:url(a/b_recom.webp)" role="img" aria-label="Dibujo a tinta de un templo en construcción"></i></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:26%;--y:50%;--w:32%;--r:-6deg;--sp:150;--z:3">
+          <div class="im"><img class="tzi" src="a/p12.jpg" style="object-position:center 20%" alt="Graduación universitaria" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2015 -->
+  <section class="scene flip" id="e2015" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="year">2015</span>
+        <h2>Comenzar de cero en Gualán</h2>
+        <blockquote>Comenzar de cero nunca es sencillo, pero, junto con mi esposa, mis cuñados y otros familiares, vimos el respaldo de Dios de principio a fin.</blockquote>
+        <p>Plantó una congregación en el casco urbano de Gualán.</p>
+        <span class="src">Prefacio, p. 3</span>
+      </div>
+      <div class="collage">
+        <div class="sk" style="--m:url(a/b_pueblo.webp);opacity:.45"></div>
+        <figure class="ph dib" style="--x:4%;--y:4%;--w:50%;--r:-2deg;--sp:55;--ar:4/3">
+          <div class="im"><img class="tzi" src="a/p13.jpg" alt="Primeros cultos de la congregación en Gualán" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:46%;--y:36%;--w:50%;--r:3.5deg;--sp:120;--ar:4/3;--z:2">
+          <div class="im"><img class="tzi" src="a/p14.jpg" alt="La congregación hoy" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2016-2022 -->
+  <section class="scene" id="e2016" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="year sm">2016–2022</span>
+        <h2>Pastor de pastores</h2>
+        <blockquote>Desde agosto de 2022 sirvo como superintendente nacional de la Iglesia de Dios Evangelio Completo de Guatemala.</blockquote>
+        <p>Antes fue supervisor del Territorio Noreste (2016) y, a finales de 2020, del Territorio Sur.</p>
+        <span class="src">Prefacio, p. 3</span>
+      </div>
+      <div class="collage" style="aspect-ratio:7/5">
+        <figure class="ph dib" style="--x:2%;--y:10%;--w:52%;--r:-3deg;--sp:60;--ar:4/3">
+          <div class="im"><i class="tz" style="--m:url(a/r2019t.webp)" role="img" aria-label="Balmer Ayala con medalla, hablando desde un púlpito de madera, 2019"></i></div>
+          <figcaption>2019</figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:50%;--y:2%;--w:46%;--r:4deg;--sp:120;--ar:4/3;--z:2">
+          <div class="im"><img class="tzi" src="a/p16.jpg" alt="Nombramiento como obispo nacional, 2022" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:24%;--y:50%;--w:46%;--r:-2deg;--sp:90;--ar:4/3;--z:3">
+          <div class="im"><img class="tzi" src="a/p15.jpg" alt="Con pastores del territorio" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2020-2023 -->
+  <section class="scene flip" id="e2020" data-scene>
+    <div class="wrap">
+      <div class="txt">
+        <span class="year sm">2020–2023</span>
+        <h2>La pregunta que se volvió libro</h2>
+        <blockquote>Comprendí que los resultados no podían quedarse guardados: pertenecían a la iglesia.</blockquote>
+        <p>Cursó el Doctorado en Ministerio del PTS con el SEBIPCA. Entre septiembre y octubre de 2022 llevó las cuatro claves a una congregación de Gualán en talleres con veinte personas: diez líderes y diez miembros.</p>
+        <span class="src">Prefacio, p. 3; capítulo 3, p. 60</span>
+      </div>
+      <div class="collage">
+        <div class="sk" style="--m:url(a/b_prefacio.webp)"></div>
+        <figure class="ph dib" style="--x:4%;--y:4%;--w:52%;--r:2.5deg;--sp:55;--ar:4/3">
+          <div class="im"><img class="tzi" src="a/p17.jpg" alt="Talleres en Gualán" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+        <figure class="ph dib" style="--x:54%;--y:28%;--w:40%;--r:-4deg;--sp:120;--z:2">
+          <div class="im"><img class="tzi" src="a/p18.jpg" style="object-position:center 20%" alt="Graduación del doctorado" loading="lazy"></div>
+          <figcaption></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUATRO PASIONES -->
+  <section class="scene passions" id="pasiones" data-scene>
+    <div class="wrap" style="display:block">
+      <span class="lbl">Mi filosofía ministerial · Prefacio, p. 4</span>
+      <h2>Cuatro pasiones que configuran una vocación</h2>
+      <div class="pgrid">
+        <article>
+          <figure class="ph dib" style="--r:-2deg;--sp:30">
+          <div class="im"><img class="tzi" src="a/p19.jpg" alt="Visita pastoral" loading="lazy"></div>
+          <figcaption></figcaption></figure>
+          <h3><i>1</i>El ministerio pastoral</h3>
+          <blockquote>Amo esta tarea y creo que será lo último que haga en mi vida.</blockquote>
+        </article>
+        <article>
+          <figure class="ph dib" style="--r:2deg;--sp:60">
+          <div class="im"><img class="tzi" src="a/p20.jpg" alt="Reunión de trabajo" loading="lazy"></div>
+          <figcaption></figcaption></figure>
+          <h3><i>2</i>El liderazgo administrativo</h3>
+          <blockquote>Pastorear y administrar no son funciones opuestas: son dos rostros del mismo cuidado por el pueblo de Dios.</blockquote>
+        </article>
+        <article>
+          <figure class="ph dib" style="--r:-1.5deg;--sp:40">
+          <div class="im"><img class="tzi" src="a/p21.jpg" alt="Clase en un seminario" loading="lazy"></div>
+          <figcaption></figcaption></figure>
+          <h3><i>3</i>La enseñanza</h3>
+          <blockquote>La enseñanza es, para mí, una forma extendida del ministerio pastoral.</blockquote>
+        </article>
+        <article>
+          <figure class="ph dib" style="--r:2.5deg;--sp:70">
+          <div class="im"><img class="tzi" src="a/p22.jpg" style="object-position:center 30%" alt="Campaña evangelística" loading="lazy"></div>
+          <figcaption></figcaption></figure>
+          <h3><i>4</i>La evangelización</h3>
+          <blockquote>La iglesia que deja de evangelizar deja, en alguna medida, de ser iglesia.</blockquote>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUENTE -->
+  <section class="bridge">
+    <div class="wrap">
+      <span class="lbl">Una palabra final · p. 73</span>
+      <blockquote>Esa iglesia local, la que reúne a cincuenta, cien o doscientos hermanos, la que se sostiene con ofrendas modestas, la que vela por sus enfermos y entierra a sus muertos, <em>es la iglesia que sostiene al mundo.</em></blockquote>
+    </div>
+  </section>
+
+  <!-- CUENTA REGRESIVA -->
+  <section class="cuenta" id="cuenta">
+    <div class="wrap">
+      <div>
+        <span class="lbl" id="cLbl">Lanzamiento · sábado 12 de diciembre de 2026</span>
+        <h2 id="cTit">Faltan pocos días para tenerlo en las manos</h2>
+        <p class="say" id="cSay">Mientras tanto, lea la muestra y comparta esta página con los pastores y líderes de su territorio.</p>
+      </div>
+      <div class="clock" id="clock" aria-live="off">
+        <div><b id="cd">00</b><span>días</span></div>
+        <div><b id="ch">00</b><span>horas</span></div>
+        <div><b id="cm">00</b><span>minutos</span></div>
+        <div><b id="cs">00</b><span>segundos</span></div>
+      </div>
+      <ol class="phases" id="phases">
+        <li data-ph="pre"><span class="k">Antes</span><h3>Cuenta regresiva</h3><p>Muestra gratuita para leer y compartir, hasta el 11 de diciembre.</p></li>
+        <li data-ph="durante"><span class="k">Durante</span><h3>Semana de lanzamiento</h3><p>Del 12 al 18 de diciembre de 2026.</p></li>
+        <li data-ph="post"><span class="k">Después</span><h3>Ya disponible</h3><p>Impreso y digital, desde el 19 de diciembre.</p></li>
+      </ol>
+      <div class="btns">
+        <a class="btn solid" id="cMain" href="#leer">Leer la muestra</a>
+        <button class="btn" id="share" type="button">Copiar enlace</button>
+        <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+  <!-- PREVENTAS -->
+  <section class="preventa" id="preventas">
+    <div class="wrap">
+      <div class="ptxt">
+        <span class="lbl">Preventas</span>
+        <h2>Aparte su ejemplar antes del lanzamiento</h2>
+        <p>Déjenos sus datos y le escribiremos para confirmar su pedido en cuanto el libro esté listo. Las iglesias y los territorios pueden pedir varios ejemplares en una sola solicitud.</p>
+        <ul class="pnotas">
+          <li>Impreso o digital</li>
+          <li>Precio de preventa: se le confirma al contactarlo</li>
+          <li>Su solicitud llega directo a Publicaciones Pneuma: <a href="mailto:bayala@pneuma.gt">bayala@pneuma.gt</a></li>
+        </ul>
+      </div>
+      <form class="pform" id="pform" novalidate>
+        <div class="campo"><label for="pNombre">Nombre completo</label><input id="pNombre" name="nombre" autocomplete="name" required></div>
+        <div class="campo"><label for="pTel">Teléfono o WhatsApp</label><input id="pTel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="campo"><label for="pIglesia">Iglesia o institución</label><input id="pIglesia" name="iglesia"></div>
+        <div class="campo"><label for="pLugar">Municipio y departamento</label><input id="pLugar" name="lugar"></div>
+        <div class="fila">
+          <div class="campo"><label for="pCant">Ejemplares</label><input id="pCant" name="cant" type="number" min="1" max="500" value="1" inputmode="numeric"></div>
+          <div class="campo"><label for="pFormato">Formato</label><select id="pFormato" name="formato"><option>Impreso</option><option>Digital</option><option>Impreso y digital</option></select></div>
+        </div>
+        <div class="campo"><label for="pNota">Comentario (opcional)</label><textarea id="pNota" name="nota" rows="2"></textarea></div>
+        <p class="perr" id="pErr" role="alert"></p>
+        <button class="btn solid" type="submit">Enviar mi preventa</button>
+        <p class="pfine" id="pFine">Al enviar se abre su correo con la solicitud lista para <b>bayala@pneuma.gt</b>; solo tiene que pulsar enviar.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:12px"><img src="a/logo_crema.png" alt="Publicaciones Pneuma"><span>Publicaciones Pneuma · Iglesia de Dios Evangelio Completo de Guatemala</span></div>
+    <span>© 2026 Balmer de Jesús Ayala Victoria · Sitio web por <a href="https://tecnoia.gt" target="_blank" rel="noopener" style="color:#f3eddd;font-weight:600;letter-spacing:.02em">Tecnoia.gt</a></span>
+  </div>
+</footer>
+</div>
+
+<section id="lectura" aria-label="Muestra del libro" aria-hidden="true">
+  <div class="lhead">
+    <button class="lbtn" id="lVolver" type="button"><span aria-hidden="true">←</span> Volver al libro</button>
+    <div class="ltit"><span class="lbl">Muestra gratuita</span><b>Lea las primeras páginas</b></div>
+    <button class="lbtn solid" id="lSeguir" type="button">Seguir a la historia <span aria-hidden="true">→</span></button>
+  </div>
+  <div class="reader" id="leer">
+    <div id="flip"></div>
+  </div>
+  <div class="lfoot">
+    <div class="chips" aria-label="Ir a">
+      <button type="button" data-go="10">Contenido</button>
+      <button type="button" data-go="14">Prefacio</button>
+      <button type="button" data-go="20">Introducción</button>
+    </div>
+    <div class="rctl"><button id="fprev" type="button" aria-label="Página anterior">‹</button><span id="fpos">Cubierta</span><button id="fnext" type="button" aria-label="Página siguiente">›</button></div>
+  </div>
+</section>
+
+<div class="cbar" id="cbar" role="region" aria-label="Cuenta regresiva">
+  <span class="st"><i></i><span id="bSt">Lanzamiento</span></span>
+  <span class="t" id="bT"></span>
+  <span class="d" id="bD">12 dic 2026</span>
+  <a href="#cuenta" id="bA">Ver</a>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script>
+// ===== Ajustes del lanzamiento (editar aquí) =====
+const LANZA = Date.UTC(2026, 11, 12, 6, 0, 0);   // 12 dic 2026, 00:00 hora de Guatemala (UTC-6)
+const FIN = Date.UTC(2026, 11, 19, 6, 0, 0);     // termina la semana de lanzamiento
+const COMPRA = '';                                // enlace de Amazon cuando exista
+const COMPARTIR = 'https://crecimiento-integral-libro.pages.dev/pagina/';
+const CORREO_PREVENTA = 'bayala@pneuma.gt';      // correo de la editorial que recibe las preventas
+const WA_PREVENTA = '';                          // número de WhatsApp de la editorial, con código de país y sin signos (ej. 502XXXXXXXX)
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+
+// ===== Luz del libro: cada cara se aclara u oscurece según mire hacia la luz (arriba a la izquierda) =====
+const lightBook = (b, ry, floor) => {
+  const r = a => a * Math.PI / 180, L = 15;
+  const sh = n => Math.max(0, Math.min(.5, .5 * (1 - Math.max(0, Math.cos(r(n - L))) * .96)));
+  b.style.setProperty('--shF', sh(-ry).toFixed(3));
+  b.style.setProperty('--shB', sh(180 - ry).toFixed(3));
+  b.style.setProperty('--shS', sh(-90 - ry).toFixed(3));
+  b.style.setProperty('--shE', sh(90 - ry).toFixed(3));
+  b.style.setProperty('--gx', (50 + Math.sin(r(ry)) * 70).toFixed(1) + '%');
+  if (floor) floor.style.setProperty('--fs', (.3 + .7 * Math.abs(Math.cos(r(ry)))).toFixed(3));
+};
+
+// ===== Portada como diapositiva: al bajar o con las flechas, pasa a la página =====
+(() => {
+  const root = document.documentElement;
+  const secs = ['preventas','libro','leer','historia','achiotes','e1994','e1996','e1999','e2004','e2007','e2015','e2016','e2020','pasiones','cuenta'];
+  let on = !secs.includes(location.hash.slice(1));
+  const set = v => { on = v; root.classList.toggle('intro-on', v); root.classList.toggle('intro-gone', !v); };
+  set(on);
+  let lock = 0;
+  const enter = () => { if (!on || Date.now() < lock) return; lock = Date.now() + 1100; scrollTo(0, 0); set(false); setTimeout(() => dispatchEvent(new Event('resize')), 1050); };
+  const leave = () => { if (on || Date.now() < lock) return; lock = Date.now() + 1100; scrollTo(0, 0); set(true); };
+  document.getElementById('entrar').addEventListener('click', enter);
+  document.getElementById('volver').addEventListener('click', leave);
+  addEventListener('wheel', e => { if (on && (e.deltaY > 8 || e.deltaX > 8)) enter(); }, {passive:true});
+  addEventListener('keydown', e => {
+    if (on && ['ArrowDown','ArrowRight','PageDown',' ','Enter'].includes(e.key)){ e.preventDefault(); enter(); }
+    else if (!on && e.key === 'ArrowLeft' && !readerInView() && !e.target.closest('input,textarea')) leave();
+  });
+  // La flecha izquierda vuelve a la portada, salvo cuando la muestra está a la vista (ahí pasa páginas)
+  const readerInView = () => root.classList.contains('lee');
+  // En el celular, deslizar hacia la derecha también vuelve (fuera del libro y de la muestra)
+  let sx = 0, sy = 0;
+  const app = document.getElementById('app');
+  app.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
+  app.addEventListener('touchend', e => { if (e.target.closest('#flip,#stage')) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; if (dx > 70 && Math.abs(dy) < 40) leave(); }, {passive:true});
+  let tx = 0, ty = 0;
+  const intro = document.getElementById('intro');
+  intro.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, {passive:true});
+  intro.addEventListener('touchend', e => { if (e.target.closest('#istage')) return; const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; if (dy < -40 || dx < -40) enter(); }, {passive:true});
+})();
+
+
+// ===== Libro de la portada: se gira arrastrando, con impulso, y se queda donde lo suelten =====
+(() => {
+  const st = document.getElementById('istage'), b = document.getElementById('ibook');
+  if (!b) return;
+  let ry = -28, rx = 6, vy = 0, vx = 0, drag = false, lx = 0, ly = 0, lt = 0;
+  const fl = b.parentElement.querySelector('.floor');
+  const set = () => { b.style.setProperty('--ry', ry + 'deg'); b.style.setProperty('--rx', rx + 'deg'); lightBook(b, ry, fl); };
+  st.addEventListener('pointerdown', e => { drag = true; lx = e.clientX; ly = e.clientY; lt = performance.now(); vy = vx = 0; st.setPointerCapture(e.pointerId); });
+  st.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const now = performance.now(), dt = Math.max(8, now - lt);
+    const dx = e.clientX - lx, dy = e.clientY - ly; lx = e.clientX; ly = e.clientY; lt = now;
+    ry += dx * .6; rx = Math.max(-35, Math.min(35, rx - dy * .35));
+    vy = dx * .6 * (16 / dt); vx = -dy * .35 * (16 / dt); set();
+  });
+  const up = () => { drag = false; };
+  st.addEventListener('pointerup', up); st.addEventListener('pointercancel', up);
+  const loop = () => {
+    if (!drag && (Math.abs(vy) > .02 || Math.abs(vx) > .02)){
+      ry += vy; rx = Math.max(-35, Math.min(35, rx + vx));
+      vy *= .975; vx *= .9; set();
+    }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop); set();
+})();
+
+// ===== Movimiento al desplazarse =====
+(() => {
+  const scenes = [...document.querySelectorAll('[data-scene]')];
+  const prog = document.getElementById('prog');
+  const links = [...document.querySelectorAll('.rail a')];
+  let tick = false;
+  const run = () => {
+    tick = false;
+    const vh = innerHeight;
+    if (!reduce) for (const s of scenes){
+      const r = s.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) continue;
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      s.style.setProperty('--p', p.toFixed(3));
+    }
+    const max = document.documentElement.scrollHeight - vh;
+    prog.style.setProperty('--sp', max > 0 ? (scrollY / max).toFixed(4) : 0);
+    let cur = null;
+    for (const a of links){ const t = document.querySelector(a.getAttribute('href')); if (t && t.getBoundingClientRect().top < vh * .45) cur = a; }
+    links.forEach(a => a.classList.toggle('on', a === cur));
+    if (cur) cur.scrollIntoView({block:'nearest', inline:'nearest'});
+  };
+  addEventListener('scroll', () => { if (!tick){ tick = true; requestAnimationFrame(run); } }, {passive:true});
+  addEventListener('resize', run);
+  run();
+})();
+
+// ===== Libro 3D: girar arrastrando y abrir =====
+(() => {
+  const st = document.getElementById('stage'), b = document.getElementById('book'), cover = document.getElementById('cover');
+  let ry = -28, rx = 8, vy = 0, drag = false, lx = 0, ly = 0, idle = 0, open = false;
+  const fl = b.parentElement.parentElement.querySelector('.floor');
+  const set = () => { b.style.setProperty('--ry', ry + 'deg'); b.style.setProperty('--rx', rx + 'deg'); lightBook(b, ry, fl); };
+  st.addEventListener('pointerdown', e => { drag = true; lx = e.clientX; ly = e.clientY; vy = 0; st.setPointerCapture(e.pointerId); });
+  st.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const dx = e.clientX - lx, dy = e.clientY - ly; lx = e.clientX; ly = e.clientY;
+    ry += dx * .5; rx = Math.max(-25, Math.min(30, rx - dy * .3)); vy = dx * .5; idle = performance.now(); set();
+  });
+  const up = () => { drag = false; idle = performance.now(); };
+  st.addEventListener('pointerup', up); st.addEventListener('pointercancel', up);
+  const loop = t => {
+    if (!drag && !open){
+      if (Math.abs(vy) > .02){ ry += vy; vy *= .975; set(); }
+    }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+  const toggle = () => {
+    open = !open;
+    clearTimeout(window.__shut);
+    if (open){ b.classList.add('is-open'); ry = ((ry % 360) + 360) % 360; if (ry > 180) ry -= 360; set(); void b.offsetWidth; b.style.transition = 'transform 1s cubic-bezier(.3,.7,.2,1)'; ry = 12; rx = 6; set(); cover.style.setProperty('--open', '-155deg'); }
+    else { cover.style.setProperty('--open', '0deg'); window.__shut = setTimeout(() => b.classList.remove('is-open'), 1400); }
+    setTimeout(() => { b.style.transition = ''; }, 1000);
+    document.getElementById('abrir').textContent = open ? 'Cerrar el libro' : 'Abrir el libro';
+  };
+  document.getElementById('abrir').addEventListener('click', toggle);
+  st.addEventListener('dblclick', toggle);
+  set();
+})();
+
+// ===== Muestra hojeable: cubierta, guarda, páginas i–xii y 1–12, cierre =====
+let pf = null;
+(() => {
+  const host = document.getElementById('flip');
+  const roman = 'i ii iii iv v vi vii viii ix x xi xii'.split(' ');
+  const pages = [{k:'img', src:'a/front.webp', hard:true, label:'Cubierta'}, {k:'endp', hard:true, label:'Guarda'}];
+  for (let n = 1; n <= 24; n++) pages.push({k:'img', src:'a/m' + String(n).padStart(2,'0') + '.webp', label: n <= 12 ? roman[n-1] : String(n - 12)});
+  pages.push({k:'fin', label:'Fin de la muestra'}, {k:'img', src:'a/back.webp', hard:true, label:'Contracubierta'});
+  const els = pages.map(p => {
+    const d = document.createElement('div');
+    d.className = 'fp' + (p.k === 'endp' ? ' endp' : p.k === 'fin' ? ' fin' : '');
+    if (p.hard) d.dataset.density = 'hard';
+    if (p.k === 'img'){ const im = document.createElement('img'); im.dataset.src = p.src; im.alt = p.label; d.appendChild(im); }
+    if (p.k === 'fin') d.innerHTML = '<p class="sm">Fin de la muestra</p><p class="big">La introducción continúa en el libro.</p><p class="sm">Lanzamiento: 12 de diciembre de 2026</p>';
+    host.appendChild(d); return d;
+  });
+  const warm = i => { for (let j = Math.max(0, i - 3); j <= Math.min(els.length - 1, i + 6); j++){ const im = els[j].querySelector('img'); if (im && !im.src) im.src = im.dataset.src; } };
+  warm(0);
+  if (!window.St){ host.innerHTML = '<p style="font-family:var(--ui)">No se pudo cargar la muestra. Revise la conexión y recargue la página.</p>'; return; }
+  const box = host.parentElement;
+  const W = box.clientWidth - 8, H = box.clientHeight - 8, portrait = W < 640;
+  const pw = Math.floor(Math.min(portrait ? W : W / 2, H / 1.5, 520)), ph = Math.floor(pw * 1.5);
+  host.style.width = (portrait ? pw : pw * 2) + 'px'; host.style.height = ph + 'px';
+  pf = new St.PageFlip(host, {width: pw, height: ph, size:'fixed', showCover:true, usePortrait: portrait, autoSize:false, maxShadowOpacity:.5, flippingTime:850, mobileScrollSupport:true});
+  pf.loadFromHTML(els);
+  const pos = document.getElementById('fpos');
+  const show = i => { warm(i); const p = pages[i]; pos.textContent = /^[0-9ivx]+$/.test(p.label) ? 'Página ' + p.label : p.label; };
+  pf.on('flip', e => show(e.data));
+  document.getElementById('fprev').onclick = () => pf.flipPrev();
+  document.getElementById('fnext').onclick = () => pf.flipNext();
+  document.querySelectorAll('[data-go]').forEach(bt => bt.onclick = () => { const i = +bt.dataset.go; warm(i); pf.turnToPage(i); show(i); });
+  addEventListener('keydown', e => { if (!document.documentElement.classList.contains('lee')) return; if (e.key === 'ArrowRight'){ e.preventDefault(); pf.flipNext(); } if (e.key === 'ArrowLeft'){ e.preventDefault(); pf.flipPrev(); } });
+})();
+
+
+// ===== Espacio de lectura: se abre en círculo desde donde se pulsó =====
+(() => {
+  const root = document.documentElement, L = document.getElementById('lectura');
+  const open = (x, y) => {
+    L.style.setProperty('--cx', (x ?? innerWidth / 2) + 'px'); L.style.setProperty('--cy', (y ?? innerHeight / 2) + 'px');
+    root.classList.remove('intro-on'); root.classList.add('intro-gone');
+    root.classList.add('lee'); L.setAttribute('aria-hidden', 'false');
+    setTimeout(() => document.getElementById('fnext').focus({preventScroll:true}), 900);
+  };
+  const close = () => { root.classList.remove('lee'); L.setAttribute('aria-hidden', 'true'); };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href="#leer"]');
+    if (!a) return;
+    e.preventDefault();
+    const r = a.getBoundingClientRect();
+    open(r.left + r.width / 2, r.top + r.height / 2);
+  });
+  document.getElementById('lVolver').addEventListener('click', e => { const r = e.currentTarget.getBoundingClientRect(); L.style.setProperty('--cx', (r.left + r.width / 2) + 'px'); L.style.setProperty('--cy', (r.top + r.height / 2) + 'px'); close(); });
+  document.getElementById('lSeguir').addEventListener('click', e => {
+    const t = document.getElementById('historia');
+    scrollTo({top: t.getBoundingClientRect().top + scrollY - 60, behavior: 'instant'});
+    const r = e.currentTarget.getBoundingClientRect(); L.style.setProperty('--cx', (r.left + r.width / 2) + 'px'); L.style.setProperty('--cy', (r.top + r.height / 2) + 'px');
+    close();
+  });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && root.classList.contains('lee')) close(); });
+  if (location.hash === '#leer') setTimeout(() => open(), 300);
+})();
+
+// ===== Cuenta regresiva: antes, durante y después =====
+(() => {
+  // Vista previa: añada #pre, #durante o #post al enlace para ver cada estado
+  const H = 3600e3, D = 24 * H;
+  const sims = {pre: LANZA - (52 * D + 7 * H), durante: LANZA + 10 * H, post: FIN + 3 * D};
+  const forced = sims[location.hash.slice(1)];
+  const offset = forced ? forced - Date.now() : 0;
+  if (forced){ const t = document.createElement('div'); t.className = 'preview'; t.textContent = 'Vista previa: ' + location.hash.slice(1); document.body.appendChild(t); }
+  const $ = id => document.getElementById(id);
+  const two = n => String(n).padStart(2, '0');
+  const wa = 'https://wa.me/?text=' + encodeURIComponent('Crecimiento integral de la iglesia pentecostal, de Balmer Ayala. Lea la muestra: ' + COMPARTIR);
+  $('wa').href = wa;
+  const buy = el => { if (COMPRA){ el.href = COMPRA; el.target = '_blank'; el.rel = 'noopener'; el.removeAttribute('aria-disabled'); el.textContent = 'Conseguir el libro'; } else { el.removeAttribute('href'); el.setAttribute('aria-disabled', 'true'); el.textContent = 'Enlace de compra, muy pronto'; } };
+  let last = '';
+  const render = () => {
+    const now = Date.now() + offset;
+    const state = now < LANZA ? 'pre' : now < FIN ? 'durante' : 'post';
+    const target = state === 'pre' ? LANZA : state === 'durante' ? FIN : null;
+    let diff = target ? Math.max(0, target - now) : now - LANZA;
+    const d = Math.floor(diff / D), h = Math.floor(diff % D / H), m = Math.floor(diff % H / 6e4), s = Math.floor(diff % 6e4 / 1e3);
+    $('cd').textContent = state === 'post' ? d : two(d); $('ch').textContent = two(h); $('cm').textContent = two(m); $('cs').textContent = two(s);
+    const vals = {d: state === 'post' ? d : two(d), h: two(h), m: two(m), s: two(s)};
+    document.querySelectorAll('[data-c]').forEach(el => { el.textContent = vals[el.dataset.c]; });
+    const today = state === 'durante' && now < LANZA + D;
+    const key = state + today;
+    if (key !== last){
+      last = key;
+      document.querySelectorAll('#phases li').forEach(li => { const order = ['pre','durante','post']; const a = order.indexOf(li.dataset.ph), b = order.indexOf(state); li.classList.toggle('on', a === b); li.classList.toggle('done', a < b); });
+      if (state === 'pre'){
+        $('cLbl').textContent = 'Lanzamiento · sábado 12 de diciembre de 2026';
+        $('cTit').textContent = 'Faltan pocos días para tenerlo en las manos';
+        $('cSay').textContent = 'Mientras tanto, lea la muestra y comparta esta página con los pastores y líderes de su territorio.';
+        $('cMain').textContent = 'Leer la muestra'; $('cMain').href = '#leer';
+        $('bSt').textContent = 'Faltan'; $('bD').textContent = 'para el lanzamiento · sábado 12 dic 2026'; $('bA').textContent = 'Apartar'; $('bA').href = '#preventas';
+        $('hLbl').textContent = 'Faltan para el lanzamiento'; $('hSub').textContent = 'Sábado 12 de diciembre de 2026';
+      } else if (state === 'durante'){
+        $('cLbl').textContent = today ? 'Hoy, 12 de diciembre de 2026' : 'Semana de lanzamiento · 12 al 18 de diciembre';
+        $('cTit').textContent = today ? 'Hoy se presenta el libro' : 'El libro ya está en circulación';
+        $('cSay').textContent = 'Consiga su ejemplar y compártalo con los pastores y líderes de su territorio. El reloj marca lo que queda de la semana de lanzamiento.';
+        buy($('cMain'));
+        $('bSt').textContent = today ? 'Hoy' : 'Lanzamiento'; $('bD').textContent = 'queda de la semana de lanzamiento'; $('bA').textContent = 'Conseguirlo';
+        $('hLbl').textContent = today ? 'Hoy se presenta el libro' : 'Semana de lanzamiento'; $('hSub').textContent = 'Lo que queda de la semana de lanzamiento';
+      } else {
+        $('cLbl').textContent = 'Publicado el 12 de diciembre de 2026';
+        $('cTit').textContent = 'Ya disponible, impreso y digital';
+        $('cSay').textContent = 'El reloj cuenta el tiempo desde el lanzamiento. Lea la muestra o consiga su ejemplar.';
+        buy($('cMain'));
+        $('bSt').textContent = 'Disponible'; $('bD').textContent = 'desde el lanzamiento'; $('bA').textContent = 'Conseguirlo';
+        $('hLbl').textContent = 'Ya disponible'; $('hSub').textContent = 'Tiempo desde el lanzamiento del 12 de diciembre de 2026';
+      }
+    }
+    $('bT').innerHTML = state === 'post'
+      ? '<span><b>' + d + '</b>días</span>'
+      : '<span><b>' + d + '</b>días</span><span><b>' + two(h) + '</b>h</span><span><b>' + two(m) + '</b>min</span><span><b>' + two(s) + '</b>s</span>';
+  };
+  render(); setInterval(render, 1000);
+  // La barra se oculta cuando la sección de la cuenta está a la vista
+  new IntersectionObserver(es => $('cbar').classList.toggle('hide', es[0].isIntersecting), {threshold:.25}).observe($('cuenta'));
+})();
+
+
+// ===== Preventas: arma el mensaje y abre WhatsApp (si hay número) o el correo de la editorial =====
+(() => {
+  const f = document.getElementById('pform'), err = document.getElementById('pErr');
+  if (WA_PREVENTA) document.getElementById('pFine').textContent = 'Al enviar se abre WhatsApp con su solicitud lista; solo tiene que pulsar enviar.';
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const faltan = [['pNombre','su nombre'],['pTel','un teléfono o WhatsApp']].filter(([id]) => !v(id));
+    document.querySelectorAll('.campo').forEach(c => c.classList.remove('mal'));
+    faltan.forEach(([id]) => document.getElementById(id).parentElement.classList.add('mal'));
+    if (faltan.length){ err.textContent = 'Falta ' + faltan.map(x => x[1]).join(' y ') + ' para poder contactarlo.'; return; }
+    err.textContent = '';
+    const txt = ['Hola, Publicaciones Pneuma. Quiero apartar en preventa el libro «Crecimiento integral de la iglesia pentecostal», de Balmer Ayala.',
+      'Nombre: ' + v('pNombre'), 'Teléfono: ' + v('pTel'),
+      v('pIglesia') && ('Iglesia o institución: ' + v('pIglesia')), v('pLugar') && ('Lugar: ' + v('pLugar')),
+      'Ejemplares: ' + (v('pCant') || '1') + ' · Formato: ' + v('pFormato'), v('pNota') && ('Comentario: ' + v('pNota'))].filter(Boolean).join('\n');
+    const t = document.getElementById('toast');
+    const a = document.createElement('a');
+    if (WA_PREVENTA){ a.href = 'https://wa.me/' + WA_PREVENTA + '?text=' + encodeURIComponent(txt); a.target = '_blank'; a.rel = 'noopener'; }
+    else a.href = 'mailto:' + CORREO_PREVENTA + '?subject=' + encodeURIComponent('Preventa: Crecimiento integral de la iglesia pentecostal') + '&body=' + encodeURIComponent(txt);
+    document.body.appendChild(a); a.click(); a.remove();
+    t.textContent = WA_PREVENTA ? 'Se abrió WhatsApp con su solicitud. Pulse enviar allí.' : 'Se abrió su correo con la solicitud. Pulse enviar allí.'; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 3600);
+  });
+})();
+
+// ===== Reseña: mostrar el resto =====
+(() => {
+  const b = document.getElementById('resBtn'), m = document.getElementById('resMas');
+  b.addEventListener('click', () => { const abre = m.hidden; m.hidden = !abre; b.setAttribute('aria-expanded', abre); b.textContent = abre ? 'Ver menos' : 'Seguir leyendo la reseña'; });
+})();
+
+// ===== Copiar enlace =====
+document.getElementById('share').addEventListener('click', async () => {
+  const t = document.getElementById('toast');
+  const show = m => { t.textContent = m; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2400); };
+  try { await navigator.clipboard.writeText(COMPARTIR); show('Enlace copiado'); }
+  catch (_) { show('Copie este enlace: ' + COMPARTIR); }
+});
+</script>
+</body></html>
