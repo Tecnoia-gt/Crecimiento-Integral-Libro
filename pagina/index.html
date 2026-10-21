@@ -316,18 +316,20 @@ html.intro-gone .volver{display:inline-flex}
   .iday span{font-size:min(36px,8vw)}
   .irest b{font-size:min(56px,11vw,6dvh)}
   .isub{margin-top:8px;font-size:min(22px,5vw)}
-  .inext{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 34px);right:50%;transform:translateX(50%);width:52px;height:52px;animation:none}
+  #intro{display:flex;flex-direction:column;justify-content:center;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 34px)}
+  .iwrap{margin:0 auto}
+  .inext{position:relative;top:auto;right:auto;bottom:auto;transform:none;align-self:center;flex:none;margin-top:18px;width:56px;height:56px;animation:none;background:var(--ink);color:var(--paper);border-color:var(--ink)}
 }
+@media (hover:none){.inext{background:var(--ink);color:var(--paper);border-color:var(--ink)}}
 @media (max-height:720px) and (max-aspect-ratio:4/5){
-  .iwrap{gap:10px;padding-bottom:88px}
+  .iwrap{gap:10px}
   .book.big{--w:min(200px,48vw,24dvh)}
   .ifloor{margin-top:6px}
   .iday b{font-size:min(120px,30vw,13dvh)}
   .irest{margin-top:6px;padding-top:8px}
   .irest b{font-size:min(40px,9vw,5dvh)}
-  .inext{width:46px;height:46px;bottom:calc(env(safe-area-inset-bottom,0px) + 28px)}
+  .inext{width:50px;height:50px;margin-top:12px}
 }
-@media (prefers-reduced-motion:reduce){#intro,#app{transition:none}}
 
 /* espacio de lectura: se abre en círculo desde el botón y ocupa toda la pantalla */
 #lectura{position:fixed;inset:0;overflow:hidden;z-index:70;background:var(--stage);color:var(--on-stage);display:grid;grid-template-rows:auto 1fr auto;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 14px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 14px) max(16px,env(safe-area-inset-left,0px));clip-path:circle(0 at var(--cx,50%) var(--cy,50%));visibility:hidden;transition:clip-path .85s cubic-bezier(.7,0,.2,1),visibility 0s linear .85s}
@@ -359,7 +361,6 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
   .lfoot{justify-content:center}
   .lfoot .full{display:none}
 }
-@media (prefers-reduced-motion:reduce){#lectura{transition:none}}
 
 /* preventas */
 .preventa{background:var(--paper-2);padding-block:clamp(70px,9vw,130px)}
@@ -411,7 +412,7 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *{animation:none!important;transition:none!important}
+  *{animation:none!important}
 }
 </style>
 </head>
@@ -953,7 +954,7 @@ const lightBook = (b, ry, floor) => {
   const run = () => {
     tick = false;
     const vh = innerHeight;
-    if (!reduce) for (const s of scenes){
+    for (const s of scenes){
       const r = s.getBoundingClientRect();
       if (r.bottom < -200 || r.top > vh + 200) continue;
       const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
