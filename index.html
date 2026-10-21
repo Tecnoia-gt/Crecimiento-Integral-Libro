@@ -36,7 +36,12 @@ html,body{overscroll-behavior:none}
 .page.--left:not(.hard)::after{right:0;background:linear-gradient(to left,rgba(60,45,20,.22),rgba(60,45,20,0))}
 .page.--right:not(.hard)::after{left:0;background:linear-gradient(to right,rgba(60,45,20,.22),rgba(60,45,20,0))}
 .page.hard img{object-fit:cover}
-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;padding-block:8px 16px}
+footer{position:relative;padding-block:8px 30px}
+/* Controles de lectura: ocupan su lugar también con el libro cerrado (invisibles) para que el libro no cambie de tamaño al entrar a leer */
+.ctl{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px}
+html:not(.lee) .ctl{visibility:hidden}
+#leer{position:absolute;left:50%;top:8px;translate:-50% 0;min-width:140px;padding:9px 26px;font-size:17px;letter-spacing:.04em;border-color:rgba(243,237,221,.55)}
+html.lee #leer{display:none}
 button,select{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:15px}
 button:hover,select:hover{border-color:rgba(243,237,221,.5)}
 button:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
@@ -45,13 +50,12 @@ select option{background:var(--ground-2);color:var(--ink)}
 .nav{width:42px;height:42px;padding:0;font-size:22px;line-height:1;display:grid;place-items:center}
 .folio{min-width:150px;text-align:center;font-variant-numeric:tabular-nums;font-size:15px;color:var(--muted)}
 .folio b{color:var(--ink);font-weight:500}
-.hint{position:absolute;bottom:2px;left:0;right:0;text-align:center;font-style:italic;font-size:13px;color:var(--muted);pointer-events:none;transition:opacity .6s}
 .loading{position:absolute;inset:0;display:grid;place-items:center;font-style:italic;color:var(--muted)}
 /* Vestíbulo: el libro cerrado en 3D; se agarra con el dedo o el ratón, se gira, se lanza y se queda donde lo suelten */
 .v3d{position:absolute;inset:0;z-index:5;display:grid;place-items:center;align-content:center;gap:4px;perspective:1700px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:opacity .6s}
 .v3d:active{cursor:grabbing}
 .v3d.gone{opacity:0;pointer-events:none}
-.stage.closed #shell,.stage.closed .hint{visibility:hidden}
+.stage.closed #shell{visibility:hidden}
 .b3{--w:300px;--h:calc(var(--w) * 1.5);--t:calc(var(--w) * .046);--shF:0;--shB:.3;--shS:.3;--shE:.3;--gx:30%;position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;transform:rotateX(var(--rx,6deg)) rotateY(var(--ry,-28deg))}
 .b3 .f{position:absolute;left:50%;top:50%;backface-visibility:hidden}
 .b3 .f::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit}
@@ -68,36 +72,30 @@ select option{background:var(--ground-2);color:var(--ink)}
 .b3 .bt{transform:translate(-50%,-50%) rotateX(-90deg) translateZ(calc(var(--h) / 2 - 1.5px))}
 .b3 .bt::after{background:rgba(8,10,40,.35)}
 .v3d .floor{position:absolute;left:50%;top:calc(50% + var(--fh,200px) - 10px);translate:-50% 0;width:min(70%,320px);height:28px;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);filter:blur(5px);transform:scaleX(var(--fs,1))}
-.firma{flex-basis:100%;text-align:center;font-size:12px;color:var(--muted);margin-top:-4px}
+.firma{position:fixed;z-index:6;right:max(14px,env(safe-area-inset-right,0px));bottom:max(8px,env(safe-area-inset-bottom,0px));font-size:12px;color:var(--muted)}
 .firma a{color:var(--muted)}
 .tec{display:inline-flex;align-items:center;gap:.4em;vertical-align:middle;text-decoration:none;color:inherit}.tec svg{height:1.3em;width:auto;flex:none}.tec span{text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
 @media (max-width:560px){.folio{min-width:0;flex-basis:100%;order:-1}.ttl p{letter-spacing:.12em}}
-/* Celular en horizontal: el libro ocupa toda la altura y los controles pasan a una columna estrecha a la derecha */
+/* Celular en horizontal: solo el libro, a toda la pantalla; se hojea con el dedo, sin botones */
 @media (max-height:520px) and (orientation:landscape){
-  .app{grid-template-columns:1fr 168px;grid-template-rows:auto 1fr;grid-template-areas:"stage head" "stage foot";column-gap:10px}
-  .stage{grid-area:stage;padding-block:6px}
-  header{grid-area:head;justify-content:center;padding-block:10px 0}
-  header .ttl,.firma,.hint{display:none}
-  footer{grid-area:foot;align-content:center;gap:6px;padding-block:6px}
-  footer>*{font-size:13px}
-  footer button,footer select{padding:5px 10px}
-  .nav{width:36px;height:36px}
-  .folio{min-width:0;flex-basis:100%;order:-1;font-size:13px}
-  #toc,#snd,#ver3d,#fs{width:100%}
+  html.lee header,html.lee footer{display:none}
+  html.lee .app{grid-template-rows:1fr}
+  html.lee .stage{padding-block:4px}
+  .firma{font-size:10px;opacity:.7;bottom:max(4px,env(safe-area-inset-bottom,0px))}
 }
-@media (prefers-reduced-motion:reduce){.hint,#shell{transition:none}}
+@media (prefers-reduced-motion:reduce){#shell{transition:none}}
 </style>
 
 <div class="app">
   <header>
-    <a href="./" class="home" id="home" aria-label="Volver al inicio: libro cerrado"><img src="img/logo_crema.png" alt="Publicaciones Pneuma"></a>
+    <a href="./" class="home" id="home" aria-label="Volver al inicio"><img src="img/logo_crema.png" alt="Publicaciones Pneuma"></a>
     <div class="ttl">
       <h1>Crecimiento integral de la iglesia pentecostal</h1>
       <p>Balmer Ayala · Publicaciones Pneuma</p>
     </div>
   </header>
   <div class="stage closed" id="stage">
-    <div class="v3d" id="v3d" aria-label="El libro cerrado: arrástrelo para girarlo; tóquelo para abrirlo">
+    <div class="v3d" id="v3d" aria-label="El libro cerrado: arrástrelo para girarlo; tóquelo para leerlo">
       <div class="b3" id="b3" role="img" aria-label="Crecimiento integral de la iglesia pentecostal, libro cerrado">
         <div class="f bk"></div><div class="f sp"></div><div class="f ed"></div><div class="f tp"></div><div class="f bt"></div><div class="f cf"></div>
       </div>
@@ -105,9 +103,10 @@ select option{background:var(--ground-2);color:var(--ink)}
     </div>
     <div class="loading" id="loading">Abriendo el libro…</div>
     <div id="shell"><div id="book"></div></div>
-    <div class="hint" id="hint">Tome la hoja por el borde, arriba, en medio o abajo, y arrástrela; también puede tocarla o usar las flechas</div>
   </div>
   <footer>
+    <button id="leer">Leer</button>
+    <div class="ctl">
     <button class="nav" id="prev" aria-label="Página anterior">‹</button>
     <div class="folio" id="folio" aria-live="polite"><b>Cubierta</b></div>
     <button class="nav" id="next" aria-label="Página siguiente">›</button>
@@ -126,11 +125,9 @@ select option{background:var(--ground-2);color:var(--ink)}
       <option value="94">Bibliografía</option>
       <option value="101">Contracubierta</option>
     </select>
-    <button id="snd" aria-pressed="true">Sonido: sí</button>
-    <button id="ver3d">Abrir el libro</button>
-    <button id="fs">Pantalla completa</button>
-    <div class="firma">Diseño y desarrollo: <a class="tec" href="https://tecnoia.gt" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1027 984"><path fill="currentColor" fill-rule="evenodd" d="M157 962C115 955 80 926 67 886C61 868 61 872 61 718L61 578L99 559C120 548 137 539 137 539C138 539 138 607 138 690C138 822 138 842 140 848C144 868 160 884 179 888C189 891 878 891 888 888C906 884 921 870 928 851C929 846 930 836 930 491L930 136L927 131C921 114 906 101 889 97C881 95 190 94 180 96C161 100 144 116 140 135C138 141 138 157 138 254L138 366L100 385C79 396 62 405 62 405C61 405 61 342 61 265C61 112 61 116 67 98C81 57 117 27 159 21C173 19 899 20 911 22C960 29 998 68 1006 117C1008 132 1008 852 1006 867C998 916 959 955 910 963C896 965 169 965 157 962ZM591 861C552 856 524 840 504 811C493 794 494 796 438 598C409 496 385 412 384 411C384 409 361 418 227 475C141 511 68 542 64 543C32 554 13 527 23 486C28 466 41 448 60 436C67 431 680 139 691 135C721 125 751 136 777 167C797 193 801 212 787 225C782 230 780 231 661 285C595 316 537 342 532 344C528 346 522 349 520 350L517 354L595 592C679 847 676 838 673 845C670 849 664 854 659 855C644 860 605 863 591 861ZM784 856C745 850 716 824 706 787C703 775 703 753 706 741C717 699 753 672 796 672C839 672 875 699 886 741C889 753 889 775 886 787C877 820 852 846 819 854C811 856 791 858 784 856Z"/></svg><span>Tecnoia.gt</span></a></div>
+    </div>
   </footer>
+  <div class="firma">powered by <a class="tec" href="https://tecnoia.gt" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1027 984"><path fill="currentColor" fill-rule="evenodd" d="M157 962C115 955 80 926 67 886C61 868 61 872 61 718L61 578L99 559C120 548 137 539 137 539C138 539 138 607 138 690C138 822 138 842 140 848C144 868 160 884 179 888C189 891 878 891 888 888C906 884 921 870 928 851C929 846 930 836 930 491L930 136L927 131C921 114 906 101 889 97C881 95 190 94 180 96C161 100 144 116 140 135C138 141 138 157 138 254L138 366L100 385C79 396 62 405 62 405C61 405 61 342 61 265C61 112 61 116 67 98C81 57 117 27 159 21C173 19 899 20 911 22C960 29 998 68 1006 117C1008 132 1008 852 1006 867C998 916 959 955 910 963C896 965 169 965 157 962ZM591 861C552 856 524 840 504 811C493 794 494 796 438 598C409 496 385 412 384 411C384 409 361 418 227 475C141 511 68 542 64 543C32 554 13 527 23 486C28 466 41 448 60 436C67 431 680 139 691 135C721 125 751 136 777 167C797 193 801 212 787 225C782 230 780 231 661 285C595 316 537 342 532 344C528 346 522 349 520 350L517 354L595 592C679 847 676 838 673 845C670 849 664 854 659 855C644 860 605 863 591 861ZM784 856C745 850 716 824 706 787C703 775 703 753 706 741C717 699 753 672 796 672C839 672 875 699 886 741C889 753 889 775 886 787C877 820 852 846 819 854C811 856 791 858 784 856Z"/></svg><span>Tecnoia.gt</span></a></div>
 </div>
 
 <script src="js/page-flip-2.0.7.browser.js?v=20261021"></script>
@@ -169,6 +166,10 @@ const stage = document.getElementById('stage');
 const shell = document.getElementById('shell');
 // Una sola página cuando el escenario es más alto que ancho (celular o tableta en vertical); dos páginas en horizontal
 const vertical = () => stage.clientWidth < stage.clientHeight * 1.1;
+// Celular en horizontal: se entra directo a leer, con solo el libro en pantalla
+const celHoriz = () => matchMedia('(max-height:520px) and (orientation:landscape)').matches;
+const HTML = document.documentElement;
+if (celHoriz()) HTML.classList.add('lee');
 const reserva = () => matchMedia('(max-height:520px) and (orientation:landscape)').matches ? 4 : 34;
 function avail(){
   const h = stage.clientHeight - reserva(), w = stage.clientWidth;
@@ -182,7 +183,7 @@ book.style.height = A0.ph + 'px';
 const pf = new St.PageFlip(book, {
   width: A0.pw, height: A0.ph, size: 'fixed',
   showCover: true, maxShadowOpacity: 0.55, flippingTime: 900,
-  mobileScrollSupport: false, usePortrait: A0.portrait, autoSize: false, drawShadow: true
+  mobileScrollSupport: false, showPageCorners: !matchMedia('(hover:none)').matches, usePortrait: A0.portrait, autoSize: false, drawShadow: true
 });
 pf.loadFromHTML(els);
 document.getElementById('loading').remove();
@@ -216,7 +217,8 @@ addEventListener('resize', () => {
 });
 // Si se rearmó tras girar el teléfono, vuelve a la página donde estaba
 const P0 = /^#p(\d+)$/.exec(location.hash);
-if (P0){ setTimeout(() => { stage.classList.remove('closed'); document.getElementById('v3d').classList.add('gone'); const n = +P0[1]; warm(n); pf.turnToPage(n); show(n); place(n); }, 0); }
+if (P0 || celHoriz()){ setTimeout(() => { const n = P0 ? Math.min(+P0[1], PAGES.length - 1) : 0; aLeer(); warm(n); pf.turnToPage(n); show(n); place(n); }, 0); }
+function aLeer(){ stage.classList.remove('closed'); document.getElementById('v3d').classList.add('gone'); HTML.classList.add('lee'); }
 
 const folio = document.getElementById('folio');
 function label(i){
@@ -234,35 +236,27 @@ function show(i){
   }
   folio.innerHTML = t;
 }
-pf.on('flip', e => { warm(e.data); show(e.data); place(e.data); hideHint(); });
+pf.on('flip', e => { warm(e.data); show(e.data); place(e.data); });
 pf.on('changeState', e => { if (e.data === 'flipping' || e.data === 'user_fold') rustle(); });
 
 document.getElementById('prev').onclick = () => pf.flipPrev();
 document.getElementById('next').onclick = () => { if (stage.classList.contains('closed')) return window.__openBook(); pf.flipNext(); };
 document.getElementById('toc').onchange = e => {
   const v = e.target.value; if (v === '') return;
-  const n = +v; if (stage.classList.contains('closed')){ stage.classList.remove('closed'); document.getElementById('v3d').classList.add('gone'); } warm(n); pf.turnToPage(n); show(n); place(n); e.target.value = '';
+  const n = +v; aLeer(); warm(n); pf.turnToPage(n); show(n); place(n); e.target.value = '';
 };
 addEventListener('keydown', e => {
   if (e.key === 'ArrowRight'){ if (stage.classList.contains('closed')) return window.__openBook(); pf.flipNext(); }
   if (e.key === 'ArrowLeft') pf.flipPrev();
 });
-// El iPhone no permite pantalla completa en páginas web: ahí se oculta el botón
-if (!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) document.getElementById('fs').hidden = true;
-const fsBtn = document.getElementById('fs');
-const fsLbl = () => { fsBtn.textContent = (document.fullscreenElement || document.webkitFullscreenElement) ? 'Salir de pantalla completa' : 'Pantalla completa'; };
-document.addEventListener('fullscreenchange', fsLbl); document.addEventListener('webkitfullscreenchange', fsLbl);
-document.getElementById('fs').onclick = () => {
-  const r = document.documentElement;
-  const enFs = document.fullscreenElement || document.webkitFullscreenElement;
-  try {
-    const p = enFs ? (document.exitFullscreen || document.webkitExitFullscreen).call(document)
-                   : (r.requestFullscreen || r.webkitRequestFullscreen).call(r, { navigationUI: 'hide' });
-    if (p && p.catch) p.catch(() => {});
-  } catch (_) {}
-};
-let hinted = false;
-function hideHint(){ if (!hinted){ hinted = true; document.getElementById('hint').style.opacity = 0; } }
+// Celular en horizontal: al primer toque se pide pantalla completa (el navegador solo la concede tras un gesto).
+// El iPhone no la permite en páginas web: ahí el libro igual ocupa toda la vista.
+document.addEventListener('touchend', () => {
+  if (!celHoriz() || document.fullscreenElement || document.webkitFullscreenElement) return;
+  const r = document.documentElement, f = r.requestFullscreen || r.webkitRequestFullscreen;
+  if (!f) return;
+  try { const p = f.call(r, { navigationUI: 'hide' }); if (p && p.catch) p.catch(() => {}); } catch (_) {}
+}, { passive: true });
 
 // ===== Vestíbulo: libro cerrado en 3D. No gira solo: se arrastra, se suelta donde se quiera o se lanza con impulso =====
 (() => {
@@ -309,25 +303,22 @@ function hideHint(){ if (!hinted){ hinted = true; document.getElementById('hint'
   function openBook(){
     if (opening) return; opening = true;
     vy = vx = 0;
-    // Primero el libro se pone de frente, plano, en el mismo lugar y tamaño de la lectura; luego se abre la tapa
+    // El libro se pone de frente, plano, en el mismo lugar y tamaño de la lectura, y se muestra la cubierta
     const target = Math.round(ry / 360) * 360;
     b.style.transition = 'transform .5s cubic-bezier(.3,.7,.2,1)';
     ry = target; rx = 0; set();
     pf.turnToPage(0); show(0); place(0); warm(0);
     setTimeout(() => {
       b.style.transition = '';
-      stage.classList.remove('closed'); v.classList.add('gone');
-      setTimeout(() => { pf.flipNext(); opening = false; }, 120);
+      aLeer(); opening = false;
     }, 520);
   }
   function closeBook(){
     pf.turnToPage(0); show(0); place(0);
     ry = -28; rx = 6; set();
-    v.classList.remove('gone'); stage.classList.add('closed');
+    v.classList.remove('gone'); stage.classList.add('closed'); HTML.classList.remove('lee');
   }
-  const tg = document.getElementById('ver3d');
-  tg.onclick = () => stage.classList.contains('closed') ? openBook() : closeBook();
-  new MutationObserver(() => { tg.textContent = stage.classList.contains('closed') ? 'Abrir el libro' : 'Cerrar el libro'; }).observe(stage, {attributes:true, attributeFilter:['class']});
+  document.getElementById('leer').onclick = openBook;
   window.__openBook = openBook;
   // El logo de la cabecera vuelve al inicio: el libro cerrado en la portada
   document.getElementById('home').addEventListener('click', e => { e.preventDefault(); closeBook(); });
@@ -335,8 +326,6 @@ function hideHint(){ if (!hinted){ hinted = true; document.getElementById('hint'
 
 // Sonido de papel sintetizado: ruido filtrado con envolvente corta.
 let ac = null, soundOn = true, lastR = 0;
-const snd = document.getElementById('snd');
-snd.onclick = () => { soundOn = !soundOn; snd.textContent = 'Sonido: ' + (soundOn ? 'sí' : 'no'); snd.setAttribute('aria-pressed', soundOn); };
 function rustle(){
   if (!soundOn) return;
   const now = performance.now(); if (now - lastR < 350) return; lastR = now;

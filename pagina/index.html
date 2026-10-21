@@ -859,9 +859,8 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
   </div>
   <div class="lfoot">
     <div class="chips" aria-label="Ir a">
-      <button type="button" data-go="10">Contenido</button>
-      <button type="button" data-go="14">Prefacio</button>
-      <button type="button" data-go="20">Introducción</button>
+      <button type="button" data-go="2">Contenido</button>
+      <button type="button" data-go="6">Prefacio</button>
     </div>
     <p class="lpw">powered by <a class="tec" href="https://tecnoia.gt" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1027 984"><path fill="currentColor" fill-rule="evenodd" d="M157 962C115 955 80 926 67 886C61 868 61 872 61 718L61 578L99 559C120 548 137 539 137 539C138 539 138 607 138 690C138 822 138 842 140 848C144 868 160 884 179 888C189 891 878 891 888 888C906 884 921 870 928 851C929 846 930 836 930 491L930 136L927 131C921 114 906 101 889 97C881 95 190 94 180 96C161 100 144 116 140 135C138 141 138 157 138 254L138 366L100 385C79 396 62 405 62 405C61 405 61 342 61 265C61 112 61 116 67 98C81 57 117 27 159 21C173 19 899 20 911 22C960 29 998 68 1006 117C1008 132 1008 852 1006 867C998 916 959 955 910 963C896 965 169 965 157 962ZM591 861C552 856 524 840 504 811C493 794 494 796 438 598C409 496 385 412 384 411C384 409 361 418 227 475C141 511 68 542 64 543C32 554 13 527 23 486C28 466 41 448 60 436C67 431 680 139 691 135C721 125 751 136 777 167C797 193 801 212 787 225C782 230 780 231 661 285C595 316 537 342 532 344C528 346 522 349 520 350L517 354L595 592C679 847 676 838 673 845C670 849 664 854 659 855C644 860 605 863 591 861ZM784 856C745 850 716 824 706 787C703 775 703 753 706 741C717 699 753 672 796 672C839 672 875 699 886 741C889 753 889 775 886 787C877 820 852 846 819 854C811 856 791 858 784 856Z"/></svg><span>Tecnoia.gt</span></a></p>
     <div class="rctl"><button id="fprev" type="button" aria-label="Página anterior">‹</button><span id="fpos">Cubierta</span><button id="fnext" type="button" aria-label="Página siguiente">›</button></div>
@@ -1026,7 +1025,8 @@ let pf = null;
   const host = document.getElementById('flip');
   const roman = 'i ii iii iv v vi vii viii ix x xi xii'.split(' ');
   const pages = [{k:'img', src:'a/front.webp', hard:true, label:'Cubierta'}, {k:'endp', hard:true, label:'Guarda'}];
-  for (let n = 1; n <= 24; n++) pages.push({k:'img', src:'a/m' + String(n).padStart(2,'0') + '.webp', label: n <= 12 ? roman[n-1] : String(n - 12)});
+  // Solo el contenido (pp. ix–xii) y el prefacio (pp. 1–6) del PDF v10
+  for (let n = 9; n <= 18; n++) pages.push({k:'img', src:'a/m' + String(n).padStart(2,'0') + '.webp', label: n <= 12 ? roman[n-1] : String(n - 12)});
   pages.push({k:'fin', label:'Fin de la muestra'}, {k:'img', src:'a/back.webp', hard:true, label:'Contracubierta'});
   const els = pages.map(p => {
     const d = document.createElement('div');
@@ -1053,7 +1053,7 @@ let pf = null;
   const W = box.clientWidth - 8, H = box.clientHeight - 8, portrait = W < 640;
   const pw = Math.floor(Math.min(portrait ? W : W / 2, H / 1.5, 520)), ph = Math.floor(pw * 1.5);
   host.style.width = (portrait ? pw : pw * 2) + 'px'; host.style.height = ph + 'px';
-  pf = new St.PageFlip(host, {width: pw, height: ph, size:'fixed', showCover:true, usePortrait: portrait, autoSize:false, maxShadowOpacity:.5, flippingTime:850, mobileScrollSupport:false});
+  pf = new St.PageFlip(host, {width: pw, height: ph, size:'fixed', showCover:true, usePortrait: portrait, autoSize:false, maxShadowOpacity:.5, flippingTime:850, mobileScrollSupport:false, showPageCorners: !matchMedia('(hover:none)').matches});
   pf.loadFromHTML(els);
   // La hoja se dobla según dónde se agarre (arriba, medio o abajo), igual que en el libro completo
   let fit = 1;
