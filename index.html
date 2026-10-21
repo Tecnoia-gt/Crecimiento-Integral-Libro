@@ -48,8 +48,19 @@ button:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-o
 select{appearance:none;padding-right:30px;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 16px) 55%,calc(100% - 11px) 55%;background-size:5px 5px;background-repeat:no-repeat;max-width:100%}
 select option{background:var(--ground-2);color:var(--ink)}
 .nav{width:42px;height:42px;padding:0;font-size:22px;line-height:1;display:grid;place-items:center}
-.folio{min-width:150px;text-align:center;font-variant-numeric:tabular-nums;font-size:15px;color:var(--muted)}
+/* Índice: el nombre de la sección entre las flechas despliega la lista de secciones */
+.secw{position:relative}
+.folio{min-width:190px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-variant-numeric:tabular-nums;color:var(--muted);border-color:transparent}
 .folio b{color:var(--ink);font-weight:500}
+.folio .car{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+.secw.open .folio{border-color:var(--line)}
+.secw.open .car{transform:translateY(2px) rotate(-135deg)}
+.secs{position:absolute;z-index:20;left:50%;bottom:calc(100% + 10px);translate:-50% 0;min-width:240px;max-height:min(62vh,460px);overflow:auto;overscroll-behavior:contain;padding:8px;border:1px solid rgba(243,237,221,.22);border-radius:14px;background:rgba(11,13,51,.78);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 18px 40px rgba(0,0,10,.45);opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s}
+.secw.open .secs{opacity:1;transform:none}
+.secs button{display:flex;width:100%;align-items:baseline;justify-content:space-between;gap:18px;border:0;border-radius:9px;padding:7px 12px;font-size:16px;text-align:left;color:var(--ink);background:transparent}
+.secs button:hover,.secs button:focus-visible{background:rgba(243,237,221,.1);outline:none}
+.secs button small{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.secs button[aria-current="true"]{background:rgba(243,237,221,.08);box-shadow:inset 3px 0 0 var(--red)}
 .loading{position:absolute;inset:0;display:grid;place-items:center;font-style:italic;color:var(--muted)}
 /* Vestíbulo: el libro cerrado en 3D; se agarra con el dedo o el ratón, se gira, se lanza y se queda donde lo suelten */
 .v3d{position:absolute;inset:0;z-index:5;display:grid;place-items:center;align-content:center;gap:4px;perspective:1700px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:opacity .6s}
@@ -75,7 +86,7 @@ select option{background:var(--ground-2);color:var(--ink)}
 .firma{position:fixed;z-index:6;right:max(14px,env(safe-area-inset-right,0px));bottom:max(8px,env(safe-area-inset-bottom,0px));font-size:12px;color:var(--muted)}
 .firma a{color:var(--muted)}
 .tec{display:inline-flex;align-items:center;gap:.4em;vertical-align:middle;text-decoration:none;color:inherit}.tec svg{height:1.3em;width:auto;flex:none}.tec span{text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
-@media (max-width:560px){.folio{min-width:0;flex-basis:100%;order:-1}.ttl p{letter-spacing:.12em}}
+@media (max-width:560px){.folio{min-width:0}.ctl #inicio{flex-basis:auto}.ttl p{letter-spacing:.12em}}
 /* Celular en horizontal: solo el libro, a toda la pantalla; se hojea con el dedo, sin botones */
 @media (max-height:520px) and (orientation:landscape){
   html.lee header,html.lee footer{display:none}
@@ -108,23 +119,12 @@ select option{background:var(--ground-2);color:var(--ink)}
     <button id="leer">Leer</button>
     <div class="ctl">
     <button class="nav" id="prev" aria-label="Página anterior">‹</button>
-    <div class="folio" id="folio" aria-live="polite"><b>Cubierta</b></div>
+    <div class="secw" id="secw">
+      <button class="folio" id="folio" aria-haspopup="true" aria-expanded="false" aria-controls="secs"><span id="folioT" aria-live="polite"><b>Cubierta</b></span><i class="car" aria-hidden="true"></i></button>
+      <div class="secs" id="secs" role="menu" aria-label="Secciones del libro" hidden></div>
+    </div>
     <button class="nav" id="next" aria-label="Página siguiente">›</button>
-    <select id="toc" aria-label="Ir a una sección">
-      <option value="">Ir a…</option>
-      <option value="0">Cubierta</option>
-      <option value="10">Contenido</option>
-      <option value="14">Prefacio</option>
-      <option value="20">Introducción</option>
-      <option value="24">Capítulo 1</option>
-      <option value="44">Capítulo 2</option>
-      <option value="70">Capítulo 3</option>
-      <option value="80">Conclusiones</option>
-      <option value="82">Recomendaciones</option>
-      <option value="88">Apéndices</option>
-      <option value="94">Bibliografía</option>
-      <option value="101">Contracubierta</option>
-    </select>
+    <button id="inicio">Volver al inicio</button>
     </div>
   </footer>
   <div class="firma">powered by <a class="tec" href="https://tecnoia.gt" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1027 984"><path fill="currentColor" fill-rule="evenodd" d="M157 962C115 955 80 926 67 886C61 868 61 872 61 718L61 578L99 559C120 548 137 539 137 539C138 539 138 607 138 690C138 822 138 842 140 848C144 868 160 884 179 888C189 891 878 891 888 888C906 884 921 870 928 851C929 846 930 836 930 491L930 136L927 131C921 114 906 101 889 97C881 95 190 94 180 96C161 100 144 116 140 135C138 141 138 157 138 254L138 366L100 385C79 396 62 405 62 405C61 405 61 342 61 265C61 112 61 116 67 98C81 57 117 27 159 21C173 19 899 20 911 22C960 29 998 68 1006 117C1008 132 1008 852 1006 867C998 916 959 955 910 963C896 965 169 965 157 962ZM591 861C552 856 524 840 504 811C493 794 494 796 438 598C409 496 385 412 384 411C384 409 361 418 227 475C141 511 68 542 64 543C32 554 13 527 23 486C28 466 41 448 60 436C67 431 680 139 691 135C721 125 751 136 777 167C797 193 801 212 787 225C782 230 780 231 661 285C595 316 537 342 532 344C528 346 522 349 520 350L517 354L595 592C679 847 676 838 673 845C670 849 664 854 659 855C644 860 605 863 591 861ZM784 856C745 850 716 824 706 787C703 775 703 753 706 741C717 699 753 672 796 672C839 672 875 699 886 741C889 753 889 775 886 787C877 820 852 846 819 854C811 856 791 858 784 856Z"/></svg><span>Tecnoia.gt</span></a></div>
@@ -220,31 +220,54 @@ const P0 = /^#p(\d+)$/.exec(location.hash);
 if (P0 || celHoriz()){ setTimeout(() => { const n = P0 ? Math.min(+P0[1], PAGES.length - 1) : 0; aLeer(); warm(n); pf.turnToPage(n); show(n); place(n); }, 0); }
 function aLeer(){ stage.classList.remove('closed'); document.getElementById('v3d').classList.add('gone'); HTML.classList.add('lee'); }
 
-const folio = document.getElementById('folio');
-function label(i){
-  const p = PAGES[i];
-  if (p.k === 'front' || p.k === 'back' || p.k === 'end') return '<b>' + p.label + '</b>';
-  return 'Página <b>' + p.label + '</b>';
+const folio = document.getElementById('folioT');
+// Secciones del libro: índice de la hoja donde empieza cada una
+const SECS = [[0,'Cubierta'],[10,'Contenido'],[14,'Prefacio'],[20,'Introducción'],[24,'Capítulo 1'],[44,'Capítulo 2'],[70,'Capítulo 3'],[80,'Conclusiones'],[82,'Recomendaciones'],[88,'Apéndices'],[94,'Bibliografía'],[101,'Contracubierta']];
+const secw = document.getElementById('secw'), secsEl = document.getElementById('secs'), folioB = document.getElementById('folio');
+SECS.forEach(([n, t]) => {
+  const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'menuitem');
+  const pl = PAGES[n].k === 'pdf' ? 'p. ' + PAGES[n].label : '';
+  b.innerHTML = '<span>' + t + '</span>' + (pl ? '<small>' + pl + '</small>' : '');
+  b.onclick = () => { abrirSecs(false); warm(n); pf.turnToPage(n); show(n); place(n); };
+  secsEl.appendChild(b);
+});
+let secsT = 0;
+function abrirSecs(on){
+  clearTimeout(secsT);
+  if (on){ secsEl.hidden = false; requestAnimationFrame(() => secw.classList.add('open')); }
+  else { secw.classList.remove('open'); secsT = setTimeout(() => { secsEl.hidden = true; }, 200); }
+  folioB.setAttribute('aria-expanded', on);
 }
+folioB.onclick = () => abrirSecs(!secw.classList.contains('open'));
+// Con ratón se despliega al pasar por encima
+if (matchMedia('(hover:hover)').matches){
+  secw.addEventListener('mouseenter', () => abrirSecs(true));
+  secw.addEventListener('mouseleave', () => { clearTimeout(secsT); secsT = setTimeout(() => abrirSecs(false), 250); });
+}
+document.addEventListener('pointerdown', e => { if (!secw.contains(e.target) && secw.classList.contains('open')) abrirSecs(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && secw.classList.contains('open')){ abrirSecs(false); folioB.focus(); } });
+const secDe = i => { let k = 0; SECS.forEach((s, j) => { if (s[0] <= i) k = j; }); return k; };
 function show(i){
   const o = pf.getOrientation && pf.getOrientation() === 'landscape';
-  let t = label(i);
+  const p = PAGES[i], k = secDe(i);
+  let pg = p.k === 'pdf' ? p.label : '';
   if (o && i > 0 && i < PAGES.length - 1){
     const a = i % 2 ? i : i - 1;
     const L = PAGES[a], R = PAGES[a + 1];
-    if (L && R && L.k !== 'end' && R.k !== 'end' && L.k !== 'front') t = 'Páginas <b>' + L.label + '–' + R.label + '</b>';
+    if (L && R && L.k === 'pdf' && R.k === 'pdf') pg = L.label + '–' + R.label;
+    else if (L && L.k === 'pdf') pg = L.label; else if (R && R.k === 'pdf') pg = R.label;
   }
-  folio.innerHTML = t;
+  // Las hojas antes del contenido (portadilla, créditos, dedicatoria) se nombran por su página
+  const nombre = (k === 0 && p.k === 'pdf') ? 'Página' : (p.k === 'end' ? 'Guarda' : SECS[k][1]);
+  folio.innerHTML = '<b>' + nombre + '</b>' + (pg ? ' · ' + pg : '');
+  secsEl.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-current', j === k && p.k !== 'end' ? 'true' : 'false'));
 }
 pf.on('flip', e => { warm(e.data); show(e.data); place(e.data); });
 pf.on('changeState', e => { if (e.data === 'flipping' || e.data === 'user_fold') rustle(); });
 
 document.getElementById('prev').onclick = () => pf.flipPrev();
 document.getElementById('next').onclick = () => { if (stage.classList.contains('closed')) return window.__openBook(); pf.flipNext(); };
-document.getElementById('toc').onchange = e => {
-  const v = e.target.value; if (v === '') return;
-  const n = +v; aLeer(); warm(n); pf.turnToPage(n); show(n); place(n); e.target.value = '';
-};
+document.getElementById('inicio').onclick = () => window.__closeBook();
 addEventListener('keydown', e => {
   if (e.key === 'ArrowRight'){ if (stage.classList.contains('closed')) return window.__openBook(); pf.flipNext(); }
   if (e.key === 'ArrowLeft') pf.flipPrev();
@@ -319,6 +342,7 @@ document.addEventListener('touchend', () => {
     v.classList.remove('gone'); stage.classList.add('closed'); HTML.classList.remove('lee');
   }
   document.getElementById('leer').onclick = openBook;
+  window.__closeBook = closeBook;
   window.__openBook = openBook;
   // El logo de la cabecera vuelve al inicio: el libro cerrado en la portada
   document.getElementById('home').addEventListener('click', e => { e.preventDefault(); closeBook(); });
