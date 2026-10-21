@@ -3,7 +3,7 @@
 <meta name="description" content="La historia de Balmer Ayala en fotos y el libro Crecimiento integral de la iglesia pentecostal en 3D, con muestra para leer y cuenta regresiva al lanzamiento del 12 de diciembre de 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600&family=Reenie+Beanie&display=swap">
 <style>
 /* Concepto: un álbum sobre papel crema. La vida del autor se cuenta en escenas fechadas;
    cada escena es un collage de copias fotográficas sujetas con cinta sobre los bocetos a tinta azul del libro,
@@ -69,7 +69,7 @@ h1,h2,h3{font-weight:500;margin:0;text-wrap:balance}
 .scene.flip .wrap{grid-template-columns:7fr 5fr}
 .scene.flip .txt{order:2}
 .txt{min-width:0;position:relative;z-index:2}
-.year{font-style:italic;font-weight:400;font-size:clamp(84px,13vw,190px);line-height:.8;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.2px var(--tinta);display:block;transform:translateX(calc((var(--p) - .5) * -60px));margin-bottom:18px;white-space:nowrap}
+.year{font-style:italic;font-weight:400;font-size:clamp(84px,13vw,190px);line-height:.8;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1.2px var(--tinta);display:block;transform:translateX(calc((var(--p) - .5) * -170px));margin-bottom:18px;white-space:nowrap}
 .year.sm{font-size:clamp(60px,8.6vw,124px)}
 .txt h2{font-size:clamp(34px,4.4vw,58px);line-height:1.04;letter-spacing:-.01em}
 .txt blockquote{margin:22px 0 0;font-size:clamp(21px,2vw,26px);line-height:1.38}
@@ -78,9 +78,9 @@ h1,h2,h3{font-weight:500;margin:0;text-wrap:balance}
 .txt .src{margin-top:12px;display:block}
 
 .collage{position:relative;aspect-ratio:7/6;min-width:0;max-width:100%}
-.sk{position:absolute;inset:auto -6% -4% -6%;height:72%;background:var(--tinta);opacity:.38;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;transform:translateY(calc((var(--p) - .5) * 50px));pointer-events:none}
+.sk{position:absolute;inset:auto -6% -4% -6%;height:72%;background:var(--tinta);opacity:.38;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;transform:translateY(calc((var(--p) - .5) * 120px)) scale(calc(1.08 - var(--p) * .1));pointer-events:none}
 .ph{position:absolute;left:var(--x);top:var(--y);width:var(--w);margin:0;background:var(--print);padding:3.2% 3.2% 0;box-shadow:0 1px 0 rgba(0,0,0,.04),0 22px 40px -22px rgba(4,4,74,.55);
-  transform:translateY(calc((var(--p) - .5) * var(--sp,60) * -1px)) rotate(var(--r,0deg));transition:box-shadow .3s;z-index:var(--z,1)}
+  transform:translateY(calc((var(--p) - .5) * var(--sp,60) * -1.9px)) rotate(calc(var(--r,0deg) + (var(--p) - .5) * -7deg)) scale(calc(.9 + min(var(--p), .35) * .2857));opacity:calc(.15 + min(var(--p), .22) * 3.9);transition:box-shadow .3s;z-index:var(--z,1)}
 .ph::before{content:"";position:absolute;top:-12px;left:50%;width:38%;height:24px;background:var(--tape);transform:translateX(-50%) rotate(calc(var(--r,0deg) * -1.6));box-shadow:0 1px 2px rgba(0,0,0,.06)}
 .ph .im{aspect-ratio:var(--ar,4/5);background:var(--paper-2);overflow:hidden;position:relative}
 .ph .im img{width:100%;height:100%;object-fit:cover}
@@ -294,8 +294,9 @@ html.intro-on .cbar{transform:translateY(110%)}
 .irest span{font-family:var(--ui);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
 .irest b{font-family:var(--display);font-weight:500;font-size:min(84px,5.8vw,10vh);line-height:1;letter-spacing:-.02em;color:var(--ink);margin-right:6px;font-variant-numeric:lining-nums tabular-nums;text-transform:none}
 .isub{font-size:min(26px,1.9vw,3.4vh);margin:min(18px,2vh) 0 0;color:var(--ink)}
-.inext{position:absolute;right:max(24px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);width:58px;height:58px;border-radius:50%;border:1.5px solid var(--rule);background:transparent;color:var(--ink);font-size:24px;line-height:1;cursor:pointer;transition:background .25s,color .25s,border-color .25s;animation:nudge 2.4s ease-in-out infinite}
-.inext:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.inext{position:absolute;right:0;top:50%;transform:translateY(-50%);padding:16px max(30px,calc(env(safe-area-inset-right,0px) + 22px)) 14px 30px;border:0;border-radius:18px 0 0 18px;background:#fdfcf7;color:#1f3f9a;font-family:'Reenie Beanie',cursive;font-size:clamp(28px,2.6vw,38px);line-height:1;letter-spacing:.01em;white-space:nowrap;cursor:pointer;box-shadow:-14px 18px 34px -18px rgba(4,4,40,.55),inset 0 -1px 0 rgba(0,0,0,.06);transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.inext::before{content:"";position:absolute;left:14px;right:18px;bottom:11px;height:1px;background:rgba(31,63,154,.18)}
+.inext:hover{transform:translate(-8px,-50%);box-shadow:-20px 22px 40px -18px rgba(4,4,40,.6)}
 @keyframes nudge{50%{translate:6px 0}}
 .ititle{font-family:var(--ui);font-size:13px;color:var(--ink-soft);margin:6px 0 0}
 .ititle em{font-family:var(--display);font-size:16px}
@@ -317,14 +318,13 @@ html.intro-gone .volver{display:inline-flex}
   .iday span{font-size:min(36px,8vw)}
   .irest b{font-size:min(56px,11vw,6dvh)}
   .isub{margin-top:8px;font-size:min(22px,5vw)}
-  .inext{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 34px);right:50%;transform:translateX(50%);width:52px;height:52px;animation:none}
 }
 /* Solo celular en vertical: la flecha va junto al número de días y el paso a la página es un fundido, sin deslizar */
 .inext2{display:none}
 @media (max-width:600px) and (orientation:portrait){
   #entrar{display:none}
-  .inext2{display:grid;place-items:center;align-self:center;flex:none;margin-left:6px;width:52px;height:52px;padding:0;border:0;border-radius:50%;background:var(--ink);color:var(--paper);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18)}
-  .inext2 svg{width:46%;height:46%;display:block}
+  .inext2{display:block;position:relative;margin:22px auto 0;padding:14px 34px 12px;border:0;border-radius:16px 16px 0 0;background:#fdfcf7;color:#1f3f9a;font-family:'Reenie Beanie',cursive;font-size:32px;line-height:1;cursor:pointer;box-shadow:0 -8px 22px -12px rgba(4,4,40,.45)}
+  .inext2::after{content:"";position:absolute;left:-46px;right:-46px;bottom:-1px;height:2px;border-radius:2px;background:#fdfcf7;opacity:.85}
   .iwrap{padding-bottom:0}
   #intro{transition:opacity .45s ease,visibility 0s linear .45s}
   html.intro-on #intro{transition:opacity .45s ease}
@@ -339,7 +339,6 @@ html.intro-gone .volver{display:inline-flex}
   .iday b{font-size:min(120px,30vw,13dvh)}
   .irest{margin-top:6px;padding-top:8px}
   .irest b{font-size:min(40px,9vw,5dvh)}
-  .inext{width:46px;height:46px;bottom:calc(env(safe-area-inset-bottom,0px) + 28px)}
 }
 
 /* espacio de lectura: se abre en círculo desde el botón y ocupa toda la pantalla */
@@ -380,6 +379,14 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
   #lectura .lfoot{position:absolute;right:max(10px,env(safe-area-inset-right,0px));bottom:max(4px,env(safe-area-inset-bottom,0px));width:auto;margin:0;z-index:2}
   #lectura .lpw{flex-basis:auto;font-size:10.5px;opacity:.75}
 }
+
+/* Sala: cubierta en plano, compuesta como pieza gráfica */
+.pcover{position:relative;margin:0 auto;width:min(320px,60vw,44vh);padding:0;--tilt:-3deg}
+.pcover .pc-back{position:absolute;inset:5% -9% -4% 9%;border-radius:10px;background:linear-gradient(160deg,rgba(243,237,221,.16),rgba(243,237,221,.04));border:1px solid rgba(243,237,221,.18);transform:rotate(5deg)}
+.pcover img{position:relative;display:block;width:100%;height:auto;border-radius:2px 6px 6px 2px;transform:rotate(var(--tilt));box-shadow:0 2px 0 rgba(255,255,255,.08),0 34px 60px -24px rgba(0,0,0,.75),0 12px 22px -12px rgba(0,0,0,.5);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.pcover::after{content:"";position:absolute;left:0;top:0;width:100%;aspect-ratio:2/3;border-radius:2px 6px 6px 2px;transform:rotate(var(--tilt));background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.18) 2.6%,transparent 5%,transparent 80%,rgba(255,255,255,.06));pointer-events:none;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.pcover:hover img,.pcover:hover::after{--tilt:-1deg}
+@media (max-width:900px){.pcover{width:min(230px,50vw,30svh)}}
 
 /* preventas */
 .preventa{background:var(--paper-2);padding-block:clamp(70px,9vw,130px)}
@@ -448,12 +455,13 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
     </div>
     <div class="iclock" role="timer" aria-label="Cuenta regresiva al lanzamiento">
       <span class="ilbl"><i></i><span id="hLbl">Faltan para el lanzamiento</span></span>
-      <div class="iday"><b data-c="d">00</b><span data-u="d">días</span><button class="inext2" id="entrar2" type="button" aria-label="Entrar a la página del libro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></div>
+      <div class="iday"><b data-c="d">00</b><span data-u="d">días</span></div>
       <div class="irest"><span><b data-c="h">00</b>h</span><span><b data-c="m">00</b>min</span><span><b data-c="s">00</b>s</span></div>
       <p class="isub" id="hSub">Sábado 12 de diciembre de 2026</p>
+      <button class="inext2" id="entrar2" type="button">abrir el archivo</button>
     </div>
   </div>
-  <button class="inext" id="entrar" type="button" aria-label="Entrar a la página del libro">→</button>
+  <button class="inext" id="entrar" type="button">abrir el archivo</button>
   <p class="ipw">powered by <a class="tec" href="https://tecnoia.gt" target="_blank" rel="noopener"><img class="logo-l" src="a/tecnoia_color.png" alt=""><svg class="logo-d" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1027 984"><path fill="currentColor" fill-rule="evenodd" d="M157 962C115 955 80 926 67 886C61 868 61 872 61 718L61 578L99 559C120 548 137 539 137 539C138 539 138 607 138 690C138 822 138 842 140 848C144 868 160 884 179 888C189 891 878 891 888 888C906 884 921 870 928 851C929 846 930 836 930 491L930 136L927 131C921 114 906 101 889 97C881 95 190 94 180 96C161 100 144 116 140 135C138 141 138 157 138 254L138 366L100 385C79 396 62 405 62 405C61 405 61 342 61 265C61 112 61 116 67 98C81 57 117 27 159 21C173 19 899 20 911 22C960 29 998 68 1006 117C1008 132 1008 852 1006 867C998 916 959 955 910 963C896 965 169 965 157 962ZM591 861C552 856 524 840 504 811C493 794 494 796 438 598C409 496 385 412 384 411C384 409 361 418 227 475C141 511 68 542 64 543C32 554 13 527 23 486C28 466 41 448 60 436C67 431 680 139 691 135C721 125 751 136 777 167C797 193 801 212 787 225C782 230 780 231 661 285C595 316 537 342 532 344C528 346 522 349 520 350L517 354L595 592C679 847 676 838 673 845C670 849 664 854 659 855C644 860 605 863 591 861ZM784 856C745 850 716 824 706 787C703 775 703 753 706 741C717 699 753 672 796 672C839 672 875 699 886 741C889 753 889 775 886 787C877 820 852 846 819 854C811 856 791 858 784 856Z"/></svg><span>Tecnoia.gt</span></a></p>
 </section>
 
@@ -465,9 +473,6 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
       <img class="logo-l" src="a/logo.png" alt=""><img class="logo-d" src="a/logo_crema.png" alt="">
       <span>Publicaciones<br>Pneuma</span>
     </a>
-    <nav class="rail" aria-label="Recorrido">
-      <a href="#libro">El libro</a><a href="#leer">Muestra</a><a href="#historia">Historia</a><a href="#achiotes">Los Achiotes</a><a href="#e1994">1994</a><a href="#e1996">1996</a><a href="#e1999">1999</a><a href="#e2004">2004</a><a href="#e2007">2007</a><a href="#e2015">2015</a><a href="#e2016">2016</a><a href="#e2020">2020</a><a href="#pasiones">Pasiones</a><a href="#cuenta">Lanzamiento</a><a href="#preventas">Preventas</a>
-    </nav>
   </div>
   <div class="prog" id="prog"></div>
 </header>
@@ -490,17 +495,14 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
           <button class="leermas" id="resBtn" type="button" aria-expanded="false" aria-controls="resMas">Seguir leyendo la reseña</button>
         </div>
         <div class="btns">
-          <a class="btn solid" href="#leer">Leer</a>
+          <a class="btn solid" href="#leer">Leer muestra</a>
         </div>
       </div>
       <div>
-        <div class="stage3d" id="stage" aria-label="Libro en 3D. Arrastre para girarlo.">
-          <div class="book" id="book" role="img" aria-label="Cubierta, lomo y contracubierta del libro">
-            <div class="f back"></div><div class="f spine"></div><div class="f edge"></div><div class="f tp"></div><div class="f bt"></div><div class="f p1"></div>
-            <div class="cover" id="cover"><div class="cf"></div><div class="ci"></div></div>
-          </div>
-          <div class="floor"></div>
-        </div>
+        <figure class="pcover" aria-label="Cubierta del libro">
+          <span class="pc-back" aria-hidden="true"></span>
+          <img src="a/front.webp" width="800" height="1200" alt="Cubierta de Crecimiento integral de la iglesia pentecostal, de Balmer Ayala">
+        </figure>
         <p class="hint" id="hint" hidden></p>
       </div>
     </div>
@@ -519,7 +521,7 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
       <div class="collage">
         <div class="sk" style="--m:url(a/b_valle.webp);height:62%"></div>
         <figure class="ph dib" style="--x:30%;--y:2%;--w:56%;--r:2.5deg;--sp:40;--z:2">
-          <div class="im"><i class="tz" style="--m:url(a/autor_tinta.webp);--mp:center 20%" role="img" aria-label="Retrato de Balmer de Jesús Ayala Victoria"></i></div>
+          <div class="im"><i class="tz" style="--m:url(a/autor_mic_tinta.webp);--mp:center 30%" role="img" aria-label="Balmer de Jesús Ayala Victoria con el micrófono, en dibujo a tinta"></i></div>
           <figcaption>Balmer de Jesús Ayala Victoria</figcaption>
         </figure>
         <figure class="ph dib" style="--x:0%;--y:30%;--w:34%;--r:-5deg;--sp:90;--ar:1/1;--z:3">
@@ -804,9 +806,7 @@ html.lee #flip{animation:alzar .9s .25s cubic-bezier(.2,.7,.2,1) both}
         <li data-ph="post"><span class="k">Después</span><h3>Ya disponible</h3><p>Impreso y digital, desde el 19 de diciembre.</p></li>
       </ol>
       <div class="btns">
-        <a class="btn solid" id="cMain" href="#leer">Leer la muestra</a>
-        <button class="btn" id="share" type="button">Copiar enlace</button>
-        <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+        <a class="btn solid" id="cMain" href="#leer">Leer muestra</a>
       </div>
     </div>
   </section>
@@ -991,6 +991,7 @@ const lightBook = (b, ry, floor) => {
 // ===== Libro 3D: girar arrastrando y abrir =====
 (() => {
   const st = document.getElementById('stage'), b = document.getElementById('book'), cover = document.getElementById('cover');
+  if (!st || !b) return;
   let ry = -28, rx = 8, vy = 0, drag = false, lx = 0, ly = 0, idle = 0, open = false;
   const fl = b.parentElement.parentElement.querySelector('.floor');
   const set = () => { b.style.setProperty('--ry', ry + 'deg'); b.style.setProperty('--rx', rx + 'deg'); lightBook(b, ry, fl); };
@@ -1121,8 +1122,6 @@ let pf = null;
   if (forced){ const t = document.createElement('div'); t.className = 'preview'; t.textContent = 'Vista previa: ' + location.hash.slice(1); document.body.appendChild(t); }
   const $ = id => document.getElementById(id);
   const two = n => String(n).padStart(2, '0');
-  const wa = 'https://wa.me/?text=' + encodeURIComponent('Crecimiento integral de la iglesia pentecostal, de Balmer Ayala. Lea la muestra: ' + COMPARTIR);
-  $('wa').href = wa;
   const buy = el => { if (COMPRA){ el.href = COMPRA; el.target = '_blank'; el.rel = 'noopener'; el.removeAttribute('aria-disabled'); el.textContent = 'Conseguir el libro'; } else { el.removeAttribute('href'); el.setAttribute('aria-disabled', 'true'); el.textContent = 'Enlace de compra, muy pronto'; } };
   let last = '';
   const render = () => {
@@ -1203,12 +1202,5 @@ let pf = null;
   b.addEventListener('click', () => { const abre = m.hidden; m.hidden = !abre; b.setAttribute('aria-expanded', abre); b.textContent = abre ? 'Ver menos' : 'Seguir leyendo la reseña'; });
 })();
 
-// ===== Copiar enlace =====
-document.getElementById('share').addEventListener('click', async () => {
-  const t = document.getElementById('toast');
-  const show = m => { t.textContent = m; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2400); };
-  try { await navigator.clipboard.writeText(COMPARTIR); show('Enlace copiado'); }
-  catch (_) { show('Copie este enlace: ' + COMPARTIR); }
-});
 </script>
 </body></html>
