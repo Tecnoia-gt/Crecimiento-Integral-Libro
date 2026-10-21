@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><link rel="icon" type="image/png" href="a/logo.png"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;padding:0}</style>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests"><meta name="referrer" content="strict-origin-when-cross-origin"><link rel="icon" type="image/png" href="a/logo.png"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;padding:0}</style>
 <title>Crecimiento integral · Balmer Ayala</title>
 <meta name="description" content="La historia de Balmer Ayala en fotos y el libro Crecimiento integral de la iglesia pentecostal en 3D, con muestra para leer y cuenta regresiva al lanzamiento del 12 de diciembre de 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1044,7 +1044,7 @@ let pf = null;
     host.style.scale = fit < 1 ? String(fit) : '';
   };
   addEventListener('resize', refit); refit();
-  try { const k = sessionStorage.getItem('muestraPag'); if (k !== null){ sessionStorage.removeItem('muestraPag'); setTimeout(() => { const n = +k; warm(n); pf.turnToPage(n); show(n); }, 0); } } catch (_) {}
+  try { const k = sessionStorage.getItem('muestraPag'); if (k !== null){ sessionStorage.removeItem('muestraPag'); const n = +k; if (Number.isInteger(n) && n >= 0 && n < pf.getPageCount()) setTimeout(() => { warm(n); pf.turnToPage(n); show(n); }, 0); } } catch (_) {}
   const pos = document.getElementById('fpos');
   const show = i => { warm(i); const p = pages[i]; pos.textContent = /^[0-9ivx]+$/.test(p.label) ? 'Página ' + p.label : p.label; };
   pf.on('flip', e => show(e.data));
